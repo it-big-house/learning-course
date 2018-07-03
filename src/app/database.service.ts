@@ -1,0 +1,46 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+export interface Component {
+    instructions: string;
+    title: string;
+}
+
+export interface Question {
+    component: Component;
+    title: string;
+    [propName: string]: any;
+}
+
+export interface Brick {
+    title: string;
+    brief: string;
+    prep: string;
+    subject: string;
+    pallet: Pallet;
+    creator: string;
+    creationDate: Date;
+    selector: string;
+    highScore: number;
+    avgScore: number;
+    totalUsers: number;
+    questions: Question[];
+}
+
+export interface Pallet {
+    name: string;
+    bricks: Brick[];
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class DatabaseService {
+    constructor(private http: HttpClient) { }
+
+    getBrick(id: string) {
+        console.log("Requesting... " + id);
+        // lh0pzfSRgVBSZ8UBaDJb
+        return this.http.get<Brick>("http://localhost:8080/brick/"+id)
+    }
+}
