@@ -41,6 +41,6 @@ export class DatabaseService {
     getBrick(id: string) {
         console.log("Requesting... " + id);
         // lh0pzfSRgVBSZ8UBaDJb
-        return this.http.get<Brick>("http://learning-fortress-backend.herokuapp.com/brick/"+id)
+        return this.http.get<Brick>("https://learning-fortress-backend.herokuapp.com/brick/"+id)
     }
 }
