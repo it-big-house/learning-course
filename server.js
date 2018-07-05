@@ -9,3 +9,4 @@ app.use(express.static(__dirname + '/dist/learning-fortress-frontend'));
 
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8080);
+console.log('Listening on port %s', process.env.PORT || 8080);
