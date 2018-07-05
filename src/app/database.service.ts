@@ -40,7 +40,7 @@ export class DatabaseService {
 
     getBrick(id: string) {
         console.log("Requesting... " + id);
-        // lh0pzfSRgVBSZ8UBaDJb
+        // TODO: Change to environment variable!
         return this.http.get<Brick>("https://learning-fortress-backend.herokuapp.com/brick/"+id)
     }
 }
