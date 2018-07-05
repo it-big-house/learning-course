@@ -17,10 +17,10 @@ export interface Brick {
     brief: string;
     prep: string;
     subject: string;
+    type: number;
     pallet: Pallet;
     creator: string;
     creationDate: Date;
-    selector: string;
     highScore: number;
     avgScore: number;
     totalUsers: number;
@@ -41,6 +41,6 @@ export class DatabaseService {
     getBrick(id: string) {
         console.log("Requesting... " + id);
         // lh0pzfSRgVBSZ8UBaDJb
-        return this.http.get<Brick>("http://localhost:8080/brick/"+id)
+        return this.http.get<Brick>("http://localhost:5000/brick/"+id)
     }
 }

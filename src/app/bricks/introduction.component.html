@@ -1,1 +1,41 @@
-<p>{{ brick.title }}</p>
+<div class="spinner-container" *ngIf="!brick">
+    <mat-spinner class="fixed-center"></mat-spinner>
+</div>
+
+<div class="container" *ngIf="brick">
+    <h3>{{ brick.subject }}/{{ brick.pallet.name }}/{{ brick.type | brickTime }} minutes</h3>
+    <h1>{{ brick.title }}</h1>
+    <p>average score {{ brick.avgScore }} (all)</p>
+    <p>high score {{ brick.highScore }} (all)</p>
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Brief
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>{{ brick.brief }}</div>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Prep
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>{{ brick.prep }}</div>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <div class="begin-row">
+        <p>When you have completed the Prep, click the button.</p>
+        <div class="spacer"></div>
+        <p class="begin-label">Begin</p><a mat-fab class="fab-bottom" routerLink="../live"><mat-icon>play_arrow</mat-icon></a>
+    </div>
+    <div class="bottom-container" *ngIf="brick">
+        <div>
+            <p>Creator: {{ brick.creator }}</p>
+        </div>
+        <div>
+            <p>Total Users: {{ brick.totalUsers }}</p>
+        </div>
+    </div>
+</div>

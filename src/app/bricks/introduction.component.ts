@@ -16,19 +16,19 @@ export class IntroductionComponent {
         private router: Router,
         private route: ActivatedRoute
     ) { 
-        this.id = this.route.snapshot.paramMap.get('id');
+        this.route.paramMap
+            .subscribe((data: ParamMap) => {
+                this.id = data.get('id');
+                this.showBrick(this.id);
+            })
     }
 
     id: string;
     brick: Brick;
 
-    ngOnInit() {
-        this.showBrick(this.id);
-    }
-
     showBrick(id: string) {
         console.log("Hello World!");
-        this.database.getBrick("lh0pzfSRgVBSZ8UBaDJb")
+        this.database.getBrick(id)
             .subscribe((data: Brick) => {
                 this.brick = data;
             })
