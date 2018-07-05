@@ -1,29 +1,28 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, Routes } from '@angular/router'
 
+import { AppRoutingModule } from './app.routing';
 import { MaterialModule } from './material.module';
 
-import { AppComponent } from './app.component';
+import { BricksModule } from './bricks/bricks.module';
+import { FortressModule } from './fortress/fortress.module';
 
-const appRoutes : Routes = [
-  { path: "test", component: AppComponent },
-  { path: "**", redirectTo: "/test", pathMatch: "full"}
-]
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    ),
+    AppRoutingModule,
     BrowserModule,
+    BricksModule,
+    FortressModule,
+    HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

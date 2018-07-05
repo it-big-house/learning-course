@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    padding: 1vw 1vw 1vw 1vw;
+    box-sizing: border-box;
+}
+
+.bottom-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: auto;
+    margin-bottom: 1vh;
+}
+
+.begin-row {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.spacer {
+    margin: auto;
+}
+
+.begin-label {
+    font-size: 25px;
+    margin-right: 10px;
+}
+
+h1, h3, p {
+    margin: 5px;
+}
+
+.fixed-center {
+    margin:auto;
+}
+
+.spinner-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+}
