@@ -16,3 +16,17 @@ body {
     padding: 0;
     height: 100%;
 }
+
+.mat-button-toggle-button {
+    flex: 1 1 100%;
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    background-color: #000;
+}
+
+.mat-button-toggle-label-content {
+    text-align: center;
+    flex: 1 1 100%;
+}

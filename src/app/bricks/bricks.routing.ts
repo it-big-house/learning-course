@@ -6,10 +6,10 @@ import { IntroductionComponent } from './introduction.component';
 import { LiveComponent } from './live.component';
 
 const bricksRoutes = [
-    {path: '', component: BricksComponent, children: [
-        { path: ':id/intro', component: IntroductionComponent },
-        { path: ':id/live', component: LiveComponent },
-        { path: ':id', redirectTo: ':id/intro', pathMatch: 'full' }
+    {path: ':id', component: BricksComponent, children: [
+        { path: 'intro', component: IntroductionComponent },
+        { path: 'live', component: LiveComponent },
+        { path: '', redirectTo: 'intro', pathMatch: 'full' }
     ]}
 ]
 
