@@ -1,6 +1,7 @@
 export abstract class Comp {
-    instructions: string;
-    name: string;
+    instructions?: string;
+    name?: string;
+    component?: any;
     data: any;
 }
 

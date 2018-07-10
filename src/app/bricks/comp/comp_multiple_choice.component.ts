@@ -1,6 +1,7 @@
 import { Comp } from "../../bricks";
 import { Component, Input } from "../../../../node_modules/@angular/core";
 
+import { register } from './comp_index';
 
 export class CompMultipleChoice extends Comp {
     instructions = "Select one correct answer.";
@@ -22,6 +23,7 @@ export class CompMultipleChoice extends Comp {
     `,
     styleUrls: ["../live.component.scss"]
 })
+@register("MultipleChoice")
 export class MultipleChoiceComponent {
     constructor() { }
 

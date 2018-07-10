@@ -5,6 +5,8 @@ import { Observable, BehaviorSubject } from 'rxjs';
 
 import { Brick } from './bricks';
 
+import { getComponent } from './bricks/comp/comp_index';
+
 @Injectable({
     providedIn: 'root'
 })
@@ -17,6 +19,11 @@ export class DatabaseService {
         // TODO: Change to environment variable!
         this.http.get<Brick>("https://learning-fortress-backend-prep.herokuapp.com/brick/"+id)
             .subscribe((data) => {
+                data.questions.forEach((question) => {
+                    question.components.forEach((component) => {
+                        component.component = getComponent(component.name);
+                    });
+                });
                 bs.next(data);
             })
         return bs;

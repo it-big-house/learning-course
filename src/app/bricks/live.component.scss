@@ -46,3 +46,14 @@
     font-size: 30px;
     height: 15vw;
 }
+
+.comp-image-container {
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comp-image {
+    width: 300px;
+}
