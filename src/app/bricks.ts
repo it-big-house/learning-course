@@ -1,15 +1,16 @@
-export interface Component {
-    instructions: string;
+export abstract class Comp {
+    instructions?: string;
+    name?: string;
+    component?: any;
+    data: any;
+}
+
+export class Question {
+    components: Comp[];
     title: string;
 }
 
-export interface Question {
-    component: Component;
-    title: string;
-    [propName: string]: any;
-}
-
-export interface Brick {
+export class Brick {
     title: string;
     brief: string;
     prep: string;
@@ -24,7 +25,7 @@ export interface Brick {
     questions: Question[];
 }
 
-export interface Pallet {
+export class Pallet {
     name: string;
     bricks: Brick[];
 }

@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 
 import { BricksService } from './bricks.service';
 
-import { Brick } from '../bricks';
+import { Brick, Question } from '../bricks';
+import { MultipleChoiceComponent, CompMultipleChoice } from './comp/comp_multiple_choice.component';
+import { Observable } from '../../../node_modules/rxjs';
 
 @Component({
     selector: 'live',
@@ -12,15 +14,22 @@ import { Brick } from '../bricks';
 })
 export class LiveComponent {
     constructor(bricks: BricksService) {
+        this.brick = bricks.currentBrick.asObservable();
         bricks.currentBrick.subscribe((data) => {
-            this.brick = data;
-            if(this.brick != null) {
+            if(data != null) {
                 this.showBrick();
             }
         })
     }
 
-    brick: Brick;
+    brick: Observable<Brick>;
+    example: CompMultipleChoice;
 
-    showBrick() { }
+    showBrick() {
+        
+    }
+
+    trackQuestion(index: number, item: Question) {
+        return item.title;
+    }
 }
