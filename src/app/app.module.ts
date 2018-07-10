@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '../../node_modules/@angular/forms';
 
 import { AppRoutingModule } from './app.routing';
 import { MaterialModule } from './material.module';
@@ -19,6 +20,7 @@ import { AppComponent } from './app.component';
   imports: [
     AppRoutingModule,
     BrowserModule,
+    FormsModule,
     BricksModule,
     FortressModule,
     HttpClientModule,

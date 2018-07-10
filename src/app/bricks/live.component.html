@@ -1,12 +1,8 @@
-<mat-vertical-stepper linear>
-    <mat-step>
-        <ng-template matStepLabel>Question 1 lol</ng-template>
-        <a mat-raised-button>Hello</a>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Question 2 kek</ng-template>
-        <mat-button-toggle-group name="choice" class="choice">
-            <mat-button-toggle class="flex-choice" value="a" *ngFor="let index of [1,2]">{{ index }}</mat-button-toggle>
-        </mat-button-toggle-group>
-    </mat-step>
-</mat-vertical-stepper>
+<form>
+    <p *ngFor="let q of (brick | async)?.questions; let i = index">{{i}} : {{ q | json }}</p>
+    <mat-vertical-stepper>
+        <div *ngFor="let question of (brick | async)?.questions; let i = index">
+            <compo [questionNo]="i" [component]="question.components[0]"></compo>
+        </div>
+    </mat-vertical-stepper>
+</form>

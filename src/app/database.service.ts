@@ -15,7 +15,7 @@ export class DatabaseService {
         var bs = new BehaviorSubject<Brick>(null);
         console.log("Requesting... " + id);
         // TODO: Change to environment variable!
-        this.http.get<Brick>("https://learning-fortress-backend.herokuapp.com/brick/"+id)
+        this.http.get<Brick>("https://learning-fortress-backend-prep.herokuapp.com/brick/"+id)
             .subscribe((data) => {
                 bs.next(data);
             })
