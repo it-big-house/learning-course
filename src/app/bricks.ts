@@ -1,3 +1,5 @@
+// This is the representation of the data structures in the app.
+
 export abstract class Comp {
     name: string;
     component: any;
