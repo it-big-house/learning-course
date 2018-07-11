@@ -28,5 +28,13 @@ export class SingleChoiceComponent {
     constructor() { }
 
     @Input() data: CompSingleChoice;
-    public answer: string;
+    answer: string;
+
+    getAnswer() : number {
+        return this.data.data.choices.indexOf(this.answer);
+    }
+
+    autoMark() : boolean {
+        return this.getAnswer() == 0;
+    }
 }
