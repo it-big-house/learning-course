@@ -10,8 +10,7 @@ const appRoutes : Routes = [
 @NgModule({
     imports: [
         RouterModule.forRoot(
-            appRoutes,
-            { enableTracing: true } // TODO: remove debug feature
+            appRoutes
         ),
     ],
     exports: [

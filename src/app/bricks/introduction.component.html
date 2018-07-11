@@ -1,8 +1,6 @@
-<div class="spinner-container" *ngIf="!brick">
-    <mat-spinner class="fixed-center"></mat-spinner>
-</div>
 
-<div class="container" *ngIf="brick">
+
+<div class="container">
     <h3>{{ brick.subject }}/{{ brick.pallet.name }}/{{ brick.type | brickTime }} minutes</h3>
     <h1>{{ brick.title }}</h1>
     <p>average score {{ brick.avgScore }} (all)</p>

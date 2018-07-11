@@ -1,36 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-export interface Component {
-    instructions: string;
-    title: string;
-}
+import { Observable, BehaviorSubject } from 'rxjs';
 
-export interface Question {
-    component: Component;
-    title: string;
-    [propName: string]: any;
-}
+import { Brick } from './bricks';
 
-export interface Brick {
-    title: string;
-    brief: string;
-    prep: string;
-    subject: string;
-    type: number;
-    pallet: Pallet;
-    creator: string;
-    creationDate: Date;
-    highScore: number;
-    avgScore: number;
-    totalUsers: number;
-    questions: Question[];
-}
-
-export interface Pallet {
-    name: string;
-    bricks: Brick[];
-}
+import { getComponent } from './bricks/comp/comp_index';
 
 @Injectable({
     providedIn: 'root'
@@ -38,9 +13,19 @@ export interface Pallet {
 export class DatabaseService {
     constructor(private http: HttpClient) { }
 
-    getBrick(id: string) {
+    getBrick(id: string) : BehaviorSubject<Brick> {
+        var bs = new BehaviorSubject<Brick>(null);
         console.log("Requesting... " + id);
         // TODO: Change to environment variable!
-        return this.http.get<Brick>("https://learning-fortress-backend.herokuapp.com/brick/"+id)
+        this.http.get<Brick>("https://learning-fortress-backend-prep.herokuapp.com/brick/"+id)
+            .subscribe((data) => {
+                data.questions.forEach((question) => {
+                    question.components.forEach((component) => {
+                        component.component = getComponent(component.name);
+                    });
+                });
+                bs.next(data);
+            })
+        return bs;
     }
 }

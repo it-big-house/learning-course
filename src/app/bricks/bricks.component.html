@@ -1,0 +1,5 @@
+<div class="spinner-container" *ngIf="!brick">
+    <mat-spinner class="fixed-center"></mat-spinner>
+</div>
+
+<router-outlet *ngIf="brick"></router-outlet>

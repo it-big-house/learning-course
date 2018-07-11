@@ -1,36 +1,28 @@
-import { DatabaseService, Brick } from '../database.service';
 import { Component } from '@angular/core';
+
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
 import { switchMap } from 'rxjs/operators';
 
+import { Brick } from '../bricks';
+import { BricksService } from './bricks.service';
+
 @Component({
     selector: 'introduction',
     templateUrl: './introduction.component.html',
-    styleUrls: ['./introduction.component.css'],
-    providers: [ DatabaseService ]
+    styleUrls: ['./introduction.component.scss']
 })
 export class IntroductionComponent {
-    constructor(
-        private database: DatabaseService,
-        private router: Router,
-        private route: ActivatedRoute
-    ) { 
-        this.route.paramMap
-            .subscribe((data: ParamMap) => {
-                this.id = data.get('id');
-                this.showBrick(this.id);
-            })
+    constructor(private bricks: BricksService) {
+        bricks.currentBrick.subscribe((data) => {
+            this.brick = data;
+            if(this.brick != null) {
+                this.showBrick();
+            }
+        })
     }
 
-    id: string;
     brick: Brick;
 
-    showBrick(id: string) {
-        console.log("Hello World!");
-        this.database.getBrick(id)
-            .subscribe((data: Brick) => {
-                this.brick = data;
-            })
-    }
+    showBrick() { }
 }
