@@ -4,6 +4,7 @@ import { BricksService } from './bricks.service';
 
 import { Brick, Question } from '../bricks';
 import { Observable } from 'rxjs';
+import { TimerService } from './timer.service';
 
 @Component({
     selector: 'live',
@@ -12,8 +13,9 @@ import { Observable } from 'rxjs';
     providers: [ ]
 })
 export class LiveComponent {
-    constructor(bricks: BricksService) {
+    constructor(bricks: BricksService, timer: TimerService) {
         this.brick = bricks.currentBrick.asObservable();
+        this.timer = timer;
         bricks.currentBrick.subscribe((data) => {
             if(data != null) {
                 this.showBrick();
@@ -22,12 +24,15 @@ export class LiveComponent {
     }
 
     brick: Observable<Brick>;
+    timer : TimerService;
 
     showBrick() {
-        
+        this.timer.start();
     }
 
-    trackQuestion(index: number, item: Question) {
-        return item.title;
+    finishBrick() {
+        this.timer.stop();
+        console.log("finished in " + this.timer.seconds);
     }
+
 }

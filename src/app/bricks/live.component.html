@@ -1,5 +1,5 @@
 <form>
-    <mat-vertical-stepper>
+    <mat-vertical-stepper linear>
         <mat-step *ngFor="let question of (brick | async)?.questions; let index = index">
             <ng-template matStepLabel>Question {{index+1}}</ng-template>
             <ndc-dynamic
@@ -7,6 +7,10 @@
                 [ndcDynamicComponent]="comp.component"
                 [ndcDynamicInputs]="{ data: comp }"
                 ></ndc-dynamic>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>End</ng-template>
+            <button mat-button (click)="finishBrick()">Done!</button>
         </mat-step>
     </mat-vertical-stepper>
 </form>

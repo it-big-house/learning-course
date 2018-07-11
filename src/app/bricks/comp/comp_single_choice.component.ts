@@ -17,8 +17,8 @@ export class CompSingleChoice extends Comp {
 @Component({
     selector: "single-choice",
     template: `
-    <mat-button-toggle-group name="choice" class="choice">
-        <mat-button-toggle class="flex-choice" *ngFor="let choice of data.data.choices | shuffle">{{ choice }}</mat-button-toggle>
+    <mat-button-toggle-group [(ngModel)]="answer" name="choice" class="choice">
+        <mat-button-toggle class="flex-choice" *ngFor="let choice of data.data.choices | shuffle; let i = index" value="{{ choice }}">{{ choice }}</mat-button-toggle>
     </mat-button-toggle-group>
     `,
     styleUrls: ["../live.component.scss"]
@@ -28,4 +28,5 @@ export class SingleChoiceComponent {
     constructor() { }
 
     @Input() data: CompSingleChoice;
+    public answer: string;
 }

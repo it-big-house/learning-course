@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { DynamicModule } from 'ng-dynamic-component';
 import { NgArrayPipesModule } from 'ngx-pipes';
+import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../material.module';
 import { BricksComponent } from './bricks.component';
 import { BricksRoutingModule } from './bricks.routing';
@@ -15,7 +16,7 @@ import { TextComponent } from './comp/comp_text.component';
 
 
 @NgModule({
-    imports: [BricksRoutingModule, CommonModule, NgArrayPipesModule, MaterialModule,
+    imports: [BricksRoutingModule, CommonModule, NgArrayPipesModule, MaterialModule, FormsModule,
         DynamicModule.withComponents([SingleChoiceComponent, ImageComponent, TextComponent]),
     ],
     declarations: [
