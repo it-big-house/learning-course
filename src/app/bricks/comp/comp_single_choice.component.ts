@@ -1,11 +1,11 @@
 import { Comp } from "../../bricks";
-import { Component, Input } from "../../../../node_modules/@angular/core";
+import { Component, Input } from "@angular/core";
 
 import { register } from './comp_index';
 
-export class CompMultipleChoice extends Comp {
+export class CompSingleChoice extends Comp {
     instructions = "Select one correct answer.";
-    name = "Multiple Choice";
+    name = "Single Choice";
     data: { choices:string[] }
 
     constructor(data: { choices:string[] }) {
@@ -15,7 +15,7 @@ export class CompMultipleChoice extends Comp {
 }
 
 @Component({
-    selector: "multiple-choice",
+    selector: "single-choice",
     template: `
     <mat-button-toggle-group name="choice" class="choice">
         <mat-button-toggle class="flex-choice" *ngFor="let choice of data.data.choices | shuffle">{{ choice }}</mat-button-toggle>
@@ -23,9 +23,9 @@ export class CompMultipleChoice extends Comp {
     `,
     styleUrls: ["../live.component.scss"]
 })
-@register("MultipleChoice")
-export class MultipleChoiceComponent {
+@register("SingleChoice")
+export class SingleChoiceComponent {
     constructor() { }
 
-    @Input() data: CompMultipleChoice;
+    @Input() data: CompSingleChoice;
 }
