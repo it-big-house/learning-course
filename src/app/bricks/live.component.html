@@ -1,6 +1,12 @@
+<div class="timer-container">
+    <mat-card class="timer">
+        Time Remaining: {{ timer.timeLeft | date: 'm:ss' }} seconds
+    </mat-card>
+</div>
+    
 <form>
     <mat-vertical-stepper linear>
-        <mat-step *ngFor="let question of (brick | async)?.questions; let index = index">
+        <mat-step *ngFor="let question of (brick | async)?.questions; let index = index" [editable]="false">
             <ng-template matStepLabel>Question {{index+1}}</ng-template>
             <ndc-dynamic
                 *ngFor="let comp of question.components"

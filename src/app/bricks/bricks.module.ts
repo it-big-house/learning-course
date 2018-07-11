@@ -22,6 +22,9 @@ import { TextComponent } from './comp/comp_text.component';
     declarations: [
         BricksComponent, IntroductionComponent, LiveComponent, BrickTimePipe,
         SingleChoiceComponent, ImageComponent, TextComponent
+    ],
+    providers: [
+        BrickTimePipe
     ]
 })
 export class BricksModule { }
