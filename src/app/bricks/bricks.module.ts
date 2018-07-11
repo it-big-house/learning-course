@@ -7,19 +7,20 @@ import { BricksComponent } from './bricks.component';
 import { BricksRoutingModule } from './bricks.routing';
 import { BrickTimePipe } from './brickTime.pipe';
 import { ImageComponent } from './comp/comp_image.component';
-import { MultipleChoiceComponent } from './comp/comp_multiple_choice.component';
+import { SingleChoiceComponent } from './comp/comp_single_choice.component';
 import { IntroductionComponent } from './introduction.component';
 import { LiveComponent } from './live.component';
+import { TextComponent } from './comp/comp_text.component';
 
 
 
 @NgModule({
     imports: [BricksRoutingModule, CommonModule, NgArrayPipesModule, MaterialModule,
-        DynamicModule.withComponents([MultipleChoiceComponent, ImageComponent]),
+        DynamicModule.withComponents([SingleChoiceComponent, ImageComponent, TextComponent]),
     ],
     declarations: [
         BricksComponent, IntroductionComponent, LiveComponent, BrickTimePipe,
-        MultipleChoiceComponent, ImageComponent
+        SingleChoiceComponent, ImageComponent, TextComponent
     ]
 })
 export class BricksModule { }

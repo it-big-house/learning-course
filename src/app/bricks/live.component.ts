@@ -3,8 +3,7 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { BricksService } from './bricks.service';
 
 import { Brick, Question } from '../bricks';
-import { MultipleChoiceComponent, CompMultipleChoice } from './comp/comp_multiple_choice.component';
-import { Observable } from '../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'live',
@@ -23,7 +22,6 @@ export class LiveComponent {
     }
 
     brick: Observable<Brick>;
-    example: CompMultipleChoice;
 
     showBrick() {
         
