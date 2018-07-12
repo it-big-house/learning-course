@@ -9,6 +9,7 @@ import { BricksRoutingModule } from './bricks.routing';
 import { BrickTimePipe } from './brickTime.pipe';
 import { ImageComponent } from './comp/comp_image.component';
 import { SingleChoiceComponent } from './comp/comp_single_choice.component';
+import { MultipleChoiceComponent } from './comp/comp_multiple_choice.component';
 import { IntroductionComponent } from './introduction.component';
 import { LiveComponent } from './live.component';
 import { TextComponent } from './comp/comp_text.component';
@@ -17,11 +18,11 @@ import { TextComponent } from './comp/comp_text.component';
 
 @NgModule({
     imports: [BricksRoutingModule, CommonModule, NgArrayPipesModule, MaterialModule, FormsModule,
-        DynamicModule.withComponents([SingleChoiceComponent, ImageComponent, TextComponent]),
+        DynamicModule.withComponents([SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent]),
     ],
     declarations: [
         BricksComponent, IntroductionComponent, LiveComponent, BrickTimePipe,
-        SingleChoiceComponent, ImageComponent, TextComponent
+        SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent
     ],
     providers: [
         BrickTimePipe

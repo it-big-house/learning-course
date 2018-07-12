@@ -21,37 +21,37 @@
 @media (min-device-width: 700px) {
     .flex-choice:first-child:nth-last-child(2),
     .flex-choice:first-child:nth-last-child(2) ~ .flex-choice {
-        width: 50%;
+        min-width: 50%;
     }
 
     .flex-choice:first-child:nth-last-child(3),
     .flex-choice:first-child:nth-last-child(3) ~ .flex-choice {
-        width: 30%;
+        min-width: 30%;
     }
 
     .flex-choice:first-child:nth-last-child(4),
     .flex-choice:first-child:nth-last-child(4) ~ .flex-choice {
-        width: 50%;
+        min-width: 50%;
     }
 
     .flex-choice:first-child:nth-last-child(5),
     .flex-choice:first-child:nth-last-child(5) ~ .flex-choice {
-        width: 30%;
+        min-width: 30%;
     }
 
     .flex-choice:first-child:nth-last-child(6),
     .flex-choice:first-child:nth-last-child(6) ~ .flex-choice {
-        width: 30%;
+        min-width: 30%;
     }
 
     .flex-choice:first-child:nth-last-child(7),
     .flex-choice:first-child:nth-last-child(7) ~ .flex-choice {
-        width: 25%;
+        min-width: 25%;
     }
 
     .flex-choice:first-child:nth-last-child(8),
     .flex-choice:first-child:nth-last-child(8) ~ .flex-choice {
-        width: 25%;
+        min-width: 25%;
     }
 }
 
