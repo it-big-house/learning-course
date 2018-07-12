@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { environment } from '../environments/environment';
+
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import { Brick } from './bricks';
@@ -15,9 +17,9 @@ export class DatabaseService {
 
     getBrick(id: string) : BehaviorSubject<Brick> {
         var bs = new BehaviorSubject<Brick>(null);
-        console.log("Requesting... " + id);
+        console.log("Requesting " + id + " from " + environment.apiUrl);
         // TODO: Change to environment variable!
-        this.http.get<Brick>("https://learning-fortress-backend-prep.herokuapp.com/brick/"+id)
+        this.http.get<Brick>(environment.apiUrl+"brick/"+id)
             .subscribe((data) => {
                 data.questions.forEach((question) => {
                     question.components.forEach((component) => {
