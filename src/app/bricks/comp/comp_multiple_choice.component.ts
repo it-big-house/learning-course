@@ -37,10 +37,6 @@ export class MultipleChoiceComponent {
 
     changeAnswer(event: MatButtonToggleChange, index: number) : void {
         this.answers[index] = event.source.checked ? event.value : "";
-<<<<<<< HEAD
-=======
-        this.getAnswer();
->>>>>>> 1e6a5fdbc6bd3ada6891858dcb2da4d9d84f6e65
     }
 
     getAnswer() : number[] {
