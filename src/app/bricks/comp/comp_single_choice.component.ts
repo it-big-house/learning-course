@@ -4,7 +4,6 @@ import { Component, Input } from "@angular/core";
 import { register } from './comp_index';
 
 export class CompSingleChoice extends Comp {
-    instructions = "Select one correct answer.";
     name = "Single Choice";
     data: { choices:string[] }
 
@@ -32,9 +31,5 @@ export class SingleChoiceComponent {
 
     getAnswer() : number {
         return this.data.data.choices.indexOf(this.answer);
-    }
-
-    autoMark() : boolean {
-        return this.getAnswer() == 0;
     }
 }
