@@ -1,9 +1,12 @@
-import { Component, Type } from '@angular/core';
 
-const registry = new Map<string, any>();
+export const registry = new Map<string, any>();
 
 export function getComponent (name: string) : any {
     return registry.get(name);
+}
+
+export function getAllComponents () : any[] {
+    return Array.from(registry.values());
 }
 
 export function register (name: string) {

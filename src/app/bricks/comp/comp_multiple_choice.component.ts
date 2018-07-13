@@ -15,6 +15,7 @@ export class CompMultipleChoice extends Comp {
     }
 }
 
+@register("MultipleChoice")
 @Component({
     selector: "multiple-choice",
     template: `
@@ -24,7 +25,6 @@ export class CompMultipleChoice extends Comp {
     `,
     styleUrls: ["../live.component.scss"]
 })
-@register("MultipleChoice")
 export class MultipleChoiceComponent {
     constructor() { }
 

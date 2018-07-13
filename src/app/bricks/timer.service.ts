@@ -1,6 +1,8 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { timer, Observable, Subscription } from "rxjs";
 
+
+// TODO: Add call to API to make sure that a brick can't be reset.
 export class Timer {
     constructor () { }
 

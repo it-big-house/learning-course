@@ -11,6 +11,7 @@ export class CompImage extends Comp {
     }
 }
 
+@register("Image")
 @Component({
     selector: "image",
     template: `
@@ -20,7 +21,6 @@ export class CompImage extends Comp {
     `,
     styleUrls: ["../live.component.scss"]
 })
-@register("Image")
 export class ImageComponent {
     constructor() { }
 

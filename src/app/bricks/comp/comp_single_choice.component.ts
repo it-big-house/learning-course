@@ -13,6 +13,7 @@ export class CompSingleChoice extends Comp {
     }
 }
 
+@register("SingleChoice")
 @Component({
     selector: "single-choice",
     template: `
@@ -22,7 +23,6 @@ export class CompSingleChoice extends Comp {
     `,
     styleUrls: ["../live.component.scss"]
 })
-@register("SingleChoice")
 export class SingleChoiceComponent {
     constructor() { }
 

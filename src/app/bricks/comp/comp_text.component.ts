@@ -11,6 +11,7 @@ export class CompText extends Comp {
     }
 }
 
+@register("Text")
 @Component({
     selector: "text",
     template: `
