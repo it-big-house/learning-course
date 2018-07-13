@@ -1,7 +1,7 @@
 
 
 <div class="container">
-    <h3>{{ brick.subject }}/{{ brick.pallet.name }}/{{ brick.type | brickTime }} minutes</h3>
+    <h3>{{ brick.subject }}/{{ brick.pallet.name }}/{{ brick.type | brickTime | date: 'm:ss' }} minutes</h3>
     <h1>{{ brick.title }}</h1>
     <p>average score {{ brick.avgScore }} (all)</p>
     <p>high score {{ brick.highScore }} (all)</p>
