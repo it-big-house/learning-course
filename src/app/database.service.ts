@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { HttpHeaders } from '@angular/common/http';
+
+const headers = new HttpHeaders({
+    'Content-Type':  'application/json'
+})
+
 import { environment } from '../environments/environment';
 
 import { Observable, BehaviorSubject } from 'rxjs';
 
-import { Brick } from './bricks';
+import { Brick, BrickAttempt } from './bricks';
 
 import { getComponent } from './bricks/comp/comp_index';
 
@@ -29,5 +35,10 @@ export class DatabaseService {
                 bs.next(data);
             })
         return bs;
+    }
+
+    createBrickAttempt(brickAttempt: any) : Observable<any> {
+        console.log("Creating brickAttempt: " + JSON.stringify(brickAttempt) + " at URL " + environment.apiUrl);
+        return this.http.post<any>(environment.apiUrl+"brickattempt", brickAttempt, { headers: headers, observe: 'response' });
     }
 }
