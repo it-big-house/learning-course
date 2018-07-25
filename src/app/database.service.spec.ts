@@ -46,5 +46,6 @@ describe('DatabaseService', () => {
             response => expect(response.status).toBe(200),
             fail
         );
+        expect(spy.get.calls).toBe(1);
     });
 })
