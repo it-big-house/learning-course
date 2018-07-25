@@ -3,8 +3,6 @@ import { HttpClient } from '@angular/common/http';
 
 import { HttpHeaders } from '@angular/common/http';
 
-console.log(environment);
-
 const headers = new HttpHeaders({
     'Content-Type':  'application/json',
     'Authorization': 'Basic ' + btoa(environment.auth_username+':'+environment.auth_password)

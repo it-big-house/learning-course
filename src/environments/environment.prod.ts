@@ -1,5 +1,3 @@
-import * as process from 'process';
-
 export const environment = {
     production: true,
     apiUrl: "https://learning-fortress-backend.herokuapp.com/",

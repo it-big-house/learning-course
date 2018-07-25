@@ -2,8 +2,6 @@
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import * as process from 'process';
-
 export const environment = {
     production: false,
     apiUrl: "https://learning-fortress-backend-prep.herokuapp.com/",
