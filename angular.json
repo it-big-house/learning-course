@@ -44,14 +44,6 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
-            },
-            "local": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": ".env"
-                }
-              ]
             }
           }
         },
@@ -63,9 +55,6 @@
           "configurations": {
             "production": {
               "browserTarget": "learning-fortress-frontend:build:production"
-            },
-            "local": {
-              "browserTarget": "learning-fortress-frontend:build:local"
             }
           }
         },
