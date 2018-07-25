@@ -11,10 +11,10 @@
             "url": "http://localhost:4200",
             "port": 9222,
             "webRoot": "${workspaceFolder}",
-            "userDataDir": "C:\\Users\\William\\Programming\\chrome-dev",
+            "runtimeExecutable": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
             "runtimeArgs": [
                 "--runtime-debugger-port=9222"
-            ],
+            ]
         },
         {
             "type": "chrome",
@@ -23,7 +23,7 @@
             "url": "http://localhost:4200",
             "webRoot": "${workspaceFolder}",
             "preLaunchTask": "debug",
-            "userDataDir": "C:\\Users\\William\\Programming\\chrome-dev",
+            "runtimeExecutable": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
             "runtimeArgs": [
                 "--runtime-debugger-port=9222"
             ]

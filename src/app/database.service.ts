@@ -4,8 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 
 const headers = new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'Basic ' + btoa(environment.auth_username+':'+environment.auth_password)
+    'Content-Type':  'application/json'
 })
 
 import { environment } from '../environments/environment';
@@ -26,7 +25,7 @@ export class DatabaseService {
         var bs = new BehaviorSubject<Brick>(null);
         console.log("Requesting " + id + " from " + environment.apiUrl);
         // TODO: Change to environment variable!
-        this.http.get<Brick>(environment.apiUrl+"brick/"+id, { headers: headers })
+        this.http.get<Brick>(environment.apiUrl+"brick/"+id)
             .subscribe((data) => {
                 data.questions.forEach((question) => {
                     question.components.forEach((component) => {
