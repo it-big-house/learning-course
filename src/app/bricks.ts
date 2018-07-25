@@ -31,27 +31,28 @@ export class Pallet {
     bricks: Brick[];
 }
 
-export class StudentComponent {
+export class ComponentAttempt {
     answer: any;
     correct: boolean;
 }
 
-export class StudentAnswer {
+export class QuestionAttempt {
     question: Question;
-    components: StudentComponent[];
+    components: ComponentAttempt[];
 }
 
-export class StudentBrick {
+export class BrickAttempt {
     brick: Brick;
     score: number;
-    answers: StudentAnswer[];
+    student: Student;
+    answers: QuestionAttempt[];
 }
 
 export class StudentPallet {
     pallet: Pallet;
     student: Student;
     teacher: Teacher;
-    bricks: StudentBrick[];
+    bricks: BrickAttempt[];
 }
 
 export class Student {
