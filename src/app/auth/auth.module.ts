@@ -11,6 +11,7 @@ const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
       AuthProvider.Google,
       AuthProvider.Facebook,
       AuthProvider.Password,
+      AuthProvider.Phone
     ],
     method: AuthMethods.Redirect,
     // tos: '<your-tos-link>',
