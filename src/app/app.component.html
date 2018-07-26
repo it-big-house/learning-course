@@ -1,1 +1,4 @@
-<router-outlet></router-outlet>
+<router-outlet *ngIf="afAuth.user | async as user; else showLogin"></router-outlet>
+<ng-template #showLogin>
+<firebase-ui></firebase-ui>
+</ng-template>
