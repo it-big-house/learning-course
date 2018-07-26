@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'home',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   title = 'home';
+  constructor(public afAuth: AngularFireAuth) {
+  }
+  logout() {
+    this.afAuth.auth.signOut();
+  }
 }
