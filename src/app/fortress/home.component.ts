@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'home',
@@ -8,9 +8,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class HomeComponent {
   title = 'home';
-  constructor(public afAuth: AngularFireAuth) {
+  constructor(public auth: AuthService) {
   }
   logout() {
-    this.afAuth.auth.signOut();
+    this.auth.logout();
   }
 }

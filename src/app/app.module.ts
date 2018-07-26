@@ -15,7 +15,8 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { FortressModule } from './fortress/fortress.module';
 import { BricksModule } from './bricks/bricks.module';
-import { FirebaseAuthModule } from './firebase-auth/firebase-auth.module';
+
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { FirebaseAuthModule } from './firebase-auth/firebase-auth.module';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    FirebaseAuthModule.forRoot(environment)
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
