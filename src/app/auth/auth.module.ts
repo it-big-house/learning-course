@@ -9,8 +9,7 @@ import { environment } from "../../environments/environment";
 const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
     providers: [
       AuthProvider.Google,
-      AuthProvider.Twitter,
-      AuthProvider.Github,
+      AuthProvider.Facebook,
       AuthProvider.Password,
       AuthProvider.Phone
     ],
