@@ -15,34 +15,7 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { FortressModule } from './fortress/fortress.module';
 import { BricksModule } from './bricks/bricks.module';
-
-// Firebase Auth Dependencies
-// https://github.com/angular/angularfire2/blob/master/docs/auth/getting-started.md
-import {
-  AuthMethods,
-  AuthProvider,
-  CredentialHelper,
-  FirebaseUIAuthConfig,
-  FirebaseUIModule
-} from 'firebaseui-angular';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-
-// https://github.com/RaphaelJenni/FirebaseUI-Angular
-const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
-  providers: [
-    AuthProvider.Google,
-    AuthProvider.Twitter,
-    AuthProvider.Github,
-    AuthProvider.Password,
-    AuthProvider.Phone
-  ],
-  method: AuthMethods.Redirect,
-  // tos: '<your-tos-link>',
-  credentialHelper: CredentialHelper.AccountChooser,
-  autoUpgradeAnonymousUsers: true,
-  disableSignInSuccessCallback: true
-};
+import { FirebaseAuthModule } from './firebase-auth/firebase-auth.module';
 
 @NgModule({
   declarations: [
@@ -58,9 +31,7 @@ const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
-    FirebaseUIModule.forRoot(firebaseUiAuthConfig)
+    FirebaseAuthModule.forRoot(environment)
   ],
   providers: [],
   bootstrap: [AppComponent]
