@@ -1,9 +1,10 @@
-import { Comp } from "../../bricks";
+import { Comp, ComponentAttempt } from "../../bricks";
 import { Component, Input } from "@angular/core";
 
 import {MatButtonToggleChange} from "@angular/material/button-toggle";
 
 import { register } from './comp_index';
+import { CompComponent } from "./comp.component";
 
 export class CompMultipleChoice extends Comp {
     name = "Multiple Choice";
@@ -25,8 +26,8 @@ export class CompMultipleChoice extends Comp {
     `,
     styleUrls: ["../live.component.scss"]
 })
-export class MultipleChoiceComponent {
-    constructor() { }
+export class MultipleChoiceComponent extends CompComponent {
+    constructor() { super() }
 
     ngOnInit() {
         this.answers = this.data.data.choices.map(() => "");
@@ -45,6 +46,10 @@ export class MultipleChoiceComponent {
             if(answer != "") a.push(this.data.data.choices.indexOf(answer));
         })
         return a;
+    }
+
+    getAttempt() : ComponentAttempt {
+        return new ComponentAttempt(this.getAnswer(), null);
     }
 
     public trackByIndex(index: number, item) {

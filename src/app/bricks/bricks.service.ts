@@ -3,7 +3,7 @@ import { DatabaseService } from '../database.service';
 
 import { BehaviorSubject } from 'rxjs';
 
-import { Brick } from '../bricks';
+import { Brick, BrickAttempt } from '../bricks';
 
 @Injectable({
     providedIn: 'root'
@@ -17,5 +17,11 @@ export class BricksService {
 
     loadBrick(id: string) {
         this.currentBrick = this.database.getBrick(id);
+    }
+
+    publishBrickAttempt(ba: BrickAttempt) {
+        this.database.createBrickAttempt(ba).subscribe(() => {
+            console.log("published brick!");
+        });
     }
 }

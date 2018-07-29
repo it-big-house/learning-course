@@ -9,11 +9,12 @@ import { IntroductionComponent } from './introduction.component';
 import { LiveComponent } from './live.component';
 
 import { BrickTimePipe } from './brickTime.pipe';
+import { QuestionComponent } from './question.component';
 
 @NgModule({
     imports: [ BricksRoutingModule, CommonModule, MaterialModule, CompModule ],
     declarations: [
-        BricksComponent, IntroductionComponent, LiveComponent, BrickTimePipe
+        BricksComponent, IntroductionComponent, LiveComponent, QuestionComponent, BrickTimePipe
     ],
     providers: [
         BrickTimePipe

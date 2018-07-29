@@ -31,16 +31,16 @@ describe('DatabaseService', () => {
     });
 
     it('#createBrickAttempt should return an observable showing the correct response', () => {
-        var brick = {
-            "brick": "bricks/lh0pzfSRgVBSZ8UBaDJb",
-            "score": "75",
-            "student": "students/wYfB9tfvLySPQwvWs1v62DsaQiG3",
-            "answers": [
+        var brick = new BrickAttempt({
+            brick: "bricks/lh0pzfSRgVBSZ8UBaDJb",
+            score: 75,
+            student: "students/wYfB9tfvLySPQwvWs1v62DsaQiG3",
+            answers: [
                 {
                     "ech": "lol"
                 }
             ]
-        };
+        });
         var req = service.createBrickAttempt(brick);
         req.subscribe(
             response => expect(response.status).toBe(200),

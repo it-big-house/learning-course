@@ -1,6 +1,7 @@
 import { Component, Input } from "@angular/core";
 import { register } from "./comp_index";
-import { Comp } from "../../bricks";
+import { Comp, ComponentAttempt } from "../../bricks";
+import { CompComponent } from "./comp.component";
 
 export class CompImage extends Comp {
     data: { src: string }
@@ -21,8 +22,14 @@ export class CompImage extends Comp {
     `,
     styleUrls: ["../live.component.scss"]
 })
-export class ImageComponent {
-    constructor() { }
+export class ImageComponent extends CompComponent {
+    constructor() { super() }
 
     @Input() data: CompImage;
+    
+    getAnswer() : null { return null; }
+
+    getAttempt() : ComponentAttempt {
+        return new ComponentAttempt(this.getAnswer(), null);
+    }
 }

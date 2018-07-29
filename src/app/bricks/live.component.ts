@@ -1,11 +1,14 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewChildren, QueryList } from '@angular/core';
 
 import { BricksService } from './bricks.service';
 
-import { Brick, Question } from '../bricks';
+import { Brick, Question, BrickAttempt, Student, Pallet } from '../bricks';
 import { Observable } from 'rxjs';
 import { TimerService, Timer } from './timer.service';
 import { BrickTimePipe } from './brickTime.pipe';
+
+import { CompComponent } from './comp/comp.component';
+import { QuestionComponent } from './question.component';
 
 @Component({
     selector: 'live',
@@ -14,12 +17,15 @@ import { BrickTimePipe } from './brickTime.pipe';
     providers: [ ]
 })
 export class LiveComponent {
-    constructor(bricks: BricksService, timer: TimerService, brickTime: BrickTimePipe) {
+    constructor(public bricks: BricksService, timer: TimerService, brickTime: BrickTimePipe) {
         this.brick = bricks.currentBrick.asObservable();
         this.timer = timer.new();
         this.brickTime = brickTime;
         bricks.currentBrick.subscribe((data) => {
             if(data != null) {
+                data.pallet = new Pallet(data.pallet);
+                data.questions = data.questions.map((q) => new Question(q));
+                this._brick = new Brick(data);
                 this.showBrick(data);
             }
         })
@@ -28,7 +34,11 @@ export class LiveComponent {
     brick: Observable<Brick>;
     timer : Timer;
 
+    private _brick: Brick;
     private brickTime: BrickTimePipe;
+
+    @ViewChildren(QuestionComponent) questions : QueryList<QuestionComponent>;
+    @ViewChildren(CompComponent) components: QueryList<CompComponent>;
 
     showBrick(brick: Brick) {
         let time = this.brickTime.transform(brick.type);
@@ -39,8 +49,21 @@ export class LiveComponent {
     }
 
     finishBrick() {
+        console.log(this.components);
+
         this.timer.stop();
         console.log("finished in " + this.timer.timeElapsed.getTime() / 1000);
+        
+        // Get brick data
+        var ba : BrickAttempt = new BrickAttempt({
+            brick: this._brick,
+            score: null,
+            student: new Student("students/wYfB9tfvLySPQwvWs1v62DsaQiG3"),
+            answers: this.questions.map((question) => {
+                return question.getAttempt();
+            })
+        });
+        this.bricks.publishBrickAttempt(ba);
     }
 
 }

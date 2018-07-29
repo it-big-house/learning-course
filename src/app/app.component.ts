@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { User } from '../../node_modules/firebase';
-import { Observable } from '../../node_modules/rxjs';
+import { User } from 'firebase';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-root',

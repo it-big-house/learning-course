@@ -11,7 +11,7 @@ import { environment } from '../environments/environment';
 
 import { Observable, BehaviorSubject } from 'rxjs';
 
-import { Brick, BrickAttempt } from './bricks';
+import { Brick, BrickAttempt, Question } from './bricks';
 
 import { getComponent } from './bricks/comp/comp_index';
 
@@ -26,8 +26,8 @@ export class DatabaseService {
         console.log("Requesting " + id + " from " + environment.apiUrl);
         // TODO: Change to environment variable!
         this.http.get<Brick>(environment.apiUrl+"brick/"+id)
-            .subscribe((data) => {
-                data.questions.forEach((question) => {
+            .subscribe((data : Brick) => {
+                data.questions.forEach((question: Question) => {
                     question.components.forEach((component) => {
                         component.component = getComponent(component.name);
                     });
@@ -37,8 +37,9 @@ export class DatabaseService {
         return bs;
     }
 
-    createBrickAttempt(brickAttempt: any) : Observable<any> {
-        console.log("Creating brickAttempt: " + JSON.stringify(brickAttempt) + " at URL " + environment.apiUrl);
-        return this.http.post<any>(environment.apiUrl+"brickattempt", brickAttempt, { headers: headers, observe: 'response' });
+    createBrickAttempt(brickAttempt: BrickAttempt) : Observable<any> {
+        var newBrickAttempt = brickAttempt.toRefOnly({ answers: true });
+        console.log("Creating brickAttempt: " + JSON.stringify(newBrickAttempt) + " at URL " + environment.apiUrl);
+        return this.http.post<any>(environment.apiUrl+"brickattempt", newBrickAttempt, { headers: headers, observe: 'response' });
     }
 }
