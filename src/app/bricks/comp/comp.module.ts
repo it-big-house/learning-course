@@ -12,15 +12,17 @@ import { TextComponent } from './comp_text.component';
 
 import { getAllComponents } from './comp_index';
 import { CompComponent } from './comp.component';
+import { OrderComponent } from './comp_order.component';
+import { DragulaModule } from 'node_modules/ng2-dragula';
 
-let dModule = DynamicModule.withComponents([SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent])
+let dModule = DynamicModule.withComponents([SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent])
 console.log(dModule.ngModule)
 
 
 @NgModule({
-    imports: [ CommonModule, FormsModule, MaterialModule, NgArrayPipesModule, dModule ],
-    declarations: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent ],
-    exports: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent,
+    imports: [ CommonModule, FormsModule, DragulaModule, MaterialModule, NgArrayPipesModule, dModule ],
+    declarations: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent ],
+    exports: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent,
         dModule.ngModule, FormsModule
     ],
     providers: [ dModule.providers ]

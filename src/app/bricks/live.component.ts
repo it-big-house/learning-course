@@ -9,6 +9,7 @@ import { BrickTimePipe } from './brickTime.pipe';
 
 import { CompComponent } from './comp/comp.component';
 import { QuestionComponent } from './question.component';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'live',
@@ -17,7 +18,7 @@ import { QuestionComponent } from './question.component';
     providers: [ ]
 })
 export class LiveComponent {
-    constructor(public bricks: BricksService, timer: TimerService, brickTime: BrickTimePipe) {
+    constructor(public bricks: BricksService, timer: TimerService, brickTime: BrickTimePipe, public router: Router) {
         this.brick = bricks.currentBrick.asObservable();
         this.timer = timer.new();
         this.brickTime = brickTime;
@@ -64,6 +65,7 @@ export class LiveComponent {
             })
         });
         this.bricks.publishBrickAttempt(ba);
+        this.router.navigate(["/fortress"]);
     }
 
 }

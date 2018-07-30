@@ -17,7 +17,7 @@ const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
     // tos: '<your-tos-link>',
     credentialHelper: CredentialHelper.AccountChooser,
     autoUpgradeAnonymousUsers: true,
-    disableSignInSuccessCallback: true
+    disableSignInSuccessCallback: true,
 };
 
 @NgModule({

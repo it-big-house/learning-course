@@ -10,8 +10,8 @@
   </mat-menu>
 
   <button mat-button disableRipple [matMenuTriggerFor]="userMenu">
-    <img src="{{(auth.user | async).photoURL}}" class="profile-picture" />
-    <span>{{ (auth.user | async).displayName }}</span>&nbsp;
+    <img src="{{(auth.user | async)?.photoURL}}" class="profile-picture" />
+    <span>{{ (auth.user | async)?.displayName }}</span>&nbsp;
     <mat-icon class="material-icons">arrow_drop_down</mat-icon>
   </button>
 </mat-toolbar>
