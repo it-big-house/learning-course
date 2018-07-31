@@ -88,3 +88,32 @@ $choice-color-8: #CE3D59;
 .comp-image {
     width: 300px;
 }
+
+.sort-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.sort-list {
+    flex-grow: 1;
+    flex-basis: 0;
+    background-color: #eee;
+    margin: 0 5px;
+}
+
+.sort-header {
+    flex-grow: 1;
+    flex-basis: 0;
+    background-color: #ccc;
+    margin: 0 5px;
+}
+
+.sort-header-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.sort-list-item {
+    padding: 0;
+    height: 48;
+}

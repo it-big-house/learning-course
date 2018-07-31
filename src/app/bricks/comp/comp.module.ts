@@ -1,28 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MaterialModule } from '../../material.module';
-import { NgArrayPipesModule } from 'ngx-pipes';
 import { DynamicModule } from 'ng-dynamic-component';
-
+import { NgArrayPipesModule } from 'ngx-pipes';
+import { DragulaModule } from 'node_modules/ng2-dragula';
+import { MaterialModule } from '../../material.module';
+import { CompComponent } from './comp.component';
 import { ImageComponent } from './comp_image.component';
 import { MultipleChoiceComponent } from './comp_multiple_choice.component';
-import { SingleChoiceComponent } from './comp_single_choice.component';
-import { TextComponent } from './comp_text.component';
-
-import { getAllComponents } from './comp_index';
-import { CompComponent } from './comp.component';
 import { OrderComponent } from './comp_order.component';
-import { DragulaModule } from 'node_modules/ng2-dragula';
+import { SingleChoiceComponent } from './comp_single_choice.component';
+import { SortComponent } from './comp_sort.component';
+import { TextComponent } from './comp_text.component';
+import { ShortAnswerComponent } from './comp_short_answer.component';
 
-let dModule = DynamicModule.withComponents([SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent])
-console.log(dModule.ngModule)
-
+let dModule = DynamicModule.withComponents([SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent, SortComponent, ShortAnswerComponent])
 
 @NgModule({
     imports: [ CommonModule, FormsModule, DragulaModule, MaterialModule, NgArrayPipesModule, dModule ],
-    declarations: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent ],
-    exports: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent,
+    declarations: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent, SortComponent, ShortAnswerComponent ],
+    exports: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent, SortComponent, ShortAnswerComponent,
         dModule.ngModule, FormsModule
     ],
     providers: [ dModule.providers ]

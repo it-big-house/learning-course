@@ -12,15 +12,19 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
     imports: [
         MatToolbarModule, MatIconModule, MatButtonModule, MatSidenavModule,
         MatListModule, MatChipsModule, MatProgressSpinnerModule, MatExpansionModule,
-        MatStepperModule, MatButtonToggleModule, MatCardModule, MatMenuModule],
+        MatStepperModule, MatButtonToggleModule, MatCardModule, MatMenuModule,
+        MatFormFieldModule, MatInputModule],
     exports: [
         MatToolbarModule, MatIconModule, MatButtonModule, MatSidenavModule,
         MatListModule, MatChipsModule, MatProgressSpinnerModule, MatExpansionModule,
-        MatStepperModule, MatButtonToggleModule, MatCardModule, MatMenuModule],
+        MatStepperModule, MatButtonToggleModule, MatCardModule, MatMenuModule,
+        MatFormFieldModule, MatInputModule],
 })
 export class MaterialModule {  }
