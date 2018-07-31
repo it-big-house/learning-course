@@ -13,13 +13,14 @@ import { SingleChoiceComponent } from './comp_single_choice.component';
 import { SortComponent } from './comp_sort.component';
 import { TextComponent } from './comp_text.component';
 import { ShortAnswerComponent } from './comp_short_answer.component';
+import { VerticalShuffleComponent } from './comp_vertical_shuffle.component';
 
-let dModule = DynamicModule.withComponents([SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent, SortComponent, ShortAnswerComponent])
+let dModule = DynamicModule.withComponents([SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, VerticalShuffleComponent])
 
 @NgModule({
     imports: [ CommonModule, FormsModule, DragulaModule, MaterialModule, NgArrayPipesModule, dModule ],
-    declarations: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent, SortComponent, ShortAnswerComponent ],
-    exports: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent, SortComponent, ShortAnswerComponent,
+    declarations: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, VerticalShuffleComponent ],
+    exports: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, VerticalShuffleComponent,
         dModule.ngModule, FormsModule
     ],
     providers: [ dModule.providers ]
