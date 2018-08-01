@@ -129,3 +129,11 @@ $choice-color-8: #CE3D59;
     text-align: center;
     font-size: 4vw;
 }
+
+.text-highlighting {
+    font-family: Georgia, serif;
+    margin-left: 25px;
+    padding-left: 25px;
+    border-left: #006ece 5px solid;
+    user-select: none;
+}
