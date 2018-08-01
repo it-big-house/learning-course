@@ -12,8 +12,8 @@ function shuffle(a) {
     return a;
 }
 
-export class CompVerticalShuffle extends Comp {
-    name = "Vertical Shuffle";
+export class CompHorizontalShuffle extends Comp {
+    name = "Horizontal Shuffle";
     data: { items: string[] }
 
     constructor(data: {items: string[]}) {
@@ -22,20 +22,20 @@ export class CompVerticalShuffle extends Comp {
     }
 }
 
-@register("VerticalShuffle")
+@register("HorizontalShuffle")
 @Component({
-    selector: 'vertical-shuffle',
+    selector: 'horizontal-shuffle',
     template: `
-    <div class="vertical-shuffle-container" [dragula]="'DRAG'" [(dragulaModel)]="userChoices">
-        <mat-card class="vertical-shuffle-item" *ngFor="let choice of userChoices; let i = index">
+    <div class="horizontal-shuffle-container" [dragula]="'DRAG'" [(dragulaModel)]="userChoices">
+        <mat-card class="horizontal-shuffle-item" *ngFor="let choice of userChoices; let i = index">
             {{choice}}
         </mat-card>
     </div>
     `,
     styleUrls: ['../live.component.scss']
 })
-export class VerticalShuffleComponent extends CompComponent {
-    @Input() data: CompVerticalShuffle;
+export class HorizontalShuffleComponent extends CompComponent {
+    @Input() data: CompHorizontalShuffle;
     
     userChoices: string[];
 

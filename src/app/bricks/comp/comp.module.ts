@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DynamicModule } from 'ng-dynamic-component';
 import { NgArrayPipesModule } from 'ngx-pipes';
-import { DragulaModule } from 'node_modules/ng2-dragula';
+import { DragulaModule } from 'ng2-dragula';
 import { MaterialModule } from '../../material.module';
 import { CompComponent } from './comp.component';
 import { ImageComponent } from './comp_image.component';
@@ -13,14 +13,14 @@ import { SingleChoiceComponent } from './comp_single_choice.component';
 import { SortComponent } from './comp_sort.component';
 import { TextComponent } from './comp_text.component';
 import { ShortAnswerComponent } from './comp_short_answer.component';
-import { VerticalShuffleComponent } from './comp_vertical_shuffle.component';
+import { HorizontalShuffleComponent } from './comp_horizontal_shuffle.component';
 
-let dModule = DynamicModule.withComponents([SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, VerticalShuffleComponent])
+let dModule = DynamicModule.withComponents([SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent])
 
 @NgModule({
     imports: [ CommonModule, FormsModule, DragulaModule, MaterialModule, NgArrayPipesModule, dModule ],
-    declarations: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, VerticalShuffleComponent ],
-    exports: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, VerticalShuffleComponent,
+    declarations: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent ],
+    exports: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent,
         dModule.ngModule, FormsModule
     ],
     providers: [ dModule.providers ]

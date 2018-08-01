@@ -1,8 +1,8 @@
 import { Component, Input, ViewChildren, QueryList } from "@angular/core";
 import { Question, QuestionAttempt } from "../bricks";
 import { CompComponent } from "./comp/comp.component";
-import { DynamicComponent } from "../../../node_modules/ng-dynamic-component";
-import { ShufflePipe } from "node_modules/ngx-pipes";
+import { DynamicComponent } from "ng-dynamic-component";
+import { ShufflePipe } from "ngx-pipes";
 
 @Component({
     selector: 'question',
