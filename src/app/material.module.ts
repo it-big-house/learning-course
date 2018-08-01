@@ -14,17 +14,18 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTreeModule } from '@angular/material/tree';
 
 @NgModule({
     imports: [
         MatToolbarModule, MatIconModule, MatButtonModule, MatSidenavModule,
         MatListModule, MatChipsModule, MatProgressSpinnerModule, MatExpansionModule,
         MatStepperModule, MatButtonToggleModule, MatCardModule, MatMenuModule,
-        MatFormFieldModule, MatInputModule],
+        MatFormFieldModule, MatInputModule, MatTreeModule],
     exports: [
         MatToolbarModule, MatIconModule, MatButtonModule, MatSidenavModule,
         MatListModule, MatChipsModule, MatProgressSpinnerModule, MatExpansionModule,
         MatStepperModule, MatButtonToggleModule, MatCardModule, MatMenuModule,
-        MatFormFieldModule, MatInputModule],
+        MatFormFieldModule, MatInputModule, MatTreeModule],
 })
 export class MaterialModule {  }

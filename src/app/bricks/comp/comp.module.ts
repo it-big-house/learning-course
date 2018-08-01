@@ -16,17 +16,22 @@ import { ShortAnswerComponent } from './comp_short_answer.component';
 import { HorizontalShuffleComponent } from './comp_horizontal_shuffle.component';
 import { TextHighlightingComponent } from './comp_text_highlighting.component';
 import { HighlightDirective } from './highlight.directive';
+import { ArrowComponent } from './comp_arrow.component';
 
-let dModule = DynamicModule.withComponents([SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent, TextHighlightingComponent])
+let dModule = DynamicModule.withComponents([SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, 
+    TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent, 
+    TextHighlightingComponent, ArrowComponent])
 
 @NgModule({
     imports: [ CommonModule, FormsModule, DragulaModule, MaterialModule, NgArrayPipesModule, dModule ],
     declarations: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, 
         TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent, 
-        TextHighlightingComponent, HighlightDirective ],
+        TextHighlightingComponent, ArrowComponent,
+        HighlightDirective ],
     exports: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent,
         TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent,
-        TextHighlightingComponent, HighlightDirective,
+        TextHighlightingComponent, ArrowComponent, 
+        HighlightDirective,
         dModule.ngModule, FormsModule
     ],
     providers: [ dModule.providers ]

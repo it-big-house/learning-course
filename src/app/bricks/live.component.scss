@@ -94,10 +94,20 @@ $choice-color-8: #CE3D59;
     flex-direction: row;
 }
 
+.arrow-container {
+    flex-grow: 1;
+}
+
 .sort-list {
     flex-grow: 1;
     flex-basis: 0;
     background-color: #eee;
+    margin: 0 5px;
+}
+
+.arrow-list {
+    flex-grow: 1;
+    flex-basis: 0;
     margin: 0 5px;
 }
 
@@ -116,6 +126,27 @@ $choice-color-8: #CE3D59;
 .sort-list-item {
     padding: 0;
     height: 48;
+}
+
+.arrow-list-item {
+    display:flex;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: center;
+}
+
+.arrow-item-text {
+    width: 100%;
+}
+
+.arrow-icon {
+    font-size: 48px;
+    height: 48px;
+    width: 48px;
+}
+
+.grow {
+    flex-grow: 1;
 }
 
 .horizontal-shuffle-container {
