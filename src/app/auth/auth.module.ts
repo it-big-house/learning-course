@@ -9,9 +9,7 @@ import { environment } from "../../environments/environment";
 const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
     providers: [
       AuthProvider.Google,
-      AuthProvider.Facebook,
-      AuthProvider.Password,
-      AuthProvider.Phone
+      AuthProvider.Password
     ],
     method: AuthMethods.Redirect,
     // tos: '<your-tos-link>',
