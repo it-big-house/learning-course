@@ -48,10 +48,6 @@ export class MultipleChoiceComponent extends CompComponent {
         return a;
     }
 
-    getAttempt() : ComponentAttempt {
-        return new ComponentAttempt(this.getAnswer(), null);
-    }
-
     public trackByIndex(index: number, item) {
         return index;
     }

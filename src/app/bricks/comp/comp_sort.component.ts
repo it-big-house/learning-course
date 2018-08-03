@@ -52,8 +52,4 @@ export class SortComponent extends CompComponent {
         })
         return choices;
     }
-
-    getAttempt() : ComponentAttempt {
-        return new ComponentAttempt(this.getAnswer(), null);
-    }
 }

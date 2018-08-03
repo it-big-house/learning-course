@@ -1,6 +1,6 @@
 // This is the representation of the data structures in the app.
 
-import { DocumentReference, DocumentSnapshot, CollectionReference } from 'angularfire2/firestore';
+import { DocumentReference, DocumentSnapshot, CollectionReference, AngularFirestoreDocument } from 'angularfire2/firestore';
 
 export function toRefOnly(doc: DatabaseDoc, fieldsToKeep?: any) : any {
     var dataDoc : DatabaseDoc = doc;
@@ -27,9 +27,7 @@ export class DatabaseDoc {
     _ref?: DocumentReference;
 }
 
-export interface DatabaseObj { }
-
-export abstract class Comp implements DatabaseObj {
+export class Comp {
     name: string;
     component: any;
     data: any;
@@ -46,8 +44,7 @@ export interface Brick extends DatabaseDoc {
     prep: string;
     subject: string;
     type: number;
-    pallet?: DocumentReference;
-    _pallet?: Pallet;
+    pallet: DocumentReference;
     creator: string;
     creationDate: Date;
     highScore: number;
@@ -58,39 +55,30 @@ export interface Brick extends DatabaseDoc {
 
 export interface Pallet extends DatabaseDoc {
     name: string;
-    bricks?: DocumentReference[];
-    _bricks?: Brick[];
+    bricks: DocumentReference[];
 }
 
-export class ComponentAttempt implements DatabaseObj {
-    constructor(
-        public answer: any,
-        public correct: boolean
-    ) { }
+export interface ComponentAttempt {
+    answer: any,
+    correct: boolean
 }
 
 export interface QuestionAttempt extends DatabaseDoc {
-    question?: DocumentReference;
-    _question?: Question;
+    question: DocumentReference;
     components: ComponentAttempt[];
 }
 
 export interface BrickAttempt extends DatabaseDoc {
-    brick?: DocumentReference;
-    _brick?: Brick;
+    brick: DocumentReference;
     score: number;
-    student?: DocumentReference;
-    _student?: Student;
+    student: DocumentReference;
     answers: QuestionAttempt[];
 }
 
 export interface StudentPallet extends DatabaseDoc {
-    pallet?: DocumentReference;
-    _pallet?: Pallet;
-    student?: DocumentReference;
-    _student?: Student;
-    teacher?: DocumentReference
-    _teacher?: Teacher;
+    pallet: DocumentReference;
+    student: DocumentReference;
+    teacher: DocumentReference;
     bricks: BrickAttempt[];
 }
 
@@ -101,14 +89,13 @@ export interface Student extends DatabaseDoc {
 }
 
 export interface Class extends DatabaseDoc {
-    teacher?: DocumentReference;
-    _teacher?: Teacher;
-    students: Student[];
-    pallets: Pallet[];
+    teacher: DocumentReference;
+    students: DocumentReference[];
+    pallets: DocumentReference[];
 }
 
 export interface Teacher extends DatabaseDoc {
     uid: string;
     name: string;
-    classes: Class[];
+    classes: DocumentReference[];
 }

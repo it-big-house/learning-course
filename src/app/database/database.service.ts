@@ -10,63 +10,67 @@ const headers = new HttpHeaders({
 
 import { environment } from '../../environments/environment';
 
-import { Observable, BehaviorSubject } from 'rxjs';
-import 'rxjs/add/operator/map';
+import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/observable/combineLatest';
+import 'rxjs/add/observable/fromPromise';
 
 import { Brick, BrickAttempt, Question, Pallet, QuestionAttempt, toRefOnly } from '../bricks';
 
 import { getComponent } from '../bricks/comp/comp_index';
-import { Observer } from '../../../node_modules/firebase';
+import { Observer } from 'firebase';
+import { BricksComponent } from '../bricks/bricks.component';
 
 @Injectable({
     providedIn: 'root'
 })
 export class DatabaseService {
-    constructor(public afs: AngularFirestore) {
-    }
+    constructor(public afs: AngularFirestore) { }
 
-    getBrick(id: string, shallow?: boolean) : BehaviorSubject<Brick> {
-        let brickRef : DocumentReference = this.afs.collection('bricks').doc<Brick>(id).ref;
+    getBrick(id: string) : BehaviorSubject<Brick> {
+        let brickRef : AngularFirestoreDocument<Brick> = this.afs.collection('bricks').doc<Brick>(id);
         let bs : BehaviorSubject<Brick> = new BehaviorSubject<Brick>(null);
 
-        let b : Brick;
-
-        brickRef.get()
-            .then((brick: DocumentSnapshot<Brick>) => {
-                b = brick.data();
-                b._ref = brick.ref;
-                return b._ref.collection('questions').get()
-            })
-            .then((questions: QuerySnapshot<Question>) => {
-                b.questions = questions.docs.map((question: QueryDocumentSnapshot<Question>) => {
-                    let q = question.data();
-                    q._ref = question.ref;
-                    q.components.map((component) => {
-                        component.component = getComponent(component.name);
+        const brick$ = brickRef.valueChanges();
+        const questions$ = brickRef.collection<Question>('questions').snapshotChanges()
+            .pipe(
+                map((actions: DocumentChangeAction<Question>[]) => actions.map(action => action.payload.doc)),
+                map((qs: DocumentSnapshot<Question>[]) => {
+                    return qs.map((q: DocumentSnapshot<Question>) => {
+                        let qstn = q.data();
+                        qstn._ref = q.ref;
+                        qstn.components.forEach((comp) => {
+                            comp.component = getComponent(comp.name);
+                        })
+                        return qstn;
                     })
-                    return q;
                 })
-                return b.pallet.get();
-            })
-            .then((pallet: DocumentSnapshot<Pallet>) => {
-                let p = pallet.data();
-                p._ref = pallet.ref;
-                b._pallet = p;
-                bs.next(b);
-            })
+            );
+
+        combineLatest(brick$, questions$)
+            .pipe(
+                tap(() => console.log("hello")),
+                map((data: [Brick, Question[]]) => {
+                    let brick = data[0];
+                    brick._ref = brickRef.ref;
+                    brick.questions = data[1];
+                    return brick;
+                })
+            )
+            .subscribe(bs);
 
         return bs;
     }
 
-    createBrickAttempt(brickAttempt: BrickAttempt) : Observable<any> {
-        return Observable.create((observer: Observer<any>) => {
-            observer.next("Sorry, this isn't implemented yet lol");
-        })
-
-        var newBrickAttempt = toRefOnly(brickAttempt, { answers: true });
-
-        let brick: BrickAttempt = Object.assign({}, newBrickAttempt);
-        delete brick.answers;
+    createBrickAttempt(brickAttempt: BrickAttempt) : Observable<AngularFirestoreDocument<BrickAttempt>> {
+        return Observable.fromPromise(
+            this.afs.collection('brickattempts').add(brickAttempt)
+                .then((ba: DocumentReference) => {
+                    brickAttempt.answers.map(ans => ba.collection('questions').add(ans));
+                    return new AngularFirestoreDocument<BrickAttempt>(ba, this.afs);
+                })
+        );
     }
 
 /*

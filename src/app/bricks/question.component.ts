@@ -31,7 +31,7 @@ export class QuestionComponent {
 
         console.log(this.components);
         var qa : QuestionAttempt = {
-            _question: this.question,
+            question: this.question._ref,
             components: this.components.map((comp) => {
                 return comp.getAttempt();
             })

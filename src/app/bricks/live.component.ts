@@ -24,7 +24,8 @@ export class LiveComponent {
         this.brickTime = brickTime;
         bricks.currentBrick.subscribe((data) => {
             if(data != null) {
-                this.showBrick(data);
+                this._brick = data;
+                this.showBrick(this._brick);
             }
         })
     }
@@ -54,7 +55,7 @@ export class LiveComponent {
         
         // Get brick data
         var ba : BrickAttempt = {
-            _brick: this._brick,
+            brick: this._brick._ref,
             score: null,
             student: this.bricks.database.afs.doc("students/wYfB9tfvLySPQwvWs1v62DsaQiG3").ref,
             answers: this.questions.map((question) => {

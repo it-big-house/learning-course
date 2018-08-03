@@ -39,8 +39,4 @@ export class ShortAnswerComponent extends CompComponent {
     getAnswer() : string[]{
         return this.userAnswers;
     }
-
-    getAttempt(): ComponentAttempt {
-        return new ComponentAttempt(this.getAnswer(), null);
-    }
 }

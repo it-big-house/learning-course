@@ -28,8 +28,4 @@ export class TextComponent extends CompComponent {
     @Input() data: CompText;
 
     getAnswer() : null { return null; }
-
-    getAttempt() : ComponentAttempt {
-        return new ComponentAttempt(this.getAnswer(), null);
-    }
 }
