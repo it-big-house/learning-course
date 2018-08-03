@@ -18,6 +18,8 @@ import { FortressModule } from './fortress/fortress.module';
 import { BricksModule } from './bricks/bricks.module';
 
 import { AuthModule } from './auth/auth.module';
+import { AngularFireModule } from 'angularfire2';
+import { DatabaseModule } from './database/database.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { AuthModule } from './auth/auth.module';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
+    AngularFireModule.initializeApp(environment.firebase),
     AuthModule,
+    DatabaseModule,
     DragulaModule.forRoot()
   ],
   providers: [],

@@ -30,12 +30,12 @@ export class QuestionComponent {
         });
 
         console.log(this.components);
-        var qa = new QuestionAttempt({
-            question: this.question,
+        var qa : QuestionAttempt = {
+            _question: this.question,
             components: this.components.map((comp) => {
                 return comp.getAttempt();
             })
-        });
+        };
         return qa;
     }
 }

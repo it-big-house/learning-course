@@ -1,38 +1,30 @@
 // This is the representation of the data structures in the app.
 
-export class DatabaseDoc {
-    _path?: string;
-    
-    constructor(path: string);
-    constructor(data: object);
-    constructor(data?: any) { 
-        if(typeof data == 'string') {
-            this._path = data;
-        } else if(typeof data == 'object') {
-            Object.assign(this, data);
-        }
-    }
+import { DocumentReference, DocumentSnapshot, CollectionReference } from 'angularfire2/firestore';
 
-    toRefOnly(fieldsToKeep?: any) : DatabaseDoc{
-        var dataDoc : DatabaseDoc = this;
-        var proto = Object.getOwnPropertyNames(dataDoc).map((name) => {
-            var prop = Object.getOwnPropertyDescriptor(dataDoc, name).value;
-            if(prop != null) {
-                if(prop instanceof DatabaseDoc) {
-                    if(fieldsToKeep[name] != null) { dataDoc[name] = prop.toRefOnly(fieldsToKeep[name]); }
-                    else { dataDoc[name] = prop._path; }
-                } else if (prop.constructor === Array) {
-                    prop.forEach((obj, index) => {
-                        if(obj instanceof DatabaseDoc) {
-                            if(fieldsToKeep[name] != null) { dataDoc[name][index] = obj.toRefOnly(fieldsToKeep[name]); }
-                            else { dataDoc[name][index] = obj._path; }
-                        }
-                    });
-                }
+export function toRefOnly(doc: DatabaseDoc, fieldsToKeep?: any) : any {
+    var dataDoc : DatabaseDoc = doc;
+    var proto = Object.getOwnPropertyNames(dataDoc).map((name) => {
+        var prop = Object.getOwnPropertyDescriptor(dataDoc, name).value;
+        if(prop != null) {
+            if(Object.keys(prop).includes('_ref')) {
+                if(fieldsToKeep[name] != null) { dataDoc[name] = prop.toRefOnly(fieldsToKeep[name]); }
+                else { dataDoc[name] = prop._ref; }
+            } else if (prop.constructor === Array) {
+                prop.forEach((obj, index) => {
+                    if(Object.keys(obj).includes('_ref')) {
+                        if(fieldsToKeep[name] != null) { dataDoc[name][index] = obj.toRefOnly(fieldsToKeep[name]); }
+                        else { dataDoc[name][index] = obj._ref; }
+                    }
+                });
             }
-        });
-        return dataDoc;
-    }
+        }
+    });
+    return dataDoc;
+}
+
+export class DatabaseDoc {
+    _ref?: DocumentReference;
 }
 
 export interface DatabaseObj { }
@@ -43,18 +35,19 @@ export abstract class Comp implements DatabaseObj {
     data: any;
 }
 
-export class Question extends DatabaseDoc {
+export interface Question extends DatabaseDoc {
     components: Comp[];
     title: string;
 }
 
-export class Brick extends DatabaseDoc {
+export interface Brick extends DatabaseDoc {
     title: string;
     brief: string;
     prep: string;
     subject: string;
     type: number;
-    pallet: Pallet;
+    pallet?: DocumentReference;
+    _pallet?: Pallet;
     creator: string;
     creationDate: Date;
     highScore: number;
@@ -63,9 +56,10 @@ export class Brick extends DatabaseDoc {
     questions: Question[];
 }
 
-export class Pallet extends DatabaseDoc {
+export interface Pallet extends DatabaseDoc {
     name: string;
-    bricks: Brick[];
+    bricks?: DocumentReference[];
+    _bricks?: Brick[];
 }
 
 export class ComponentAttempt implements DatabaseObj {
@@ -75,38 +69,45 @@ export class ComponentAttempt implements DatabaseObj {
     ) { }
 }
 
-export class QuestionAttempt extends DatabaseDoc {
-    question: Question;
+export interface QuestionAttempt extends DatabaseDoc {
+    question?: DocumentReference;
+    _question?: Question;
     components: ComponentAttempt[];
 }
 
-export class BrickAttempt extends DatabaseDoc {
-    brick: Brick;
+export interface BrickAttempt extends DatabaseDoc {
+    brick?: DocumentReference;
+    _brick?: Brick;
     score: number;
-    student: Student;
+    student?: DocumentReference;
+    _student?: Student;
     answers: QuestionAttempt[];
 }
 
-export class StudentPallet extends DatabaseDoc {
-    pallet: Pallet;
-    student: Student;
-    teacher: Teacher;
+export interface StudentPallet extends DatabaseDoc {
+    pallet?: DocumentReference;
+    _pallet?: Pallet;
+    student?: DocumentReference;
+    _student?: Student;
+    teacher?: DocumentReference
+    _teacher?: Teacher;
     bricks: BrickAttempt[];
 }
 
-export class Student extends DatabaseDoc {
+export interface Student extends DatabaseDoc {
     uid: string;
     name: string;
     pallets: StudentPallet[];
 }
 
-export class Class extends DatabaseDoc {
-    teacher: Teacher;
+export interface Class extends DatabaseDoc {
+    teacher?: DocumentReference;
+    _teacher?: Teacher;
     students: Student[];
     pallets: Pallet[];
 }
 
-export class Teacher extends DatabaseDoc {
+export interface Teacher extends DatabaseDoc {
     uid: string;
     name: string;
     classes: Class[];
