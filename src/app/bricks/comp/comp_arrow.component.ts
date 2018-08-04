@@ -59,8 +59,4 @@ export class ArrowComponent extends CompComponent {
         });
         return choices;
     }
-
-    getAttempt() : ComponentAttempt {
-        return new ComponentAttempt(this.getAnswer(), null);
-    }
 }

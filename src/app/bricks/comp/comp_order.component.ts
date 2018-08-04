@@ -41,10 +41,6 @@ export class OrderComponent extends CompComponent {
         return this.userChoices.map(val => this.data.data.choices.indexOf(val));
     }
 
-    getAttempt() : ComponentAttempt {
-        return new ComponentAttempt(this.getAnswer(), null);
-    }
-
     ngOnInit() {
         this.userChoices = shuffle(this.data.data.choices.slice());
     }

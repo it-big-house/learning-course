@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DatabaseService } from '../database.service';
+import { DatabaseService } from '../database/database.service';
 
 import { BehaviorSubject } from 'rxjs';
 
@@ -9,7 +9,7 @@ import { Brick, BrickAttempt } from '../bricks';
     providedIn: 'root'
 })
 export class BricksService {
-    constructor(private database: DatabaseService) {
+    constructor(public database: DatabaseService) {
         this.currentBrick = new BehaviorSubject(null);
     }
 
@@ -20,8 +20,8 @@ export class BricksService {
     }
 
     publishBrickAttempt(ba: BrickAttempt) {
-        this.database.createBrickAttempt(ba).subscribe(() => {
-            console.log("published brick!");
+        this.database.createBrickAttempt(ba).subscribe((msg) => {
+            console.log(msg);
         });
     }
 }

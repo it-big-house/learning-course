@@ -46,8 +46,4 @@ export class HorizontalShuffleComponent extends CompComponent {
     getAnswer() : number[] {
         return this.userChoices.map(val => this.data.data.items.indexOf(val));
     }
-
-    getAttempt() : ComponentAttempt {
-        return new ComponentAttempt(this.getAnswer(), null);
-    }
 }

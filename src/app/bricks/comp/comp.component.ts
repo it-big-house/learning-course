@@ -14,6 +14,6 @@ export class CompComponent {
     getAnswer() {};
 
     getAttempt() : ComponentAttempt {
-        return;
+        return { answer: this.getAnswer(), correct: null };
     };
 }

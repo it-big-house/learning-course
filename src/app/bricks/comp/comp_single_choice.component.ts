@@ -33,8 +33,4 @@ export class SingleChoiceComponent extends CompComponent {
     getAnswer() : number {
         return this.data.data.choices.indexOf(this.answer);
     }
-
-    getAttempt() : ComponentAttempt {
-        return new ComponentAttempt(this.getAnswer(), null);
-    }
 }

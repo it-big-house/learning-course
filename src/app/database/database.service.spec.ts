@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing'
 import { DatabaseService } from './database.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Brick, BrickAttempt } from './bricks';
+import { Brick, BrickAttempt } from '../bricks';
 
 describe('DatabaseService', () => {
     let service: DatabaseService;

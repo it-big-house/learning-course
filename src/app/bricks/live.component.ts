@@ -24,10 +24,8 @@ export class LiveComponent {
         this.brickTime = brickTime;
         bricks.currentBrick.subscribe((data) => {
             if(data != null) {
-                data.pallet = new Pallet(data.pallet);
-                data.questions = data.questions.map((q) => new Question(q));
-                this._brick = new Brick(data);
-                this.showBrick(data);
+                this._brick = data;
+                this.showBrick(this._brick);
             }
         })
     }
@@ -56,14 +54,14 @@ export class LiveComponent {
         console.log("finished in " + this.timer.timeElapsed.getTime() / 1000);
         
         // Get brick data
-        var ba : BrickAttempt = new BrickAttempt({
-            brick: this._brick,
+        var ba : BrickAttempt = {
+            brick: this._brick._ref,
             score: null,
-            student: new Student("students/wYfB9tfvLySPQwvWs1v62DsaQiG3"),
+            student: this.bricks.database.afs.doc("students/wYfB9tfvLySPQwvWs1v62DsaQiG3").ref,
             answers: this.questions.map((question) => {
                 return question.getAttempt();
             })
-        });
+        };
         this.bricks.publishBrickAttempt(ba);
         this.router.navigate(["/fortress"]);
     }

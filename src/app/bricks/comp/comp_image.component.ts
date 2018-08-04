@@ -28,8 +28,4 @@ export class ImageComponent extends CompComponent {
     @Input() data: CompImage;
     
     getAnswer() : null { return null; }
-
-    getAttempt() : ComponentAttempt {
-        return new ComponentAttempt(this.getAnswer(), null);
-    }
 }
