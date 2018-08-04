@@ -33,7 +33,7 @@ export class DatabaseService {
         let bs : BehaviorSubject<Brick> = new BehaviorSubject<Brick>(null);
 
         const brick$ = brickRef.valueChanges();
-        const questions$ = brickRef.collection<Question>('questions').snapshotChanges()
+        const questions$ = brickRef.collection<Question>('questions', ref => ref.orderBy('number')).snapshotChanges()
             .pipe(
                 map((actions: DocumentChangeAction<Question>[]) => actions.map(action => action.payload.doc)),
                 map((qs: DocumentSnapshot<Question>[]) => {
