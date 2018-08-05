@@ -6,15 +6,16 @@ import { environment } from "../../environments/environment";
 import { AuthService } from "./auth.service";
 
 // https://github.com/RaphaelJenni/FirebaseUI-Angular
+//
 const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
     providers: [
-      AuthProvider.Google,
-      AuthProvider.Password
+      AuthProvider.Password,
+      AuthProvider.Google
     ],
     method: AuthMethods.Redirect,
     // tos: '<your-tos-link>',
     credentialHelper: CredentialHelper.AccountChooser,
-    autoUpgradeAnonymousUsers: true,
+    autoUpgradeAnonymousUsers: false,
     disableSignInSuccessCallback: true,
 };
 
