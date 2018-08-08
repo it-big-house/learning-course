@@ -50,4 +50,3 @@ exports.blockSignup = functions.auth.user().onCreate(event => {
       .catch(error => console.log("Error auto blocking:", error)); 
 });
 ```
-~   

@@ -1,4 +1,12 @@
+
 <router-outlet *ngIf="authService.user | async as user; else showLogin"></router-outlet>
 <ng-template #showLogin>
-<firebase-ui (signInSuccessWithAuthResult)="authService.signInSuccess($event)"></firebase-ui>
+    <div class="login-body">
+        <div class="login-container">
+            <div class="login-logo">
+                <h1>Learning Fortress</h1>
+            </div>
+            <firebase-ui (signInSuccessWithAuthResult)="authService.signInSuccess($event)"></firebase-ui>  
+        </div>
+    </div>
 </ng-template>

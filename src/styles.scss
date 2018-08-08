@@ -9,12 +9,18 @@ html {
 body { 
     font-family: Roboto, Arial, sans-serif;
     margin: 0;
-    height: 100%;
+    display: flex;
+    min-height:100%;
+}
+
+app-root {
+    width: 100%;
 }
 
 .basic-container {
     padding: 0;
     height: 100%;
+    width: 100%;
 }
 
 .mat-button-toggle-button {
@@ -58,4 +64,9 @@ body {
     opacity: 0.2;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
     filter: alpha(opacity=20);
+}
+
+/* Useful for creating a block so that elements underneath do not overlap */
+.clearfix {
+    display: inline-block;
 }
