@@ -7,8 +7,10 @@
 <mat-vertical-stepper linear>
     
     <mat-step [editable]="false" *ngFor="let question of (brick | async)?.questions; let index = index">
-        <ng-template matStepLabel>Question {{index+1}}</ng-template>
-        <question [question]="question" [reveal]="false" ></question>
+        <div *ngIf="!brickAttempt.answers[index].correct">
+            <ng-template matStepLabel>Question {{index+1}}</ng-template>
+            <question [question]="question" [reveal]="true" [attempt]="brickAttempt.answers[index]" ></question>
+        </div>
     </mat-step>
 
     <mat-step>
