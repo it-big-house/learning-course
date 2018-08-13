@@ -12,12 +12,12 @@ import { QuestionComponent } from './question.component';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-    selector: 'live',
-    templateUrl: './live.component.html',
-    styleUrls: ['./live.component.scss'],
+    selector: 'review',
+    templateUrl: './review.component.html',
+    styleUrls: ['./review.component.scss'],
     providers: [ ]
 })
-export class LiveComponent {
+export class ReviewComponent {
     constructor(public bricks: BricksService, timer: TimerService, brickTime: BrickTimePipe, public router: Router, public activatedRoute: ActivatedRoute) {
         this.brick = bricks.currentBrick.asObservable();
         this.timer = timer.new();
@@ -33,6 +33,8 @@ export class LiveComponent {
     brick: Observable<Brick>;
     timer : Timer;
 
+    brickAttempt: BrickAttempt;
+
     private _brick: Brick;
     private brickTime: BrickTimePipe;
 
@@ -40,7 +42,12 @@ export class LiveComponent {
     @ViewChildren(CompComponent) components: QueryList<CompComponent>;
 
     showBrick(brick: Brick) {
-        let time = this.brickTime.transform(brick.type);
+        this.brickAttempt = this.bricks.currentBrickAttempt;
+        if(!this.bricks.currentBrickAttempt) {
+            this.router.navigate(['../live'], { relativeTo: this.activatedRoute });
+        }
+
+        let time = new Date(this.brickTime.transform(brick.type).valueOf());
         this.timer.countDown(time);
         this.timer.timeRanOut.subscribe((t) => {
             this.finishBrick();
@@ -48,7 +55,6 @@ export class LiveComponent {
     }
 
     finishBrick() {
-
         this.timer.stop();
         console.log("finished in " + this.timer.timeElapsed.getTime() / 1000);
         
@@ -61,8 +67,8 @@ export class LiveComponent {
                 return question.getAttempt();
             })
         };
-        this.bricks.markBrick(ba);
-        this.router.navigate(["../review"], { relativeTo: this.activatedRoute });
+        this.bricks.publishBrickAttempt(ba);
+        this.router.navigate(["/fortress"]);
     }
 
 }
