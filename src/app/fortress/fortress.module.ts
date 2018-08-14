@@ -6,9 +6,10 @@ import { FortressRoutingModule } from './fortress.routing';
 
 import { FortressComponent } from './fortress.component';
 import { HomeComponent } from './home.component';
+import { PalletComponent } from './pallet.component';
 
 @NgModule({
     imports: [FortressRoutingModule, CommonModule, MaterialModule],
-    declarations: [FortressComponent, HomeComponent],
+    declarations: [FortressComponent, HomeComponent, PalletComponent],
 })
 export class FortressModule { }
