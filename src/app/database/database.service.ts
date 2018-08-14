@@ -50,6 +50,7 @@ export class DatabaseService {
 
         combineLatest(brick$, questions$)
             .pipe(
+                tap(() => console.log("hello")),
                 map((data: [Brick, Question[]]) => {
                     let brick = data[0];
                     brick._ref = brickRef.ref;

@@ -1,4 +1,4 @@
-import { Component, ViewChildren, QueryList, Input } from '@angular/core';
+import { Component, ViewChildren, QueryList } from '@angular/core';
 
 import { BricksService } from './bricks.service';
 
@@ -9,7 +9,7 @@ import { BrickTimePipe } from './brickTime.pipe';
 
 import { CompComponent } from './comp/comp.component';
 import { QuestionComponent } from './question.component';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'live',
@@ -18,7 +18,7 @@ import { Router, ActivatedRoute } from '@angular/router';
     providers: [ ]
 })
 export class LiveComponent {
-    constructor(public bricks: BricksService, timer: TimerService, brickTime: BrickTimePipe, public router: Router, public activatedRoute: ActivatedRoute) {
+    constructor(public bricks: BricksService, timer: TimerService, brickTime: BrickTimePipe, public router: Router) {
         this.brick = bricks.currentBrick.asObservable();
         this.timer = timer.new();
         this.brickTime = brickTime;
@@ -48,6 +48,7 @@ export class LiveComponent {
     }
 
     finishBrick() {
+        console.log(this.components);
 
         this.timer.stop();
         console.log("finished in " + this.timer.timeElapsed.getTime() / 1000);
@@ -61,8 +62,8 @@ export class LiveComponent {
                 return question.getAttempt();
             })
         };
-        this.bricks.markBrick(ba);
-        this.router.navigate(["../review"], { relativeTo: this.activatedRoute });
+        this.bricks.publishBrickAttempt(ba);
+        this.router.navigate(["/fortress"]);
     }
 
 }

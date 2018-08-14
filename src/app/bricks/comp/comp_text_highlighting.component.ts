@@ -37,6 +37,7 @@ export class TextHighlightingComponent extends CompComponent {
     }
 
     ngOnInit() {
+        console.log(this.data.data.text.split(" "));
         this.words = this.data.data.text.split(" ").map((word) => { return { word: word, highlight: false } });
     }
 

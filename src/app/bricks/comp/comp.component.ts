@@ -6,6 +6,7 @@ import { Comp, ComponentAttempt } from "../../bricks";
 })
 export class CompComponent {
     constructor() {
+        console.log(this);
     }
 
     @Input() data: Comp;

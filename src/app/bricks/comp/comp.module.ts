@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { DynamicModule } from 'ng-dynamic-component';
 import { NgArrayPipesModule } from 'ngx-pipes';
@@ -24,7 +23,7 @@ let dModule = DynamicModule.withComponents([SingleChoiceComponent, MultipleChoic
     TextHighlightingComponent, ArrowComponent])
 
 @NgModule({
-    imports: [ CommonModule, FormsModule, FlexLayoutModule, DragulaModule, MaterialModule, NgArrayPipesModule, dModule ],
+    imports: [ CommonModule, FormsModule, DragulaModule, MaterialModule, NgArrayPipesModule, dModule ],
     declarations: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, 
         TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent, 
         TextHighlightingComponent, ArrowComponent,
