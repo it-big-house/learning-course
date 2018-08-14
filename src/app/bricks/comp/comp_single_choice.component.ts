@@ -1,7 +1,8 @@
-import { Comp } from "../../bricks";
+import { Comp, ComponentAttempt } from "../../bricks";
 import { Component, Input } from "@angular/core";
 
 import { register } from './comp_index';
+import { CompComponent } from "./comp.component";
 
 export class CompSingleChoice extends Comp {
     name = "Single Choice";
@@ -23,8 +24,8 @@ export class CompSingleChoice extends Comp {
     `,
     styleUrls: ["../live.component.scss"]
 })
-export class SingleChoiceComponent {
-    constructor() { }
+export class SingleChoiceComponent extends CompComponent {
+    constructor() { super() }
 
     @Input() data: CompSingleChoice;
     answer: string;

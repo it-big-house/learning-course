@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing'
 import { DatabaseService } from './database.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Brick, BrickAttempt } from './bricks';
+import { Brick, BrickAttempt } from '../bricks';
 
 describe('DatabaseService', () => {
     let service: DatabaseService;
@@ -31,16 +31,17 @@ describe('DatabaseService', () => {
     });
 
     it('#createBrickAttempt should return an observable showing the correct response', () => {
-        var brick = {
-            "brick": "bricks/lh0pzfSRgVBSZ8UBaDJb",
-            "score": "75",
-            "student": "students/wYfB9tfvLySPQwvWs1v62DsaQiG3",
-            "answers": [
+        var brick = new BrickAttempt({
+            // TODO: this should not rely on a specific brick ID in database
+            brick: "bricks/lh0pzfSRgVBSZ8UBaDJb",
+            score: 75,
+            student: "students/wYfB9tfvLySPQwvWs1v62DsaQiG3",
+            answers: [
                 {
                     "ech": "lol"
                 }
             ]
-        };
+        });
         var req = service.createBrickAttempt(brick);
         req.subscribe(
             response => expect(response.status).toBe(200),

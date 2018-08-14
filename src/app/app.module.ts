@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
+import { DragulaModule } from 'ng2-dragula';
 
 // Routing, Styling, Environment
 import { AppRoutingModule } from './app.routing';
@@ -17,6 +18,8 @@ import { FortressModule } from './fortress/fortress.module';
 import { BricksModule } from './bricks/bricks.module';
 
 import { AuthModule } from './auth/auth.module';
+import { AngularFireModule } from 'angularfire2';
+import { DatabaseModule } from './database/database.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { AuthModule } from './auth/auth.module';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    AuthModule
+    AngularFireModule.initializeApp(environment.firebase),
+    AuthModule,
+    DatabaseModule,
+    DragulaModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

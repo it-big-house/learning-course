@@ -1,6 +1,7 @@
 import { Component, Input } from "@angular/core";
 import { register } from "./comp_index";
-import { Comp } from "../../bricks";
+import { Comp, ComponentAttempt } from "../../bricks";
+import { CompComponent } from "./comp.component";
 
 export class CompText extends Comp {
     data: { text: string }
@@ -21,9 +22,10 @@ export class CompText extends Comp {
     `,
     styleUrls: ["../live.component.scss"]
 })
-@register("Text")
-export class TextComponent {
-    constructor() { }
+export class TextComponent extends CompComponent {
+    constructor() { super() }
 
     @Input() data: CompText;
+
+    getAnswer() : null { return null; }
 }

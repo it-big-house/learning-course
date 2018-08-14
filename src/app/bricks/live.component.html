@@ -5,14 +5,12 @@
 </div>
 
 <mat-vertical-stepper linear>
-    <mat-step *ngFor="let question of (brick | async)?.questions; let index = index" [editable]="false">
+    
+    <mat-step [editable]="false" *ngFor="let question of (brick | async)?.questions; let index = index">
         <ng-template matStepLabel>Question {{index+1}}</ng-template>
-        <ndc-dynamic
-            *ngFor="let comp of question.components"
-            [ndcDynamicComponent]="comp.component"
-            [ndcDynamicInputs]="{ data: comp }"
-            ></ndc-dynamic>
+        <question [question]="question" ></question>
     </mat-step>
+
     <mat-step>
         <ng-template matStepLabel>End</ng-template>
         <button mat-button (click)="finishBrick()">Done!</button>

@@ -9,11 +9,14 @@ import { IntroductionComponent } from './introduction.component';
 import { LiveComponent } from './live.component';
 
 import { BrickTimePipe } from './brickTime.pipe';
+import { QuestionComponent } from './question.component';
+import { DragulaModule } from 'ng2-dragula';
+import { NgArrayPipesModule } from 'ngx-pipes';
 
 @NgModule({
-    imports: [ BricksRoutingModule, CommonModule, MaterialModule, CompModule ],
+    imports: [ BricksRoutingModule, CommonModule, MaterialModule, DragulaModule, CompModule, NgArrayPipesModule ],
     declarations: [
-        BricksComponent, IntroductionComponent, LiveComponent, BrickTimePipe
+        BricksComponent, IntroductionComponent, LiveComponent, QuestionComponent, BrickTimePipe
     ],
     providers: [
         BrickTimePipe

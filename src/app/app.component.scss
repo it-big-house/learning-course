@@ -1,0 +1,25 @@
+.login-body {
+    min-height:100%;
+    align-items: center;
+    display:flex;
+    width:100%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-container {
+  border-radius: 5px;
+  width:450px;
+}
+
+.login-logo{  
+  font-size:20px;
+  text-align: center;
+  color: #0076B4;
+  padding: 5px 20px 0;
+  margin:0;
+}
+
+.login-container h1 {
+    margin: 5px;
+}
