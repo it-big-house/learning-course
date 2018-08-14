@@ -6,7 +6,7 @@
 
 <mat-vertical-stepper linear>
     
-    <mat-step [editable]="false" *ngFor="let question of (brick | async)?.questions; let index = index">
+    <mat-step [editable]="true" *ngFor="let question of (brick | async)?.questions; let index = index">
         <ng-template matStepLabel>Question {{index+1}}</ng-template>
         <question [question]="question" ></question>
     </mat-step>
