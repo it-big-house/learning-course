@@ -1,8 +1,15 @@
-# LearningFortressFrontend
+# Learning Fortress Frontend
 
-This is a simple VLE project running using a firebase backend.
+This is a simple VLE project running using a firebase backend. It is designed as a blended learning tool for Scholar6 Schools.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+
+## Basic Installation 
+Make sure you have git, node and npm. We use Visual Studio to edit our code.
+
+```bash
+$ git clone git@github.com:Scholar-6/learning-fortress-frontend.git
+$ npm install && npm run debug
+```
 
 ## Development server
 
@@ -25,6 +32,8 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 ## Further help
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 

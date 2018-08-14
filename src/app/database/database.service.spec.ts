@@ -32,6 +32,7 @@ describe('DatabaseService', () => {
 
     it('#createBrickAttempt should return an observable showing the correct response', () => {
         var brick = new BrickAttempt({
+            // TODO: this should not rely on a specific brick ID in database
             brick: "bricks/lh0pzfSRgVBSZ8UBaDJb",
             score: 75,
             student: "students/wYfB9tfvLySPQwvWs1v62DsaQiG3",

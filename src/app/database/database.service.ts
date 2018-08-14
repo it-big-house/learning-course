@@ -73,7 +73,7 @@ export class DatabaseService {
         );
     }
 
-/*
+/* TODO: remove this unused code (reference 14/8/2018)
     createBrickAttempt(brickAttempt: BrickAttempt) : Observable<any> {
         var newBrickAttempt = brickAttempt.toRefOnly({ answers: true });
 

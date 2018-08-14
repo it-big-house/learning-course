@@ -57,6 +57,7 @@ export class LiveComponent {
         var ba : BrickAttempt = {
             brick: this._brick._ref,
             score: null,
+            // TODO: Change to dynamically select current brick
             student: this.bricks.database.afs.doc("students/wYfB9tfvLySPQwvWs1v62DsaQiG3").ref,
             answers: this.questions.map((question) => {
                 return question.getAttempt();
