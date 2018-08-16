@@ -8,15 +8,17 @@ import { ShufflePipe } from "ngx-pipes";
     selector: 'question',
     template: `
     <ndc-dynamic
-        *ngFor="let comp of question.components"
+        *ngFor="let comp of question.components; let i = index"
         [ndcDynamicComponent]="comp.component"
-        [ndcDynamicInputs]="{ data: comp }"
+        [ndcDynamicInputs]="{ data: comp, reveal: reveal, attempt: attempt?.components[i] }"
         class="component-comp"
         ></ndc-dynamic>
     `
 })
 export class QuestionComponent {
     @Input() question: Question;
+    @Input() attempt: QuestionAttempt;
+    @Input() reveal: boolean;
 
     @ViewChildren(DynamicComponent) private dynamicComponents: QueryList<DynamicComponent>;
     components: CompComponent[];
@@ -33,7 +35,8 @@ export class QuestionComponent {
             question: this.question._ref,
             components: this.components.map((comp) => {
                 return comp.getAttempt();
-            })
+            }),
+            correct: null
         };
         return qa;
     }

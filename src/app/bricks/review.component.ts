@@ -9,20 +9,18 @@ import { BrickTimePipe } from './brickTime.pipe';
 
 import { CompComponent } from './comp/comp.component';
 import { QuestionComponent } from './question.component';
-import { AuthService } from '../auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-    selector: 'live',
-    templateUrl: './live.component.html',
-    styleUrls: ['./live.component.scss'],
+    selector: 'review',
+    templateUrl: './review.component.html',
+    styleUrls: ['./review.component.scss'],
     providers: [ ]
 })
-export class LiveComponent {
-    constructor(public bricks: BricksService, timer: TimerService, brickTime: BrickTimePipe, public router: Router, public auth: AuthService, public activatedRoute: ActivatedRoute) {
+export class ReviewComponent {
+    constructor(public bricks: BricksService, timer: TimerService, brickTime: BrickTimePipe, public router: Router, public activatedRoute: ActivatedRoute) {
         this.brick = bricks.currentBrick.asObservable();
         this.timer = timer.new();
-        this.timer.timeResolution = 21;
         this.brickTime = brickTime;
         bricks.currentBrick.subscribe((data) => {
             if(data != null) {
@@ -35,6 +33,8 @@ export class LiveComponent {
     brick: Observable<Brick>;
     timer : Timer;
 
+    brickAttempt: BrickAttempt;
+
     private _brick: Brick;
     private brickTime: BrickTimePipe;
 
@@ -42,7 +42,12 @@ export class LiveComponent {
     @ViewChildren(CompComponent) components: QueryList<CompComponent>;
 
     showBrick(brick: Brick) {
-        let time = this.brickTime.transform(brick.type);
+        this.brickAttempt = this.bricks.currentBrickAttempt;
+        if(!this.bricks.currentBrickAttempt) {
+            this.router.navigate(['../live'], { relativeTo: this.activatedRoute });
+        }
+
+        let time = new Date(this.brickTime.transform(brick.type).valueOf());
         this.timer.countDown(time);
         this.timer.timeRanOut.subscribe((t) => {
             this.finishBrick();
@@ -54,19 +59,16 @@ export class LiveComponent {
         console.log("finished in " + this.timer.timeElapsed.getTime() / 1000);
         
         // Get brick data
-        this.auth.user.subscribe((user) => {
-            var ba : BrickAttempt = {
-                brick: this._brick._ref,
-                score: null,
-                // TODO: Change to dynamically select current brick
-                student: this.bricks.database.afs.doc("students/"+user.uid).ref,
-                answers: this.questions.map((question) => {
-                    return question.getAttempt();
-                })
-            };
-            this.bricks.publishBrickAttempt(ba);
-            this.router.navigate(["/fortress"]);
-        })
+        var ba : BrickAttempt = {
+            brick: this._brick._ref,
+            score: null,
+            student: this.bricks.database.afs.doc("students/wYfB9tfvLySPQwvWs1v62DsaQiG3").ref,
+            answers: this.questions.map((question) => {
+                return question.getAttempt();
+            })
+        };
+        this.bricks.publishBrickAttempt(ba);
+        this.router.navigate(["/fortress"]);
     }
 
 }

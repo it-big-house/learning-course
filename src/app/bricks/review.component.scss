@@ -20,6 +20,12 @@ $choice-color-8: #CE3D59;
     background-color: #fff;
 }
 
+.choice {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .flex-choice {
     width: 100%;
 }
@@ -64,7 +70,9 @@ $choice-color-8: #CE3D59;
 
 .flex-choice {
     box-sizing: border-box;
-    font-size: 4vw;
+    flex-grow: 1;
+    align-content: flex-start;
+    display: flex;
     height: 15vw;
     color: #fff;
 }
@@ -75,6 +83,9 @@ $choice-color-8: #CE3D59;
 
 .comp-image-container {
     width: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .comp-image {
@@ -82,32 +93,32 @@ $choice-color-8: #CE3D59;
 }
 
 .sort-container {
-    overflow: scroll hidden;
-}
-
-.arrow-big-container {
-    overflow: auto;
+    display: flex;
+    flex-direction: row;
 }
 
 .arrow-container {
-    min-width: 200px;
+    flex-grow: 1;
 }
 
 .sort-list {
+    flex-grow: 1;
+    flex-basis: 0;
     background-color: #eee;
-    height: 100%;
-    min-width: 200px;
-}
-
-.arrow-list {
     margin: 0 5px;
 }
 
-.cat-header {
-    width: 100%;
-    padding: 10px 0;
-    text-align: center;
+.arrow-list {
+    flex-grow: 1;
+    flex-basis: 0;
+    margin: 0 5px;
+}
+
+.sort-header {
+    flex-grow: 1;
+    flex-basis: 0;
     background-color: #ccc;
+    margin: 0 5px;
 }
 
 .sort-header-container {
@@ -118,7 +129,6 @@ $choice-color-8: #CE3D59;
 .sort-list-item {
     padding: 0;
     height: 48;
-    touch-action: none;
 }
 
 .arrow-list-item {
@@ -126,12 +136,10 @@ $choice-color-8: #CE3D59;
     flex-direction: row;
     align-items: flex-start;
     text-align: center;
-    touch-action: none;
 }
 
 .arrow-item-text {
     width: 100%;
-    text-align: center;
 }
 
 .arrow-icon {
@@ -145,15 +153,15 @@ $choice-color-8: #CE3D59;
 }
 
 .horizontal-shuffle-container {
+    display: flex;
+    flex-direction: row;
     padding: 20px;
 }
 
 .horizontal-shuffle-item {
-    margin: 5px;
+    flex-grow: 1;
     text-align: center;
     font-size: 4vw;
-    padding: 5px;
-    touch-action: none;
 }
 
 .text-highlighting {
@@ -162,18 +170,4 @@ $choice-color-8: #CE3D59;
     padding-left: 25px;
     border-left: #006ece 5px solid;
     user-select: none;
-}
-
-.comp-list-container {
-    margin: 10px 0;
-}
-
-.comp-list-item {
-    font-size: 4vw;
-    white-space: nowrap;
-    text-align: center;
-}
-
-.order-number {
-    margin-right: 20px;
 }

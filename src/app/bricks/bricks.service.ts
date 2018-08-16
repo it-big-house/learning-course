@@ -15,13 +15,23 @@ export class BricksService {
 
     currentBrick: BehaviorSubject<Brick>;
 
+    currentBrickAttempt: BrickAttempt;
+
     loadBrick(id: string) {
         this.currentBrick = this.database.getBrick(id);
     }
 
+    markBrick(ba: BrickAttempt) {
+        ba.answers.forEach((ans) => {
+            ans.components.forEach((comp) => {
+                comp.correct = true;
+            })
+            ans.correct = false;
+        })
+        this.currentBrickAttempt = ba;
+    }
+
     publishBrickAttempt(ba: BrickAttempt) {
-        this.database.createBrickAttempt(ba).subscribe((msg) => {
-            console.log(msg);
-        });
+        this.database.createBrickAttempt(ba).subscribe();
     }
 }
