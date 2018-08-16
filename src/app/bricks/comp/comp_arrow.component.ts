@@ -26,13 +26,14 @@ export class CompArrow extends Comp {
 @Component({
     selector: 'sort',
     template: `
-    <div class="sort-container">
-        <div *ngFor="let cat of userCats; let i = index" class="sort-container arrow-container">
-            <mat-list [dragula]="'DRAG'+i" [(dragulaModel)]="userCats[i].choices" class="arrow-list">
-                <mat-list-item class="arrow-list-item sort-list-item" *ngFor="let item of cat.choices">
+    <div class="arrow-big-container" fxLayout="row">
+        <div *ngFor="let cat of userCats; let i = index" class="arrow-container" fxFlex="1 0 25%" fxLayout="row">
+            <mat-list [dragula]="'DRAG'+i" [(dragulaModel)]="userCats[i].choices" class="arrow-list" fxFlex="1 0 0">
+                <mat-list-item class="arrow-list-item sort-list-item" *ngFor="let item of cat.choices" fxLayoutAlign="center center">
                     <p class="arrow-item-text">{{item}}</p>
                 </mat-list-item>
             </mat-list>
+            <!-- Arrow Graphics -->
             <mat-list *ngIf="i + 1 != userCats.length">
                 <mat-list-item *ngFor="let item of cat.choices">
                     <mat-icon class="material-icons arrow-icon">arrow_right_alt</mat-icon>

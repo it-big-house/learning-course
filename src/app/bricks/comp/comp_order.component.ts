@@ -26,9 +26,14 @@ export class CompOrder extends Comp {
 @Component({
     selector: 'order',
     template: `
-    <mat-list [dragula]="'DRAG'" [(dragulaModel)]="userChoices">
-        <mat-list-item *ngFor="let choice of userChoices; let i = index">{{choice}}</mat-list-item>
-    </mat-list>
+    <div class="order-container">
+        <mat-list [dragula]="'DRAG'" [(dragulaModel)]="userChoices">
+            <mat-list-item *ngFor="let choice of userChoices; let i = index">
+                <span class="order-number">{{i+1}}</span>
+                {{choice}}
+            </mat-list-item>
+        </mat-list>
+    </div>
     `,
     styleUrls: ['../live.component.scss']
 })

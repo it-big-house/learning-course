@@ -19,8 +19,8 @@ export class CompShortAnswer extends Comp {
     selector: 'short-answer',
     template: `
     <p>{{data.data.text}}</p>
-    <div class="short-answer-container">
-        <mat-form-field *ngFor="let entry of data.data.entries; let i = index">
+    <div class="short-answer-container" fxLayout.gt-xs="row wrap" fxLayoutAlign.gt-xs="space-evenly center" fxLayout.xs="column">
+        <mat-form-field *ngFor="let entry of data.data.entries; let i = index" fxFlex="0 0 33%">
             <input matInput placeholder="{{entry.name}}" [(ngModel)]="userAnswers[i]" />
         </mat-form-field>
     </div>

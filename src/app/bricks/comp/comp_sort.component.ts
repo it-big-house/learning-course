@@ -18,15 +18,13 @@ export class CompSort extends Comp {
 @Component({
     selector: 'sort',
     template: `
-    <div class="sort-header-container">
-        <mat-list class="sort-header" *ngFor="let cat of userCats">
-            <mat-list-item class="sort-list-item">{{cat.name}}</mat-list-item>
-        </mat-list>
-    </div>
-    <div class="sort-container">
-        <mat-list [dragula]="'DRAG'" [(dragulaModel)]="userCats[i].choices" class="sort-list" *ngFor="let cat of userCats; let i = index">
-            <mat-list-item class="sort-list-item" *ngFor="let item of cat.choices">{{item}}</mat-list-item>
-        </mat-list>
+    <div class="sort-container" fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="10px">
+        <div class="cat-container" *ngFor="let cat of userCats; let i = index" fxFlex="1 0 0">
+            <div class="cat-header">{{cat.name}}</div>
+            <mat-list [dragula]="'DRAG'" [(dragulaModel)]="userCats[i].choices" class="sort-list">
+                <mat-list-item class="sort-list-item" *ngFor="let item of cat.choices">{{item}}</mat-list-item>
+            </mat-list>
+        </div>
     </div>
     `,
     styleUrls: ['../live.component.scss']

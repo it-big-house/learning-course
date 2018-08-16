@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DynamicModule } from 'ng-dynamic-component';
 import { NgArrayPipesModule } from 'ngx-pipes';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { DragulaModule } from 'ng2-dragula';
 import { MaterialModule } from '../../material.module';
 import { CompComponent } from './comp.component';
@@ -17,20 +18,21 @@ import { HorizontalShuffleComponent } from './comp_horizontal_shuffle.component'
 import { TextHighlightingComponent } from './comp_text_highlighting.component';
 import { HighlightDirective } from './highlight.directive';
 import { ArrowComponent } from './comp_arrow.component';
+import { ListComponent } from './comp_list.component';
 
 let dModule = DynamicModule.withComponents([SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, 
     TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent, 
-    TextHighlightingComponent, ArrowComponent])
+    TextHighlightingComponent, ArrowComponent, ListComponent])
 
 @NgModule({
-    imports: [ CommonModule, FormsModule, DragulaModule, MaterialModule, NgArrayPipesModule, dModule ],
+    imports: [ CommonModule, FormsModule, DragulaModule, MaterialModule, NgArrayPipesModule, FlexLayoutModule, dModule ],
     declarations: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, 
         TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent, 
-        TextHighlightingComponent, ArrowComponent,
+        TextHighlightingComponent, ArrowComponent, ListComponent,
         HighlightDirective ],
     exports: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent,
         TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent,
-        TextHighlightingComponent, ArrowComponent, 
+        TextHighlightingComponent, ArrowComponent, ListComponent,
         HighlightDirective,
         dModule.ngModule, FormsModule
     ],
