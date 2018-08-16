@@ -1,14 +1,14 @@
 <div class="mat-app-background basic-container">
   <mat-sidenav-container class="example-container">
-    <mat-sidenav #sidenav class="sidenav" mode="over">
+    <mat-sidenav #sidenav class="sidenav" mode="push">
       <mat-nav-list>
-        <mat-list-item>
-          Hamlet
+        <a [routerLink]="'pallet/'+pallet._ref.id" mat-list-item *ngFor="let pallet of pallets | async">
+          {{pallet.name}}
           <span style="flex:1 1 auto"></span>
           <mat-chip-list selectable="false">
-            <mat-chip disabled selected color="accent">English</mat-chip>
+            <mat-chip disabled selected color="accent">{{pallet.subject}}</mat-chip>
           </mat-chip-list>
-        </mat-list-item>
+        </a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -32,7 +32,7 @@
           <mat-icon class="material-icons">arrow_drop_down</mat-icon>
         </button>
       </mat-toolbar>
-      <pallets></pallets>
+      <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

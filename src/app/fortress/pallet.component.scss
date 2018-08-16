@@ -1,0 +1,14 @@
+.pallets-container {
+    width: 100%;
+    .pallet-list { 
+        .pallet-tile-1 { background-color: #5BC1FF }
+        .pallet-tile-2 { background-color: #0076B4 }
+        .pallet-tile-3 { background-color: #0A3B7E; color: white; }
+        mat-grid-tile {
+            p { margin: 10px; }
+            mat-grid-tile-header { text-align: center; width: 100%; }
+        }
+
+        margin: 10px;
+    }
+}
