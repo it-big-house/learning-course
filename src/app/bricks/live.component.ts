@@ -21,6 +21,7 @@ export class LiveComponent {
     constructor(public bricks: BricksService, timer: TimerService, brickTime: BrickTimePipe, public router: Router) {
         this.brick = bricks.currentBrick.asObservable();
         this.timer = timer.new();
+        this.timer.timeResolution = 21;
         this.brickTime = brickTime;
         bricks.currentBrick.subscribe((data) => {
             if(data != null) {

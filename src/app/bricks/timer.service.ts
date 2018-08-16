@@ -10,28 +10,30 @@ export class Timer {
     timeLeft : Date;
     timeLimit : Date;
 
+    timeResolution: number;
+
     timer : Observable<number>;
     timeRanOut: EventEmitter<number>;
     private subscription : Subscription;
 
     countUp() {
-        this.timer = timer(0, 1000);
+        this.timer = timer(0, this.timeResolution);
         this.timeRanOut = null;
         this.subscription = this.timer.subscribe((t) => {
-            this.timeElapsed = new Date(t*1000);
+            this.timeElapsed = new Date(t*this.timeResolution);
         })
     }
 
     countDown(timeLimit: number | Date) {
-        this.timer = timer(0, 1000);
+        this.timer = timer(0, this.timeResolution);
         if(typeof timeLimit == "number") {
-            this.timeLimit = new Date(timeLimit * 1000);
+            this.timeLimit = new Date(timeLimit * this.timeResolution);
         } else if(typeof timeLimit == "object") {
             this.timeLimit = timeLimit;
         }
         this.timeRanOut = new EventEmitter<number>()
         this.subscription = this.timer.subscribe((t) => {
-            this.timeElapsed = new Date(t * 1000);
+            this.timeElapsed = new Date(t * this.timeResolution);
             this.timeLeft = new Date(this.timeLimit.getTime() - this.timeElapsed.getTime());
             if(this.timeLeft.getTime() <= 0) {
                 this.timeRanOut.emit();
