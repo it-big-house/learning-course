@@ -29,7 +29,6 @@ export class QuestionComponent {
             return dynComp.componentRef.instance as CompComponent;
         });
 
-        console.log(this.components);
         var qa : QuestionAttempt = {
             question: this.question._ref,
             components: this.components.map((comp) => {

@@ -17,8 +17,6 @@ export class PalletComponent {
         this.route.paramMap
             .subscribe((data: ParamMap) => {
                 this.palletId = data.get('id');
-                console.log(`id is ${this.palletId}`);
-
                 database.getPallet(this.palletId).subscribe((pallet) => {
                     this.bricks = database.getBricks(pallet);
                 })

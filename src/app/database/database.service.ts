@@ -97,8 +97,7 @@ export class DatabaseService {
                     let plt = action.payload.data()
                     plt._ref = action.payload.ref;
                     return plt;
-                })),
-                tap((pallets) => { console.log(pallets) })
+                }))
             )
         return pallets$;
     }
@@ -132,8 +131,7 @@ export class DatabaseService {
                     brck._ref = action.payload.ref;
                     return brck;
                 })),
-                map((bricks: Brick[]) => bricks.sort((a: Brick, b: Brick) => a.type - b.type)),
-                tap((bricks) => { console.log(bricks) })
+                map((bricks: Brick[]) => bricks.sort((a: Brick, b: Brick) => a.type - b.type))
             );
         return bricks$
     }

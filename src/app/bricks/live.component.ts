@@ -48,8 +48,6 @@ export class LiveComponent {
     }
 
     finishBrick() {
-        console.log(this.components);
-
         this.timer.stop();
         console.log("finished in " + this.timer.timeElapsed.getTime() / 1000);
         
