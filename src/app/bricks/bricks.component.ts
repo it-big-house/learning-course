@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { BricksService } from './bricks.service';
-import { Brick, BrickAttempt } from '../bricks';
+import { Brick } from '../bricks';
 
 @Component({
   templateUrl: './bricks.component.html',

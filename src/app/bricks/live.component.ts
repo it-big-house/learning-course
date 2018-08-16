@@ -1,4 +1,4 @@
-import { Component, ViewChildren, QueryList, Input } from '@angular/core';
+import { Component, ViewChildren, QueryList } from '@angular/core';
 
 import { BricksService } from './bricks.service';
 
@@ -9,8 +9,8 @@ import { BrickTimePipe } from './brickTime.pipe';
 
 import { CompComponent } from './comp/comp.component';
 import { QuestionComponent } from './question.component';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'live',
@@ -19,7 +19,7 @@ import { Router, ActivatedRoute } from '@angular/router';
     providers: [ ]
 })
 export class LiveComponent {
-    constructor(public bricks: BricksService, timer: TimerService, brickTime: BrickTimePipe, public router: Router, public auth: AuthService, public activatedRoute: ActivatedRoute) {
+    constructor(public bricks: BricksService, timer: TimerService, brickTime: BrickTimePipe, public router: Router, public auth: AuthService) {
         this.brick = bricks.currentBrick.asObservable();
         this.timer = timer.new();
         this.timer.timeResolution = 21;

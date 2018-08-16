@@ -16,20 +16,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
     imports: [
         MatToolbarModule, MatIconModule, MatButtonModule, MatSidenavModule,
         MatListModule, MatChipsModule, MatProgressSpinnerModule, MatExpansionModule,
         MatStepperModule, MatButtonToggleModule, MatCardModule, MatMenuModule,
-        MatFormFieldModule, MatInputModule, MatTreeModule, MatGridListModule,
-        MatCheckboxModule],
+        MatFormFieldModule, MatInputModule, MatTreeModule, MatGridListModule],
     exports: [
         MatToolbarModule, MatIconModule, MatButtonModule, MatSidenavModule,
         MatListModule, MatChipsModule, MatProgressSpinnerModule, MatExpansionModule,
         MatStepperModule, MatButtonToggleModule, MatCardModule, MatMenuModule,
-        MatFormFieldModule, MatInputModule, MatTreeModule, MatGridListModule,
-        MatCheckboxModule],
+        MatFormFieldModule, MatInputModule, MatTreeModule, MatGridListModule],
 })
 export class MaterialModule {  }

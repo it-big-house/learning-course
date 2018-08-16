@@ -7,7 +7,6 @@ import { CompModule } from './comp/comp.module';
 import { BricksComponent } from './bricks.component';
 import { IntroductionComponent } from './introduction.component';
 import { LiveComponent } from './live.component';
-import { ReviewComponent } from './review.component';
 
 import { BrickTimePipe } from './brickTime.pipe';
 import { QuestionComponent } from './question.component';
@@ -17,7 +16,7 @@ import { NgArrayPipesModule } from 'ngx-pipes';
 @NgModule({
     imports: [ BricksRoutingModule, CommonModule, MaterialModule, DragulaModule, CompModule, NgArrayPipesModule ],
     declarations: [
-        BricksComponent, IntroductionComponent, LiveComponent, ReviewComponent, QuestionComponent, BrickTimePipe
+        BricksComponent, IntroductionComponent, LiveComponent, QuestionComponent, BrickTimePipe
     ],
     providers: [
         BrickTimePipe

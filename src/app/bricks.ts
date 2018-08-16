@@ -31,8 +31,6 @@ export class Comp {
     name: string;
     component: any;
     data: any;
-
-    mark(attempt: ComponentAttempt) : any { }
 }
 
 export interface Question extends DatabaseDoc {
@@ -68,7 +66,6 @@ export interface ComponentAttempt {
 export interface QuestionAttempt extends DatabaseDoc {
     question: DocumentReference;
     components: ComponentAttempt[];
-    correct: boolean;
 }
 
 export interface BrickAttempt extends DatabaseDoc {
