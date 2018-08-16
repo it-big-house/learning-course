@@ -11,7 +11,7 @@ const headers = new HttpHeaders({
 import { environment } from '../../environments/environment';
 
 import { Observable, BehaviorSubject, combineLatest, zip } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, concatMap } from 'rxjs/operators';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/observable/fromPromise';
@@ -103,15 +103,38 @@ export class DatabaseService {
         return pallets$;
     }
 
-    getPallet(ref: DocumentReference) : Observable<Pallet> {
-        let palletRef: AngularFirestoreDocument<Pallet> = this.afs.doc(ref);
-        const pallet$ = palletRef.valueChanges()
+    getPallet(id: string) : Observable<Pallet> {
+        let palletRef: AngularFirestoreDocument<Pallet> = this.afs.collection('pallets').doc(id);
+        const pallet$ = palletRef.snapshotChanges()
             .pipe(
-                map((pallet) => {
-                    pallet._ref = ref;
-                    return pallet;
+                map((action: Action<DocumentSnapshot<Pallet>>) => {
+                    let plt = action.payload.data();
+                    plt._ref = action.payload.ref;
+                    return plt;
                 })
             )
         return pallet$;
+    }
+
+    getBricks(pallet: Pallet) : Observable<Brick[]> {
+        let brickRefs: AngularFirestoreCollection<{brick: DocumentReference}> = this.afs.doc(pallet._ref).collection('bricks');
+        const bricks$ = brickRefs.snapshotChanges()
+            .pipe(
+                map((actions: DocumentChangeAction<{brick: DocumentReference}>[]) => actions.map((action) => {
+                    let brick = action.payload.doc.data();
+                    return brick;
+                })),
+                concatMap((brRefs) => combineLatest(brRefs.map((brRef) => {
+                    return this.afs.doc<Brick>(brRef.brick).snapshotChanges();
+                }))),
+                map((actions: Action<DocumentSnapshot<Brick>>[]) => actions.map((action) => {
+                    let brck = action.payload.data();
+                    brck._ref = action.payload.ref;
+                    return brck;
+                })),
+                map((bricks: Brick[]) => bricks.sort((a: Brick, b: Brick) => a.type - b.type)),
+                tap((bricks) => { console.log(bricks) })
+            );
+        return bricks$
     }
 }
