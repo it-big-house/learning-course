@@ -10,6 +10,7 @@ import { BrickTimePipe } from './brickTime.pipe';
 import { CompComponent } from './comp/comp.component';
 import { QuestionComponent } from './question.component';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
     selector: 'live',
@@ -18,7 +19,7 @@ import { Router } from '@angular/router';
     providers: [ ]
 })
 export class LiveComponent {
-    constructor(public bricks: BricksService, timer: TimerService, brickTime: BrickTimePipe, public router: Router) {
+    constructor(public bricks: BricksService, timer: TimerService, brickTime: BrickTimePipe, public router: Router, public auth: AuthService) {
         this.brick = bricks.currentBrick.asObservable();
         this.timer = timer.new();
         this.timer.timeResolution = 21;
@@ -53,17 +54,19 @@ export class LiveComponent {
         console.log("finished in " + this.timer.timeElapsed.getTime() / 1000);
         
         // Get brick data
-        var ba : BrickAttempt = {
-            brick: this._brick._ref,
-            score: null,
-            // TODO: Change to dynamically select current brick
-            student: this.bricks.database.afs.doc("students/wYfB9tfvLySPQwvWs1v62DsaQiG3").ref,
-            answers: this.questions.map((question) => {
-                return question.getAttempt();
-            })
-        };
-        this.bricks.publishBrickAttempt(ba);
-        this.router.navigate(["/fortress"]);
+        this.auth.user.subscribe((user) => {
+            var ba : BrickAttempt = {
+                brick: this._brick._ref,
+                score: null,
+                // TODO: Change to dynamically select current brick
+                student: this.bricks.database.afs.doc("students/"+user.uid).ref,
+                answers: this.questions.map((question) => {
+                    return question.getAttempt();
+                })
+            };
+            this.bricks.publishBrickAttempt(ba);
+            this.router.navigate(["/fortress"]);
+        })
     }
 
 }
