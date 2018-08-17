@@ -52,18 +52,20 @@ export class LiveComponent {
     finishBrick() {
         this.timer.stop();
         console.log("finished in " + this.timer.timeElapsed.getTime() / 1000);
-        
+
         // Get brick data
         this.auth.user.subscribe((user) => {
+            let answers = this.questions.map((question) => {
+                return question.getAttempt();
+            })
+            let score = answers.reduce((acc, answer) => acc + answer.marks, 0);
             var ba : BrickAttempt = {
                 brick: this._brick._ref,
-                score: null,
-                // TODO: Change to dynamically select current brick
+                score: score,
                 student: this.bricks.database.afs.doc("students/"+user.uid).ref,
-                answers: this.questions.map((question) => {
-                    return question.getAttempt();
-                })
+                answers: answers
             };
+            console.log("score is " + score)
             this.bricks.publishBrickAttempt(ba);
             this.router.navigate(["/fortress"]);
         })

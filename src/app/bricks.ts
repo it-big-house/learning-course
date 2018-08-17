@@ -67,6 +67,8 @@ export interface ComponentAttempt {
 export interface QuestionAttempt extends DatabaseDoc {
     question: DocumentReference;
     components: ComponentAttempt[];
+    marks: number;
+    correct: boolean;
 }
 
 export interface BrickAttempt extends DatabaseDoc {

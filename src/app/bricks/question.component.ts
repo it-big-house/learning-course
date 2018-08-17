@@ -29,11 +29,18 @@ export class QuestionComponent {
             return dynComp.componentRef.instance as CompComponent;
         });
 
+        let compAttempts = this.components.map((comp) => {
+            return comp.getAttempt();
+        })
+
+        let correct = compAttempts.every(attempt => attempt.correct);
+        let marks = compAttempts.reduce((acc, attempt) => acc + attempt.marks, 0);
+
         var qa : QuestionAttempt = {
             question: this.question._ref,
-            components: this.components.map((comp) => {
-                return comp.getAttempt();
-            })
+            components: compAttempts,
+            correct: correct,
+            marks: marks
         };
         return qa;
     }
