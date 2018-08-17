@@ -20,7 +20,7 @@ export class CompMultipleChoice extends Comp {
 @Component({
     selector: "multiple-choice",
     template: `
-    <mat-button-toggle-group name="choice" class="choice" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+    <mat-button-toggle-group name="choice" class="choice" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center" multiple>
         <mat-button-toggle ngDefaultControl (change)="changeAnswer($event, i)" name="choice-{{i}}" class="flex-choice" fxLayout="column" fxLayoutAlign="stretch stretch" *ngFor="let choice of data.data.choices | shuffle; let i = index" value="{{ choice }}">{{ choice }}</mat-button-toggle>
     </mat-button-toggle-group>
     `,
