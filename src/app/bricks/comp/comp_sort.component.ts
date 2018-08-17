@@ -44,10 +44,26 @@ export class SortComponent extends CompComponent {
     getAnswer() : { [choice: string]: number } {
         var choices = {};
         this.userCats.forEach((cat, index) => {
-            cat.choices.forEach((choice) => {
-                choices[choice] = index;
-            })
+            if(index != 0) {
+                cat.choices.forEach((choice) => {
+                    choices[choice] = index-1;
+                })
+            }
         })
         return choices;
+    }
+
+    mark(attempt: ComponentAttempt) : ComponentAttempt {
+        attempt.correct = true;
+        attempt.marks = 0;
+        Object.keys(this.data.data.choices).forEach((key, index) => {
+            if(attempt.answer[key] != this.data.data.choices[key]) {
+                attempt.correct = false;
+            } else {
+                attempt.marks += 5;
+            }
+        });
+        if(attempt.marks == 0 && Object.keys(attempt.answer).length != 0) attempt.marks = 1;
+        return attempt;
     }
 }

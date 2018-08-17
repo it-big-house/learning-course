@@ -60,7 +60,8 @@ export interface Pallet extends DatabaseDoc {
 
 export interface ComponentAttempt {
     answer: any,
-    correct: boolean
+    correct: boolean,
+    marks: number
 }
 
 export interface QuestionAttempt extends DatabaseDoc {

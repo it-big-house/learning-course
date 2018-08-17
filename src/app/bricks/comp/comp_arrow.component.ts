@@ -60,4 +60,19 @@ export class ArrowComponent extends CompComponent {
         });
         return choices;
     }
+
+    mark(attempt: ComponentAttempt) : ComponentAttempt {
+        attempt.correct = true;
+        attempt.marks = 0;
+        attempt.answer.map(c => c.choice).forEach((c) => {
+            let corr = c.every(opt => opt == c[0]);
+            if(corr) {
+                attempt.marks += 5;
+            } else {
+                attempt.correct = false;
+            }
+        });
+        if(attempt.marks == 0) attempt.marks = 1;
+        return attempt;
+    }
 }

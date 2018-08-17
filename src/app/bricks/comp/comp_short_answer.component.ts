@@ -39,4 +39,20 @@ export class ShortAnswerComponent extends CompComponent {
     getAnswer() : string[]{
         return this.userAnswers;
     }
+
+    mark(attempt: ComponentAttempt) : ComponentAttempt {
+        attempt.correct = true;
+        attempt.marks = 0;
+        this.data.data.entries.forEach((entry: {name: string, answer: string}, index) => {
+            if(this.userAnswers[index]) {
+                if(this.userAnswers[index].toLowerCase().replace(/ /g,'') == entry.answer.toLowerCase().replace(/ /g,'')) {
+                    attempt.marks += 5;
+                } else {
+                    attempt.correct = false;
+                }
+            } else { attempt.correct = false; }
+        })
+        if(attempt.marks == 0 && this.userAnswers.indexOf("") == -1) attempt.marks = 1;
+        return attempt;
+    }
 }

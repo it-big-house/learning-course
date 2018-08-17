@@ -6,9 +6,9 @@ import { CompComponent } from "./comp.component";
 
 export class CompTextHighlighting extends Comp {
     name = "Text Highlighting";
-    data: { text: string }
+    data: { text: string, words: number[] }
 
-    constructor(data: { text: string }) {
+    constructor(data: { text: string, words: number[] }) {
         super();
         this.data = data;
     }
@@ -42,5 +42,19 @@ export class TextHighlightingComponent extends CompComponent {
 
     toggleHighlight(i: number) {
         this.words[i].highlight = !this.words[i].highlight;
+    }
+
+    mark(attempt: ComponentAttempt) : ComponentAttempt {
+        attempt.correct = true;
+        attempt.marks = 0;
+        this.data.data.words.forEach((word) => {
+            if(attempt.answer.indexOf(word) == -1) {
+                attempt.correct = false;
+            } else {
+                attempt.marks += 5;
+            }
+        })
+        if(attempt.marks == 0 && attempt.answer.length != 0) attempt.marks = 1;
+        return attempt;
     }
 }

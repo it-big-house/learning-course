@@ -48,6 +48,20 @@ export class MultipleChoiceComponent extends CompComponent {
         return a;
     }
 
+    mark(attempt: ComponentAttempt) : ComponentAttempt {
+        attempt.correct = true;
+        attempt.marks = 0;
+        attempt.answer.forEach((ans) => {
+            if(ans >= this.data.data.correctAnswers) {
+                attempt.correct = false;
+            } else {
+                attempt.marks += 5;
+            }
+        })
+        if(attempt.marks == 0 && attempt.answer != []) attempt.marks = 1;
+        return attempt;
+    }
+
     public trackByIndex(index: number, item) {
         return index;
     }

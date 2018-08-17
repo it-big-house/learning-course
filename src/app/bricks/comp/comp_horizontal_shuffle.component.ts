@@ -46,4 +46,20 @@ export class HorizontalShuffleComponent extends CompComponent {
     getAnswer() : number[] {
         return this.userChoices.map(val => this.data.data.items.indexOf(val));
     }
+
+    mark(attempt: ComponentAttempt) : ComponentAttempt {
+        attempt.correct = true;
+        attempt.marks = 0;
+        attempt.answer.forEach((answer, index, array) => {
+            if (index != 0) {
+                if(answer - array[index-1] == 1) {
+                    attempt.marks += 5;
+                } else {
+                    attempt.correct = false;
+                }
+            }
+        })
+        if(attempt.marks == 0) attempt.marks = 1;
+        return attempt;
+    }
 }
