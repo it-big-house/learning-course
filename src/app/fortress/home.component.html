@@ -2,7 +2,7 @@
   <mat-sidenav-container class="example-container">
     <mat-sidenav #sidenav class="sidenav" mode="push">
       <mat-nav-list>
-        <a [routerLink]="'pallet/'+pallet._ref.id" mat-list-item *ngFor="let pallet of pallets | async">
+        <a [routerLink]="'pallet/'+pallet._ref.id" (click)="sidenav.toggle()" mat-list-item *ngFor="let pallet of pallets | async">
           {{pallet.name}}
           <span style="flex:1 1 auto"></span>
           <mat-chip-list selectable="false">
