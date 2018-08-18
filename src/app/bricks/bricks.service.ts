@@ -14,6 +14,7 @@ export class BricksService {
     }
 
     currentBrick: BehaviorSubject<Brick>;
+    currentBrickAttempt: BrickAttempt;
 
     loadBrick(id: string) {
         this.currentBrick = this.database.getBrick(id);
