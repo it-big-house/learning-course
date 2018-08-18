@@ -64,7 +64,9 @@ export class ArrowComponent extends CompComponent {
     mark(attempt: ComponentAttempt) : ComponentAttempt {
         attempt.correct = true;
         attempt.marks = 0;
+        attempt.maxMarks = 0;
         attempt.answer.map(c => c.choice).forEach((c) => {
+            attempt.maxMarks += 5;
             let corr = c.every(opt => opt == c[0]);
             if(corr) {
                 attempt.marks += 5;

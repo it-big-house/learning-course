@@ -35,12 +35,14 @@ export class QuestionComponent {
 
         let correct = compAttempts.every(attempt => attempt.correct);
         let marks = compAttempts.reduce((acc, attempt) => acc + attempt.marks, 0);
+        let maxMarks = compAttempts.reduce((acc, attempt) => acc + attempt.maxMarks, 0);
 
         var qa : QuestionAttempt = {
             question: this.question._ref,
             components: compAttempts,
             correct: correct,
-            marks: marks
+            marks: marks,
+            maxMarks: maxMarks
         };
         return qa;
     }

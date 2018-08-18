@@ -56,7 +56,9 @@ export class SortComponent extends CompComponent {
     mark(attempt: ComponentAttempt) : ComponentAttempt {
         attempt.correct = true;
         attempt.marks = 0;
+        attempt.maxMarks = 0;
         Object.keys(this.data.data.choices).forEach((key, index) => {
+            attempt.maxMarks += 5;
             if(attempt.answer[key] != this.data.data.choices[key]) {
                 attempt.correct = false;
             } else {

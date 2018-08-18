@@ -61,19 +61,22 @@ export interface Pallet extends DatabaseDoc {
 export interface ComponentAttempt {
     answer: any,
     correct: boolean,
-    marks: number
+    marks: number,
+    maxMarks: number
 }
 
 export interface QuestionAttempt extends DatabaseDoc {
     question: DocumentReference;
     components: ComponentAttempt[];
     marks: number;
+    maxMarks: number;
     correct: boolean;
 }
 
 export interface BrickAttempt extends DatabaseDoc {
     brick: DocumentReference;
     score: number;
+    maxScore: number;
     student: DocumentReference;
     answers: QuestionAttempt[];
 }

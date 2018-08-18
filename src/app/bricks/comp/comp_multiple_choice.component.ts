@@ -51,6 +51,7 @@ export class MultipleChoiceComponent extends CompComponent {
     mark(attempt: ComponentAttempt) : ComponentAttempt {
         attempt.correct = true;
         attempt.marks = 0;
+        attempt.maxMarks = this.data.data.correctAnswers * 5;
         attempt.answer.forEach((ans) => {
             if(ans >= this.data.data.correctAnswers) {
                 attempt.correct = false;

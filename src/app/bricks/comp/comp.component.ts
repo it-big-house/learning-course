@@ -13,7 +13,7 @@ export class CompComponent {
     getAnswer() {};
 
     getAttempt() : ComponentAttempt {
-        let att = this.mark({ answer: this.getAnswer(), correct: null, marks: null });
+        let att = this.mark({ answer: this.getAnswer(), correct: null, marks: 0, maxMarks: 0 });
         return att;
     };
 

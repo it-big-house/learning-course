@@ -47,6 +47,7 @@ export class TextHighlightingComponent extends CompComponent {
     mark(attempt: ComponentAttempt) : ComponentAttempt {
         attempt.correct = true;
         attempt.marks = 0;
+        attempt.maxMarks = this.data.data.words.length;
         this.data.data.words.forEach((word) => {
             if(attempt.answer.indexOf(word) == -1) {
                 attempt.correct = false;

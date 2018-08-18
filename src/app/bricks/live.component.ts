@@ -59,13 +59,15 @@ export class LiveComponent {
                 return question.getAttempt();
             })
             let score = answers.reduce((acc, answer) => acc + answer.marks, 0);
+            let maxScore = answers.reduce((acc, answer) => acc + answer.maxMarks, 0);
             var ba : BrickAttempt = {
                 brick: this._brick._ref,
                 score: score,
+                maxScore: maxScore,
                 student: this.bricks.database.afs.doc("students/"+user.uid).ref,
                 answers: answers
             };
-            console.log("score is " + score)
+            console.log(`score is ${score} out of ${maxScore}, which is ${score * 100 / maxScore}%`);
             this.bricks.publishBrickAttempt(ba);
             this.router.navigate(["/fortress"]);
         })

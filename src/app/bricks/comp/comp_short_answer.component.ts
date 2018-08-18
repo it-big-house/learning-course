@@ -43,6 +43,7 @@ export class ShortAnswerComponent extends CompComponent {
     mark(attempt: ComponentAttempt) : ComponentAttempt {
         attempt.correct = true;
         attempt.marks = 0;
+        attempt.maxMarks = this.data.data.entries.length * 5;
         this.data.data.entries.forEach((entry: {name: string, answer: string}, index) => {
             if(this.userAnswers[index]) {
                 if(this.userAnswers[index].toLowerCase().replace(/ /g,'') == entry.answer.toLowerCase().replace(/ /g,'')) {

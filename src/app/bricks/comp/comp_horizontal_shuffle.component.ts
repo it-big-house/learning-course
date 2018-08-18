@@ -50,8 +50,10 @@ export class HorizontalShuffleComponent extends CompComponent {
     mark(attempt: ComponentAttempt) : ComponentAttempt {
         attempt.correct = true;
         attempt.marks = 0;
+        attempt.maxMarks = 0;
         attempt.answer.forEach((answer, index, array) => {
             if (index != 0) {
+                attempt.maxMarks += 5;
                 if(answer - array[index-1] == 1) {
                     attempt.marks += 5;
                 } else {

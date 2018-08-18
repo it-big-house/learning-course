@@ -39,6 +39,7 @@ export class SingleChoiceComponent extends CompComponent {
 
     mark(attempt: ComponentAttempt) : ComponentAttempt {
         attempt.correct = attempt.answer == 0;
+        attempt.maxMarks = 5;
         if(attempt.correct) attempt.marks = 5;
         else if (attempt.answer != null) attempt.marks = 1;
         else attempt.marks = 0;
