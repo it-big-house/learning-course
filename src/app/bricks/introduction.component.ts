@@ -6,6 +6,7 @@ import { switchMap } from 'rxjs/operators';
 
 import { Brick } from '../bricks';
 import { BricksService } from './bricks.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
     selector: 'introduction',
@@ -14,15 +15,10 @@ import { BricksService } from './bricks.service';
 })
 export class IntroductionComponent {
     constructor(private bricks: BricksService) {
-        bricks.currentBrick.subscribe((data) => {
-            this.brick = data;
-            if(this.brick != null) {
-                this.showBrick();
-            }
-        })
+        this.aBrick = bricks.currentBrick;
     }
 
-    brick: Brick;
+    aBrick: BehaviorSubject<Brick>;
 
     showBrick() { }
 }

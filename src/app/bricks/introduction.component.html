@@ -1,4 +1,5 @@
-<div class="container">
+<div class="container" [ngStyle.xs]="{ 'text-align': 'center' }"
+    fxLayout="column" *ngIf="(aBrick | async) as brick">
     <h3>{{ brick.subject }}/PLACEHOLDER/{{ brick.type | brickTime | date: 'm:ss' }} minutes</h3>
     <h1>{{ brick.title }}</h1>
     <p>average score {{ brick.avgScore }} (all)</p>
@@ -21,12 +22,14 @@
             <div>{{ brick.prep }}</div>
         </mat-expansion-panel>
     </mat-accordion>
-    <div class="begin-row">
+    <div class="begin-row"
+        fxLayout="row" fxLayoutAlign="start center">
         <p>When you have completed the Prep, click the button.</p>
-        <div class="spacer"></div>
+        <div fxFlex="1 0 0"></div>
         <p class="begin-label">Begin</p><a mat-fab class="fab-bottom" routerLink="../live"><mat-icon>play_arrow</mat-icon></a>
     </div>
-    <div class="bottom-container" *ngIf="brick">
+    <div class="bottom-container"
+        fxLayout="row" fxLayoutAlign="space-around center">
         <div>
             <p>Creator: {{ brick.creator }}</p>
         </div>

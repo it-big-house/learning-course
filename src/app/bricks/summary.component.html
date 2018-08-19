@@ -1,0 +1,37 @@
+<div class="container" [ngStyle.xs]="{ 'text-align': 'center' }"
+    fxLayout="column" *ngIf="(aBrick | async) as brick">
+    <h3>{{ brick.subject }}/PLACEHOLDER/{{ brick.type | brickTime | date: 'm:ss' }} minutes</h3>
+    <h1>{{ brick.title }}</h1>
+    <p>average score {{ brick.avgScore }} (all)</p>
+    <p>high score {{ brick.highScore }} (all)</p>
+
+    <div class="overflow">
+        <div class="data-container" fxFlex="1 0 350px" fxFlexAlign="center" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+            <div class="score-container" fxLayout="column" fxLayoutAlign="center center">
+                <mat-progress-spinner diameter="350" mode="determinate" [value]="brickAttempt?.score * 100 / brickAttempt?.maxScore"></mat-progress-spinner>
+                <div class="numbers-container" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+                    <div class="score-percentage">{{ (brickAttempt?.score * 100 / brickAttempt?.maxScore) | number:'0.0-0' }}%</div>
+                    <div class="score-number">{{ brickAttempt?.score }} / {{ brickAttempt?.maxScore }}</div>
+                </div>
+            </div>
+            <mat-expansion-panel class="summary-container">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Summary
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div>{{ brick.summary }}</div>
+            </mat-expansion-panel>
+        </div>
+    </div>
+
+    <div class="bottom-container"
+        fxLayout="row" fxLayoutAlign="space-around center">
+        <div>
+            <p>Creator: {{ brick.creator }}</p>
+        </div>
+        <div>
+            <p>Total Users: {{ brick.totalUsers }}</p>
+        </div>
+    </div>
+</div>

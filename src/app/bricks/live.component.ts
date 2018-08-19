@@ -9,7 +9,7 @@ import { BrickTimePipe } from './brickTime.pipe';
 
 import { CompComponent } from './comp/comp.component';
 import { QuestionComponent } from './question.component';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -19,7 +19,7 @@ import { AuthService } from '../auth/auth.service';
     providers: [ ]
 })
 export class LiveComponent {
-    constructor(public bricks: BricksService, timer: TimerService, brickTime: BrickTimePipe, public router: Router, public auth: AuthService) {
+    constructor(public bricks: BricksService, timer: TimerService, brickTime: BrickTimePipe, public router: Router, public route: ActivatedRoute, public auth: AuthService) {
         this.brick = bricks.currentBrick.asObservable();
         this.timer = timer.new();
         this.timer.timeResolution = 21;
@@ -68,8 +68,8 @@ export class LiveComponent {
                 answers: answers
             };
             console.log(`score is ${score} out of ${maxScore}, which is ${score * 100 / maxScore}%`);
-            this.bricks.publishBrickAttempt(ba);
-            this.router.navigate(["/fortress"]);
+            this.bricks.currentBrickAttempt = ba;
+            this.router.navigate(["../summary"], { relativeTo: this.route });
         })
     }
 

@@ -42,6 +42,7 @@ export interface Brick extends DatabaseDoc {
     title: string;
     brief: string;
     prep: string;
+    summary: string;
     subject: string;
     type: number;
     pallet: DocumentReference;
