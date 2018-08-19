@@ -12,13 +12,13 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class SummaryComponent {
     brickAttempt: BrickAttempt;
-    brick: BehaviorSubject<Brick>;
+    aBrick: BehaviorSubject<Brick>;
 
     constructor(private bricks: BricksService, router: Router, route: ActivatedRoute) {
         if(bricks.currentBrickAttempt == null) {
             router.navigate(["../live"], { relativeTo: route });
         }
-        this.brick = bricks.currentBrick;
+        this.aBrick = bricks.currentBrick;
         this.brickAttempt = bricks.currentBrickAttempt;
     }
 }

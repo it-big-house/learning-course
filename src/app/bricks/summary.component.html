@@ -1,9 +1,9 @@
 <div class="container" [ngStyle.xs]="{ 'text-align': 'center' }"
-    fxLayout="column" *ngIf="(brick | async) as aBrick">
-    <h3>{{ aBrick.subject }}/PLACEHOLDER/{{ aBrick.type | brickTime | date: 'm:ss' }} minutes</h3>
-    <h1>{{ aBrick.title }}</h1>
-    <p>average score {{ aBrick.avgScore }} (all)</p>
-    <p>high score {{ aBrick.highScore }} (all)</p>
+    fxLayout="column" *ngIf="(aBrick | async) as brick">
+    <h3>{{ brick.subject }}/PLACEHOLDER/{{ brick.type | brickTime | date: 'm:ss' }} minutes</h3>
+    <h1>{{ brick.title }}</h1>
+    <p>average score {{ brick.avgScore }} (all)</p>
+    <p>high score {{ brick.highScore }} (all)</p>
 
     <div class="overflow">
         <div class="data-container" fxFlex="1 0 350px" fxFlexAlign="center" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
@@ -20,7 +20,7 @@
                         Summary
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <div>{{ aBrick.summary }}</div>
+                <div>{{ brick.summary }}</div>
             </mat-expansion-panel>
         </div>
     </div>
@@ -28,10 +28,10 @@
     <div class="bottom-container" *ngIf="brick"
         fxLayout="row" fxLayoutAlign="space-around center">
         <div>
-            <p>Creator: {{ aBrick.creator }}</p>
+            <p>Creator: {{ brick.creator }}</p>
         </div>
         <div>
-            <p>Total Users: {{ aBrick.totalUsers }}</p>
+            <p>Total Users: {{ brick.totalUsers }}</p>
         </div>
     </div>
 </div>
