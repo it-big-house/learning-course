@@ -20,7 +20,12 @@ export class CompSingleChoice extends Comp {
     template: `
     <mat-button-toggle-group [(ngModel)]="answer" name="choice" class="choice" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
         <mat-button-toggle class="flex-choice" *ngFor="let choice of data.data.choices | shuffle; let i = index" value="{{ choice }}" fxLayout="column" fxLayoutAlign="stretch stretch">
-            {{ choice }}
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+                <mat-checkbox *ngIf="attempt"  [checked]="getState(choice) == 1" [indeterminate]="getState(choice) == -1" disabled></mat-checkbox>
+                <div fxFlex="1 0 0"></div>
+                <div fxLayout="column">{{ choice }}</div>
+                <div fxFlex="1 0 0"></div>
+            </div>
         </mat-button-toggle>
     </mat-button-toggle-group>
     `,
@@ -33,8 +38,30 @@ export class SingleChoiceComponent extends CompComponent {
     @Input() attempt: ComponentAttempt;
     answer: string;
 
+    ngOnInit() {
+        if(this.attempt) {
+            this.answer = this.data.data.choices[this.attempt.answer];
+        }
+    }
+
     getAnswer() : number {
         return this.data.data.choices.indexOf(this.answer);
+    }
+
+    getChoice(choice) : number {
+        return this.data.data.choices.indexOf(choice);
+    }
+
+    getState(choice) : number {
+        if(this.getChoice(choice) == this.attempt.answer) {
+            if(this.getChoice(choice) == 0) {
+                return 1;
+            } else {
+                return -1;
+            }
+        } else {
+            return 0;
+        }
     }
 
     mark(attempt: ComponentAttempt) : ComponentAttempt {

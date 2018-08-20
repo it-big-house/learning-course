@@ -21,7 +21,14 @@ export class CompMultipleChoice extends Comp {
     selector: "multiple-choice",
     template: `
     <mat-button-toggle-group name="choice" class="choice" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center" multiple>
-        <mat-button-toggle ngDefaultControl (change)="changeAnswer($event, i)" name="choice-{{i}}" class="flex-choice" fxLayout="column" fxLayoutAlign="stretch stretch" *ngFor="let choice of data.data.choices | shuffle; let i = index" value="{{ choice }}">{{ choice }}</mat-button-toggle>
+        <mat-button-toggle ngDefaultControl (change)="changeAnswer($event, i)" name="choice-{{i}}" class="flex-choice" fxLayout="column" fxLayoutAlign="stretch stretch" *ngFor="let choice of data.data.choices | shuffle; let i = index" value="{{ choice }}">
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+                <mat-checkbox *ngIf="attempt" [checked]="getState(choice) == 1" [indeterminate]="getState(choice) == -1" disabled></mat-checkbox>
+                <div fxFlex="1 0 0"></div>
+                <div fxLayout="column">{{ choice }}</div>
+                <div fxFlex="1 0 0"></div>
+            </div>
+        </mat-button-toggle>
     </mat-button-toggle-group>
     `,
     styleUrls: ["../live.component.scss"]
@@ -46,6 +53,22 @@ export class MultipleChoiceComponent extends CompComponent {
             if(answer != "") a.push(this.data.data.choices.indexOf(answer));
         })
         return a;
+    }
+
+    getChoice(choice) : number {
+        return this.data.data.choices.indexOf(choice);
+    }
+
+    getState(choice) : number {
+        if(this.attempt.answer.indexOf(this.getChoice(choice)) != -1) {
+            if(this.getChoice(choice) < this.data.data.correctAnswers) {
+                return 1;
+            } else {
+                return -1;
+            }
+        } else {
+            return 0;
+        }
     }
 
     mark(attempt: ComponentAttempt) : ComponentAttempt {
