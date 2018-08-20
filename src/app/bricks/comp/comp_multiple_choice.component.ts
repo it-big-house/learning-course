@@ -2,6 +2,7 @@ import { Comp, ComponentAttempt } from "../../bricks";
 import { Component, Input } from "@angular/core";
 
 import {MatButtonToggleChange} from "@angular/material/button-toggle";
+import { MAT_CHECKBOX_CLICK_ACTION } from "@angular/material/checkbox";
 
 import { register } from './comp_index';
 import { CompComponent } from "./comp.component";
@@ -31,7 +32,10 @@ export class CompMultipleChoice extends Comp {
         </mat-button-toggle>
     </mat-button-toggle-group>
     `,
-    styleUrls: ["../live.component.scss"]
+    styleUrls: ["../live.component.scss"],
+    providers: [
+        {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'}
+    ]
 })
 export class MultipleChoiceComponent extends CompComponent {
     constructor() { super() }

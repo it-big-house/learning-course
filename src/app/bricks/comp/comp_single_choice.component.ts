@@ -3,6 +3,7 @@ import { Component, Input } from "@angular/core";
 
 import { register } from './comp_index';
 import { CompComponent } from "./comp.component";
+import { MAT_CHECKBOX_CLICK_ACTION } from "@angular/material/checkbox";
 
 export class CompSingleChoice extends Comp {
     name = "Single Choice";
@@ -29,13 +30,15 @@ export class CompSingleChoice extends Comp {
         </mat-button-toggle>
     </mat-button-toggle-group>
     `,
-    styleUrls: ["../live.component.scss"]
+    styleUrls: ["../live.component.scss"],
+    providers: [
+        {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'}
+    ]
 })
 export class SingleChoiceComponent extends CompComponent {
     constructor() { super() }
 
     @Input() data: CompSingleChoice;
-    @Input() attempt: ComponentAttempt;
     answer: string;
 
     ngOnInit() {

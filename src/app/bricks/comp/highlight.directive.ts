@@ -5,6 +5,7 @@ import { Directive, Input, ElementRef } from "@angular/core";
 })
 export class HighlightDirective {
     _highlight: boolean;
+    @Input() state: number;
 
     constructor(public el: ElementRef) { }
 
@@ -14,6 +15,10 @@ export class HighlightDirective {
     };
 
     onHighlightChange() {
-        this.el.nativeElement.style.backgroundColor = this._highlight ? "#00dece" : "#ffffff";
+        if(!this.state) {
+            this.el.nativeElement.style.backgroundColor = this._highlight ? "#00dece" : "#ffffff";
+        } else {
+            this.el.nativeElement.style.backgroundColor = this._highlight ? (this.state == 1 ? "#55ff55" : "#ff5555") : "#ffffff"
+        }
     }
 }
