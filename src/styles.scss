@@ -47,6 +47,14 @@ app-root {
     background-color: #111F33;
 }
 
+.rotate-90 {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
 /// ng2-dragula css!
 /* in-flight clone */
 .gu-mirror {

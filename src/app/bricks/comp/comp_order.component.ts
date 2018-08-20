@@ -26,12 +26,20 @@ export class CompOrder extends Comp {
 @Component({
     selector: 'order',
     template: `
-    <div class="order-container">
+    <div class="order-container" fxLayout="row">
         <mat-list [dragula]="'DRAG'" [(dragulaModel)]="userChoices">
             <mat-list-item *ngFor="let choice of userChoices; let i = index">
                 <span class="order-number">{{i+1}}</span>
                 {{choice}}
             </mat-list-item>
+        </mat-list>
+        <mat-list *ngIf="attempt" fxLayout="column" fxLayoutAlign="center center">
+            <div *ngFor="let choice of userChoices; let i = index">
+                <mat-list-item *ngIf="i != 0">
+                    <mat-icon style="font-size: 32px" [inline]="true" class="rotate-90">redo</mat-icon>
+                    <mat-checkbox [indeterminate]="getState(i) == -1" [checked]="getState(i) == 1" disabled></mat-checkbox>
+                </mat-list-item>
+            </div>
         </mat-list>
     </div>
     `,
@@ -48,6 +56,17 @@ export class OrderComponent extends CompComponent {
 
     ngOnInit() {
         this.userChoices = shuffle(this.data.data.choices.slice());
+        if(this.attempt) {
+            this.userChoices = this.attempt.answer.map(val => this.data.data.choices[val]);
+        }
+    }
+
+    getState(index: number) : number {
+        if(this.attempt.answer[index] - this.attempt.answer[index - 1] == 1) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 
     mark(attempt: ComponentAttempt) : ComponentAttempt {
