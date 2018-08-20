@@ -32,7 +32,7 @@ export class CompSingleChoice extends Comp {
     `,
     styleUrls: ["../live.component.scss"],
     providers: [
-        {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'}
+        {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'noop'}
     ]
 })
 export class SingleChoiceComponent extends CompComponent {
