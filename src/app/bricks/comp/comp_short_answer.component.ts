@@ -51,7 +51,7 @@ export class ShortAnswerComponent extends CompComponent {
     }
 
     getState(entry: number) : number {
-        if(this.attempt.answer[entry] != "") {
+        if(this.attempt.answer[entry]) {
             if(this.attempt.answer[entry].toLowerCase().replace(/ /g,'') == this.data.data.entries[entry].answer.toLowerCase().replace(/ /g,'')) {
                 return 1;
             } else { return -1; }
