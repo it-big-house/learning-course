@@ -8,8 +8,8 @@
     <div class="overflow">
         <div class="data-container" fxFlex="1 0 350px" fxFlexAlign="center" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
             <div class="score-container" fxLayout="column" fxLayoutAlign="center center">
-                <mat-progress-spinner class="score-wheel" diameter="350" mode="determinate" [value]="brickAttempt?.score * 100 / brickAttempt?.maxScore"></mat-progress-spinner>
-                <mat-progress-spinner diameter="350" mode="determinate" [value]="brickAttempt?.oldScore * 100 / brickAttempt?.maxScore" color="accent"></mat-progress-spinner>
+                <mat-progress-spinner class="score-wheel" diameter="350" mode="determinate" [value]="brickAttempt?.score * 100 / brickAttempt?.maxScore" color="accent"></mat-progress-spinner>
+                <mat-progress-spinner diameter="350" mode="determinate" [value]="brickAttempt?.oldScore * 100 / brickAttempt?.maxScore"></mat-progress-spinner>
                 <div class="numbers-container" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
                     <div class="score-percentage">{{ (brickAttempt?.score * 100 / brickAttempt?.maxScore) | number:'0.0-0' }}%</div>
                     <div class="score-number">{{ brickAttempt?.score }} / {{ brickAttempt?.maxScore }}</div>
@@ -22,7 +22,7 @@
         fxLayout="row" fxLayoutAlign="start center">
         <p>Your brick has been submitted. Click the button to go back home.</p>
         <div fxFlex="1 0 0"></div>
-        <p class="begin-label">Home</p><a mat-fab class="fab-bottom" routerLink="../review"><mat-icon>play_arrow</mat-icon></a>
+        <p class="begin-label">Home</p><a mat-fab class="fab-bottom" routerLink="/fortress/dashboard"><mat-icon>play_arrow</mat-icon></a>
     </div>
 
     <div class="bottom-container"
