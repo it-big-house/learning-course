@@ -83,7 +83,8 @@ export class SortComponent extends CompComponent {
         }
     }
 
-    mark(attempt: ComponentAttempt) : ComponentAttempt {
+    mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
+        let markIncrement = prev ? 2 : 5;
         attempt.correct = true;
         attempt.marks = 0;
         attempt.maxMarks = 0;
@@ -92,10 +93,14 @@ export class SortComponent extends CompComponent {
             if(attempt.answer[key] != this.data.data.choices[key]) {
                 attempt.correct = false;
             } else {
-                attempt.marks += 5;
+                if(!prev) {
+                    attempt.marks += markIncrement;
+                } else if(prev.answer[key] != this.data.data.choices[key]) {
+                    attempt.marks += markIncrement;
+                }
             }
         });
-        if(attempt.marks == 0 && Object.keys(attempt.answer).length != 0) attempt.marks = 1;
+        if(attempt.marks == 0 && Object.keys(attempt.answer).length != 0 && !prev) attempt.marks = 1;
         return attempt;
     }
 }

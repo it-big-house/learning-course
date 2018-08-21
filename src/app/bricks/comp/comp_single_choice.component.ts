@@ -70,11 +70,12 @@ export class SingleChoiceComponent extends CompComponent {
         }
     }
 
-    mark(attempt: ComponentAttempt) : ComponentAttempt {
+    mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
+        let markIncrement = prev ? 2 : 5;
         attempt.correct = attempt.answer == 0;
         attempt.maxMarks = 5;
-        if(attempt.correct) attempt.marks = 5;
-        else if (attempt.answer != null) attempt.marks = 1;
+        if(attempt.correct) attempt.marks = markIncrement;
+        else if (attempt.answer != null && !prev) attempt.marks = 1;
         else attempt.marks = 0;
         return attempt;
     }

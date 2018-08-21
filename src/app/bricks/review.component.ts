@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ViewChildren, QueryList } from "@angular/core";
 import { Observable } from "rxjs";
 import { Brick, BrickAttempt, QuestionAttempt } from "../bricks";
 import { Timer, TimerService } from "./timer.service";
@@ -6,6 +6,7 @@ import { BrickTimePipe } from "./brickTime.pipe";
 import { BricksService } from "./bricks.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { AuthService } from "../auth/auth.service";
+import { QuestionComponent } from "./question.component";
 
 @Component({
     selector: 'live-review',
@@ -37,6 +38,8 @@ export class ReviewComponent {
     private _brick: Brick;
     private brickTime: BrickTimePipe;
 
+    @ViewChildren(QuestionComponent) questions : QueryList<QuestionComponent>;
+
     showBrick(brick: Brick) {
         let time = this.brickTime.transform(brick.type);
         this.timer.countDown(time);
@@ -48,5 +51,24 @@ export class ReviewComponent {
     finishBrick() {
         this.timer.stop();
         console.log("finished in " + this.timer.timeElapsed.getTime() / 1000);
+
+        // Get brick data
+        this.auth.user.subscribe((user) => {
+            let answers = this.questions.map((question) => {
+                return question.getAttempt();
+            })
+            let score = answers.reduce((acc, answer) => acc + answer.marks, 0) + this.bricks.currentBrickAttempt.score;
+            var ba : BrickAttempt = {
+                brick: this._brick._ref,
+                score: score,
+                oldScore: this.bricks.currentBrickAttempt.score,
+                maxScore: this.bricks.currentBrickAttempt.maxScore,
+                student: this.bricks.database.afs.doc("students/"+user.uid).ref,
+                answers: answers
+            };
+            console.log(`score is ${score} out of ${this.bricks.currentBrickAttempt.maxScore}, which is ${score * 100 / this.bricks.currentBrickAttempt.maxScore}%`);
+            //this.bricks.currentBrickAttempt = ba;
+            //this.router.navigate(["../summary"], { relativeTo: this.route });
+        })
     }
 }

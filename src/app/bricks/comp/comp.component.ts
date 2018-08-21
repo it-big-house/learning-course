@@ -14,9 +14,9 @@ export class CompComponent {
     getAnswer() {};
 
     getAttempt() : ComponentAttempt {
-        let att = this.mark({ answer: this.getAnswer(), correct: null, marks: 0, maxMarks: 0 });
+        let att = this.mark({ answer: this.getAnswer(), correct: null, marks: 0, maxMarks: 0 }, this.attempt);
         return att;
     };
 
-    mark(attempt: ComponentAttempt) : ComponentAttempt { return attempt; }
+    mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt { return attempt; }
 }

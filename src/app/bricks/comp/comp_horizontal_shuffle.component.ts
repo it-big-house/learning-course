@@ -51,7 +51,8 @@ export class HorizontalShuffleComponent extends CompComponent {
         return this.userChoices.map(val => this.data.data.items.indexOf(val));
     }
 
-    mark(attempt: ComponentAttempt) : ComponentAttempt {
+    mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
+        let markIncrement = prev ? 2 : 5;
         attempt.correct = true;
         attempt.marks = 0;
         attempt.maxMarks = 0;
@@ -59,13 +60,17 @@ export class HorizontalShuffleComponent extends CompComponent {
             if (index != 0) {
                 attempt.maxMarks += 5;
                 if(answer - array[index-1] == 1) {
-                    attempt.marks += 5;
+                    if(!prev) {
+                        attempt.marks += markIncrement;
+                    } else if(prev.answer[index] - prev.answer[index-1] != 1) {
+                        attempt.marks += markIncrement;
+                    }
                 } else {
                     attempt.correct = false;
                 }
             }
         })
-        if(attempt.marks == 0) attempt.marks = 1;
+        if(attempt.marks == 0 && !prev) attempt.marks = 1;
         return attempt;
     }
 }

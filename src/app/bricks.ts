@@ -77,6 +77,7 @@ export interface QuestionAttempt extends DatabaseDoc {
 export interface BrickAttempt extends DatabaseDoc {
     brick: DocumentReference;
     score: number;
+    oldScore?: number;
     maxScore: number;
     student: DocumentReference;
     answers: QuestionAttempt[];

@@ -58,20 +58,25 @@ export class ShortAnswerComponent extends CompComponent {
         } else { return 0; }
     }
 
-    mark(attempt: ComponentAttempt) : ComponentAttempt {
+    mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
+        let markIncrement = prev ? 2 : 5;
         attempt.correct = true;
         attempt.marks = 0;
         attempt.maxMarks = this.data.data.entries.length * 5;
         this.data.data.entries.forEach((entry: {name: string, answer: string}, index) => {
             if(this.userAnswers[index]) {
                 if(this.userAnswers[index].toLowerCase().replace(/ /g,'') == entry.answer.toLowerCase().replace(/ /g,'')) {
-                    attempt.marks += 5;
+                    if(!prev) {
+                        attempt.marks += markIncrement;
+                    } else if (prev.answer[index].toLowerCase().replace(/ /g,'') != entry.answer.toLowerCase().replace(/ /g,'')) {
+                        attempt.marks += markIncrement;
+                    }
                 } else {
                     attempt.correct = false;
                 }
             } else { attempt.correct = false; }
         })
-        if(attempt.marks == 0 && this.userAnswers.indexOf("") == -1) attempt.marks = 1;
+        if(attempt.marks == 0 && this.userAnswers.indexOf("") == -1 && !prev) attempt.marks = 1;
         return attempt;
     }
 }

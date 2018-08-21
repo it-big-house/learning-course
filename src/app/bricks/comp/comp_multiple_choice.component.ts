@@ -22,7 +22,7 @@ export class CompMultipleChoice extends Comp {
     selector: "multiple-choice",
     template: `
     <mat-button-toggle-group name="choice" class="choice" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center" multiple>
-        <mat-button-toggle ngDefaultControl (change)="changeAnswer($event, i)" name="choice-{{i}}" class="flex-choice" fxLayout="column" fxLayoutAlign="stretch stretch" *ngFor="let choice of data.data.choices | shuffle; let i = index" value="{{ choice }}">
+        <mat-button-toggle ngDefaultControl [checked]="answers[getChoice(choice)]" (change)="changeAnswer($event, i)" name="choice-{{i}}" class="flex-choice" fxLayout="column" fxLayoutAlign="stretch stretch" *ngFor="let choice of data.data.choices | shuffle; let i = index" [value]="choice">
             <div fxLayout="row" fxLayoutAlign="space-around center">
                 <mat-checkbox *ngIf="attempt" [checked]="getState(choice) == 1" [indeterminate]="getState(choice) == -1" disabled></mat-checkbox>
                 <div fxFlex="1 0 0"></div>
@@ -44,20 +44,25 @@ export class MultipleChoiceComponent extends CompComponent {
     constructor() { super() }
 
     ngOnInit() {
-        this.answers = this.data.data.choices.map(() => "");
+        this.answers = this.data.data.choices.map(() => false);
+        if(this.attempt) {
+            this.attempt.answer
+                .filter(val => val < this.data.data.correctAnswers)
+                .forEach(val => { this.answers[val] = true });
+        }
     }
 
     @Input() data: CompMultipleChoice;
-    answers: string[];
+    answers: boolean[];
 
     changeAnswer(event: MatButtonToggleChange, index: number) : void {
-        this.answers[index] = event.source.checked ? event.value : "";
+        this.answers[this.getChoice(event.value)] = event.source.checked ? true : false;
     }
 
     getAnswer() : number[] {
         let a = []
-        this.answers.forEach((answer) => {
-            if(answer != "") a.push(this.data.data.choices.indexOf(answer));
+        this.answers.forEach((answer, index) => {
+            if(answer) a.push(index);
         })
         return a;
     }
@@ -78,18 +83,29 @@ export class MultipleChoiceComponent extends CompComponent {
         }
     }
 
-    mark(attempt: ComponentAttempt) : ComponentAttempt {
+    mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
+        let markIncrement = prev ? 2 : 5;
         attempt.correct = true;
         attempt.marks = 0;
         attempt.maxMarks = this.data.data.correctAnswers * 5;
-        attempt.answer.forEach((ans) => {
-            if(ans >= this.data.data.correctAnswers) {
-                attempt.correct = false;
+        this.data.data.choices.forEach((ans, i) => {
+            if(i <= this.data.data.correctAnswers) {
+                if(attempt.answer.indexOf(i) == -1) {
+                    attempt.correct = false;
+                } else {
+                    if(!prev) {
+                        attempt.marks += markIncrement;
+                    } else if(prev.answer.indexOf(ans) == -1) {
+                        attempt.marks += markIncrement;
+                    }
+                }
             } else {
-                attempt.marks += 5;
+                if(attempt.answer.indexOf(i) == -1) {
+                    attempt.correct = false;
+                }
             }
         })
-        if(attempt.marks == 0 && attempt.answer != []) attempt.marks = 1;
+        if(attempt.marks == 0 && attempt.answer != [] && !prev) attempt.marks = 1;
         return attempt;
     }
 

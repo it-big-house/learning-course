@@ -39,7 +39,6 @@ export class LiveComponent {
     private brickTime: BrickTimePipe;
 
     @ViewChildren(QuestionComponent) questions : QueryList<QuestionComponent>;
-    @ViewChildren(CompComponent) components: QueryList<CompComponent>;
 
     showBrick(brick: Brick) {
         let time = this.brickTime.transform(brick.type);

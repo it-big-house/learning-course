@@ -97,20 +97,25 @@ export class ArrowComponent extends CompComponent {
         }
     }
 
-    mark(attempt: ComponentAttempt) : ComponentAttempt {
+    mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
+        let markIncrement = prev ? 2 : 5;
         attempt.correct = true;
         attempt.marks = 0;
         attempt.maxMarks = 0;
-        attempt.answer.map(c => c.choice).forEach((c) => {
+        attempt.answer.map(c => c.choice).forEach((c, i) => {
             attempt.maxMarks += 5;
             let corr = c.every(opt => opt == c[0]);
             if(corr) {
-                attempt.marks += 5;
+                if(!prev) {
+                    attempt.marks += markIncrement;
+                } else if(!prev.answer[i].choice.every(opt => opt == c[0])) {
+                    attempt.marks += markIncrement;
+                }
             } else {
                 attempt.correct = false;
             }
         });
-        if(attempt.marks == 0) attempt.marks = 1;
+        if(attempt.marks == 0 && !prev) attempt.marks = 1;
         return attempt;
     }
 }

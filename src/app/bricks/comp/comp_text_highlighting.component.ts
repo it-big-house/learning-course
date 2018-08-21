@@ -64,7 +64,8 @@ export class TextHighlightingComponent extends CompComponent {
         } else { return 0; }
     }
 
-    mark(attempt: ComponentAttempt) : ComponentAttempt {
+    mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
+        let markIncrement = prev ? 2 : 5;
         attempt.correct = true;
         attempt.marks = 0;
         attempt.maxMarks = this.data.data.words.length;
@@ -72,10 +73,14 @@ export class TextHighlightingComponent extends CompComponent {
             if(attempt.answer.indexOf(word) == -1) {
                 attempt.correct = false;
             } else {
-                attempt.marks += 5;
+                if(!prev) {
+                    attempt.marks += markIncrement;
+                } else if (prev.answer.indexOf(word) == -1) {
+                    attempt.marks += markIncrement;
+                }
             }
         })
-        if(attempt.marks == 0 && attempt.answer.length != 0) attempt.marks = 1;
+        if(attempt.marks == 0 && attempt.answer.length != 0 && !prev) attempt.marks = 1;
         return attempt;
     }
 }
