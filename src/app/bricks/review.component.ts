@@ -67,8 +67,8 @@ export class ReviewComponent {
                 answers: answers
             };
             console.log(`score is ${score} out of ${this.bricks.currentBrickAttempt.maxScore}, which is ${score * 100 / this.bricks.currentBrickAttempt.maxScore}%`);
-            //this.bricks.currentBrickAttempt = ba;
-            //this.router.navigate(["../summary"], { relativeTo: this.route });
+            this.bricks.currentBrickAttempt = ba;
+            this.router.navigate(["../ending"], { relativeTo: this.route });
         })
     }
 }

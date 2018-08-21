@@ -6,6 +6,7 @@ import { IntroductionComponent } from './introduction.component';
 import { LiveComponent } from './live.component';
 import { SummaryComponent } from './summary.component';
 import { ReviewComponent } from './review.component';
+import { EndingComponent } from './ending.component';
 
 const bricksRoutes = [
     {path: ':id', component: BricksComponent, children: [
@@ -13,6 +14,7 @@ const bricksRoutes = [
         { path: 'live', component: LiveComponent },
         { path: 'summary', component: SummaryComponent },
         { path: 'review', component: ReviewComponent },
+        { path: 'ending', component: EndingComponent },
         { path: '', redirectTo: 'intro', pathMatch: 'full' }
     ]}
 ]
