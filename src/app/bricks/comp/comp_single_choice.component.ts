@@ -71,10 +71,14 @@ export class SingleChoiceComponent extends CompComponent {
     }
 
     mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
+        // If the question is answered in review phase, add 2 to the mark and not 5.
         let markIncrement = prev ? 2 : 5;
-        attempt.correct = attempt.answer == 0;
+        // set attempt.correct to true if the answer is 0.
+        attempt.correct = (attempt.answer == 0);
         attempt.maxMarks = 5;
+        // if the attempt is correct, add the mark increment.
         if(attempt.correct) attempt.marks = markIncrement;
+        // if there is an answer given and the program is in the live phase, give the student an extra mark.
         else if (attempt.answer != null && !prev) attempt.marks = 1;
         else attempt.marks = 0;
         return attempt;

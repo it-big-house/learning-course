@@ -80,24 +80,38 @@ export class OrderComponent extends CompComponent {
     }
 
     mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
+        // If the question is answered in review phase, add 2 to the mark and not 5.
         let markIncrement = prev ? 2 : 5;
         attempt.correct = true;
         attempt.marks = 0;
         attempt.maxMarks = 0;
+        // For every item in the answer...
         attempt.answer.forEach((answer, index, array) => {
+            // except the first one...
             if (index != 0) {
+                // increase the max marks by 5,
                 attempt.maxMarks += 5;
+                // and if this item and the one before it are in the right order and are adjacent...
                 if(answer - array[index-1] == 1) {
+                    // and the program is in live phase...
                     if(!prev) {
-                        attempt.marks += markIncrement;
-                    } else if (prev.answer[index] - prev.answer[index-1] != 1) {
+                        // increase the marks by 5.
                         attempt.marks += markIncrement;
                     }
-                } else {
+                    // or the item wasn't correct in the live phase...
+                    else if (prev.answer[index] - prev.answer[index-1] != 1) {
+                        // increase the marks by 2.
+                        attempt.marks += markIncrement;
+                    }
+                }
+                // if not...
+                else {
+                    // the answer is not correct.
                     attempt.correct = false;
                 }
             }
         })
+        // Then, if the attempt scored no marks and the program is in live phase, then give the student a mark.
         if(attempt.marks == 0 && !prev) attempt.marks = 1;
         return attempt;
     }

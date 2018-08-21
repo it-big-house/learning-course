@@ -84,22 +84,35 @@ export class SortComponent extends CompComponent {
     }
 
     mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
+        // If the question is answered in review phase, add 2 to the mark and not 5.
         let markIncrement = prev ? 2 : 5;
         attempt.correct = true;
         attempt.marks = 0;
         attempt.maxMarks = 0;
+        // For every item...
         Object.keys(this.data.data.choices).forEach((key, index) => {
+            // increase the maximum marks by 5,
             attempt.maxMarks += 5;
+            // and if the user's answer and the correct answer are in different categories...
             if(attempt.answer[key] != this.data.data.choices[key]) {
+                // the answer is not correct.
                 attempt.correct = false;
-            } else {
+            }
+            // if not...
+            else {
+                // and the program is in the live phase...
                 if(!prev) {
+                    // Increase the marks by 5.
                     attempt.marks += markIncrement;
-                } else if(prev.answer[key] != this.data.data.choices[key]) {
+                }
+                // or the previous answer was not correct already...
+                else if(prev.answer[key] != this.data.data.choices[key]) {
+                    // Increase the marks by 2.
                     attempt.marks += markIncrement;
                 }
             }
         });
+        // Then, if the attempt scored no marks, and there are some answers given, and the program is in live phase, then give the student a mark.
         if(attempt.marks == 0 && Object.keys(attempt.answer).length != 0 && !prev) attempt.marks = 1;
         return attempt;
     }
