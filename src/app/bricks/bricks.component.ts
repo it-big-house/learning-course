@@ -12,7 +12,6 @@ import { Brick } from '../bricks';
 export class BricksComponent {
     constructor(
         private bricks: BricksService,
-        private router: Router,
         private route: ActivatedRoute
     ) {
         this.route.paramMap

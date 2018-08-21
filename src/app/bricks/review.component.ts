@@ -1,26 +1,25 @@
-import { Component, ViewChildren, QueryList } from '@angular/core';
-
-import { BricksService } from './bricks.service';
-
-import { Brick, Question, BrickAttempt, Student, Pallet } from '../bricks';
-import { Observable } from 'rxjs';
-import { TimerService, Timer } from './timer.service';
-import { BrickTimePipe } from './brickTime.pipe';
-
-import { CompComponent } from './comp/comp.component';
-import { QuestionComponent } from './question.component';
-import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../auth/auth.service';
+import { Component, ViewChildren, QueryList } from "@angular/core";
+import { Observable } from "rxjs";
+import { Brick, BrickAttempt, QuestionAttempt } from "../bricks";
+import { Timer, TimerService } from "./timer.service";
+import { BrickTimePipe } from "./brickTime.pipe";
+import { BricksService } from "./bricks.service";
+import { Router, ActivatedRoute } from "@angular/router";
+import { AuthService } from "../auth/auth.service";
+import { QuestionComponent } from "./question.component";
 
 @Component({
-    selector: 'live',
-    templateUrl: './live.component.html',
-    styleUrls: ['./live.component.scss'],
-    providers: [ ]
+    selector: 'live-review',
+    templateUrl: './review.component.html',
+    styleUrls: ['./live.component.scss']
 })
-export class LiveComponent {
+export class ReviewComponent {
     constructor(public bricks: BricksService, timer: TimerService, brickTime: BrickTimePipe, public router: Router, public route: ActivatedRoute, public auth: AuthService) {
         this.brick = bricks.currentBrick.asObservable();
+        this.brickAttempt = bricks.currentBrickAttempt;
+        if(!this.brickAttempt) {
+            this.router.navigate(['../live'], {relativeTo: route});
+        }
         this.timer = timer.new();
         this.timer.timeResolution = 21;
         this.brickTime = brickTime;
@@ -33,6 +32,7 @@ export class LiveComponent {
     }
 
     brick: Observable<Brick>;
+    brickAttempt: BrickAttempt;
     timer : Timer;
 
     private _brick: Brick;
@@ -57,19 +57,18 @@ export class LiveComponent {
             let answers = this.questions.map((question) => {
                 return question.getAttempt();
             })
-            let score = answers.reduce((acc, answer) => acc + answer.marks, 0);
-            let maxScore = answers.reduce((acc, answer) => acc + answer.maxMarks, 0);
+            let score = answers.reduce((acc, answer) => acc + answer.marks, 0) + this.bricks.currentBrickAttempt.score;
             var ba : BrickAttempt = {
                 brick: this._brick._ref,
                 score: score,
-                maxScore: maxScore,
+                oldScore: this.bricks.currentBrickAttempt.score,
+                maxScore: this.bricks.currentBrickAttempt.maxScore,
                 student: this.bricks.database.afs.doc("students/"+user.uid).ref,
                 answers: answers
             };
-            console.log(`score is ${score} out of ${maxScore}, which is ${score * 100 / maxScore}%`);
+            console.log(`score is ${score} out of ${this.bricks.currentBrickAttempt.maxScore}, which is ${score * 100 / this.bricks.currentBrickAttempt.maxScore}%`);
             this.bricks.currentBrickAttempt = ba;
-            this.router.navigate(["../summary"], { relativeTo: this.route });
+            this.router.navigate(["../ending"], { relativeTo: this.route });
         })
     }
-
 }

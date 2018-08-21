@@ -10,13 +10,13 @@ const headers = new HttpHeaders({
 
 import { environment } from '../../environments/environment';
 
-import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable, BehaviorSubject, combineLatest, zip } from 'rxjs';
+import { map, tap, concatMap } from 'rxjs/operators';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/observable/fromPromise';
 
-import { Brick, BrickAttempt, Question, Pallet, QuestionAttempt, toRefOnly } from '../bricks';
+import { Brick, BrickAttempt, Question, Pallet, QuestionAttempt, toRefOnly, StudentPallet } from '../bricks';
 
 import { getComponent } from '../bricks/comp/comp_index';
 import { Observer } from 'firebase';
@@ -50,7 +50,6 @@ export class DatabaseService {
 
         combineLatest(brick$, questions$)
             .pipe(
-                tap(() => console.log("hello")),
                 map((data: [Brick, Question[]]) => {
                     let brick = data[0];
                     brick._ref = brickRef.ref;
@@ -72,28 +71,68 @@ export class DatabaseService {
                 })
         );
     }
+    
+    getStudentPallets(uid: string) : Observable<StudentPallet[]> {
+        let palletsRef: AngularFirestoreCollection<StudentPallet> = this.afs.collection('students').doc(uid).collection<StudentPallet>('pallets');
+        const pallets$ = palletsRef.snapshotChanges()
+            .pipe(
+                map((actions: DocumentChangeAction<StudentPallet>[]) => actions.map(action => action.payload.doc)),
+                map((pallets) => {
+                    return pallets.map((pallet) => {
+                        let plt = pallet.data();
+                        plt._ref = pallet.ref;
+                        return plt;
+                    })
+                })
+            );
 
-/* TODO: remove this unused code (reference 14/8/2018)
-    createBrickAttempt(brickAttempt: BrickAttempt) : Observable<any> {
-        var newBrickAttempt = brickAttempt.toRefOnly({ answers: true });
-
-        let brick = Object.assign({}, newBrickAttempt);
-        delete brick.answers;
-
-        brick.student = this.afs.doc(newBrickAttempt.student).ref;
-        brick.brick = this.afs.doc(newBrickAttempt.brick).ref;
-
-        var prom = this.afs.collection('brickattempts').add(brick)
-            .then((studentbrick: DocumentReference) => {
-                let answersRef = studentbrick.collection('answers');
-                return Promise.all(newBrickAttempt.answers.map((answerData: any, index: number) => {
-                    //Firestore SDK doesn't allow for custom objects to be added to collections.
-                    var data = {};
-                    Object.keys(answerData).map(key => data[key] = answerData[key])
-                    answersRef.add(data);
-                }));
-            })
-        return Observable.fromPromise(prom);
+        return pallets$;
     }
-    */
+
+    getPallets(studentPallets: StudentPallet[]) : Observable<Pallet[]> {
+        let palletRefs: AngularFirestoreDocument<Pallet>[] = studentPallets.map(studentPallet => this.afs.doc(studentPallet.pallet));
+        const pallets$ = combineLatest(palletRefs.map(ref => ref.snapshotChanges()))
+            .pipe(
+                map((actions: Action<DocumentSnapshot<Pallet>>[]) => actions.map(action => {
+                    let plt = action.payload.data()
+                    plt._ref = action.payload.ref;
+                    return plt;
+                }))
+            )
+        return pallets$;
+    }
+
+    getPallet(id: string) : Observable<Pallet> {
+        let palletRef: AngularFirestoreDocument<Pallet> = this.afs.collection('pallets').doc(id);
+        const pallet$ = palletRef.snapshotChanges()
+            .pipe(
+                map((action: Action<DocumentSnapshot<Pallet>>) => {
+                    let plt = action.payload.data();
+                    plt._ref = action.payload.ref;
+                    return plt;
+                })
+            )
+        return pallet$;
+    }
+
+    getBricks(pallet: Pallet) : Observable<Brick[]> {
+        let brickRefs: AngularFirestoreCollection<{brick: DocumentReference}> = this.afs.doc(pallet._ref).collection('bricks');
+        const bricks$ = brickRefs.snapshotChanges()
+            .pipe(
+                map((actions: DocumentChangeAction<{brick: DocumentReference}>[]) => actions.map((action) => {
+                    let brick = action.payload.doc.data();
+                    return brick;
+                })),
+                concatMap((brRefs) => combineLatest(brRefs.map((brRef) => {
+                    return this.afs.doc<Brick>(brRef.brick).snapshotChanges();
+                }))),
+                map((actions: Action<DocumentSnapshot<Brick>>[]) => actions.map((action) => {
+                    let brck = action.payload.data();
+                    brck._ref = action.payload.ref;
+                    return brck;
+                })),
+                map((bricks: Brick[]) => bricks.sort((a: Brick, b: Brick) => a.type - b.type))
+            );
+        return bricks$
+    }
 }

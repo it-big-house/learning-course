@@ -1,36 +1,38 @@
 <div class="mat-app-background basic-container">
-  <mat-toolbar color="primary">
-    <span>Learning Fortress</span>
-    <span style="flex:1 1 auto"></span>
-
-    <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
-      <button mat-menu-item (click)="logout()">
-          <mat-icon class="material-icons">exit_to_app</mat-icon>
-          <span>Log Out</span>
-      </button>
-    </mat-menu>
-
-    <button mat-button disableRipple [matMenuTriggerFor]="userMenu">
-      <img src="{{(auth.user | async)?.photoURL}}" class="profile-picture" />
-      <span>{{ (auth.user | async)?.displayName }}</span>&nbsp;
-      <mat-icon class="material-icons">arrow_drop_down</mat-icon>
-    </button>
-  </mat-toolbar>
   <mat-sidenav-container class="example-container">
-    <mat-sidenav class="sidenav" mode="side" opened>
+    <mat-sidenav #sidenav [ngStyle.xs]="{ width: '80%' }" class="sidenav" mode="push">
       <mat-nav-list>
-        <mat-list-item>
-          Hamlet
+        <a [routerLink]="'pallet/'+pallet._ref.id" (click)="sidenav.toggle()" mat-list-item *ngFor="let pallet of pallets | async">
+          {{pallet.name}}
           <span style="flex:1 1 auto"></span>
           <mat-chip-list selectable="false">
-            <mat-chip disabled selected color="accent">English</mat-chip>
+            <mat-chip disabled selected color="accent">{{pallet.subject}}</mat-chip>
           </mat-chip-list>
-        </mat-list-item>
+        </a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <img src="assets/learning-fortress.png" width="500px" />
-      <a mat-button routerLink="/bricks/lh0pzfSRgVBSZ8UBaDJb">Click Me!</a>
+      <mat-toolbar color="primary">
+        <button mat-icon-button="mat-icon-button" (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Learning Fortress</span>
+        <span style="flex:1 1 auto"></span>
+
+        <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+          <button mat-menu-item (click)="logout()">
+              <mat-icon class="material-icons">exit_to_app</mat-icon>
+              <span>Log Out</span>
+          </button>
+        </mat-menu>
+
+        <button mat-button disableRipple [matMenuTriggerFor]="userMenu">
+          <img src="{{(auth.user | async)?.photoURL}}" class="profile-picture" />
+          <span>{{ (auth.user | async)?.displayName }}</span>&nbsp;
+          <mat-icon class="material-icons">arrow_drop_down</mat-icon>
+        </button>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
