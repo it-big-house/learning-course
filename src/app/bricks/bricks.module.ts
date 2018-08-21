@@ -14,11 +14,12 @@ import { DragulaModule } from 'ng2-dragula';
 import { NgArrayPipesModule } from 'ngx-pipes';
 import { SummaryComponent } from './summary.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReviewComponent } from './review.component';
 
 @NgModule({
     imports: [ BricksRoutingModule, CommonModule, MaterialModule, DragulaModule, CompModule, NgArrayPipesModule, FlexLayoutModule ],
     declarations: [
-        BricksComponent, IntroductionComponent, LiveComponent, QuestionComponent, SummaryComponent, BrickTimePipe
+        BricksComponent, IntroductionComponent, LiveComponent, QuestionComponent, SummaryComponent, ReviewComponent, BrickTimePipe
     ],
     providers: [
         BrickTimePipe

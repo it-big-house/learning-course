@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { Comp, ComponentAttempt } from '../../bricks';
 import { register } from './comp_index';
 import { CompComponent } from "./comp.component";
+import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
 
 function shuffle(a) {
     for (let i = a.length - 1; i > 0; i--) {
@@ -14,9 +15,9 @@ function shuffle(a) {
 
 export class CompArrow extends Comp {
     name = "Arrow";
-    data: { categories: { choices: string[] }[] }
+    data: { categories: { choices: string[] }[], reveal: string }
 
-    constructor(data: { categories: { choices: string[] }[] }) {
+    constructor(data: { categories: { choices: string[] }[], reveal:string }) {
         super();
         this.data = data;
     }
@@ -29,8 +30,12 @@ export class CompArrow extends Comp {
     <div class="arrow-big-container" fxLayout="row">
         <div *ngFor="let cat of userCats; let i = index" class="arrow-container" fxFlex="1 0 25%" fxLayout="row">
             <mat-list [dragula]="'DRAG'+i" [(dragulaModel)]="userCats[i].choices" class="arrow-list" fxFlex="1 0 0">
-                <mat-list-item class="arrow-list-item sort-list-item" *ngFor="let item of cat.choices" fxLayoutAlign="center center">
-                    <p class="arrow-item-text">{{item}}</p>
+                <mat-list-item class="arrow-list-item sort-list-item" *ngFor="let item of cat.choices; let ind = index" fxLayout="row" fxLayoutAlign="space-around center">
+                    <mat-checkbox *ngIf="i == 0 && attempt" [checked]="getState(ind) == 1" [indeterminate]="getState(ind) == -1" disabled></mat-checkbox>
+                    <div *ngIf="i == 0 && attempt">{{ data.data.reveals[getChoice(item)] }}</div>
+                    <div fxFlex="1 0 0"></div>
+                    <div class="arrow-item-text">{{item}}</div>
+                    <div fxFlex="1 0 0"></div>
                 </mat-list-item>
             </mat-list>
             <!-- Arrow Graphics -->
@@ -42,7 +47,10 @@ export class CompArrow extends Comp {
         <div>
     </div>
     `,
-    styleUrls: ['../live.component.scss']
+    styleUrls: ['../live.component.scss'],
+    providers: [
+        {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'noop'}
+    ]
 })
 export class ArrowComponent extends CompComponent {
     @Input() data: CompArrow;
@@ -51,6 +59,19 @@ export class ArrowComponent extends CompComponent {
 
     ngOnInit() {
         this.userCats = this.data.data.categories.map((cat) => { return { choices: shuffle(cat.choices.slice()) }});
+        if(this.attempt) {
+            this.userCats = [];
+            this.attempt.answer[0].choice.forEach((choice, index) => {
+                this.userCats.push({ choices: [] });
+            })
+            this.userCats = this.userCats.map((cat, index) => {
+                return {
+                    choices: this.attempt.answer.map((choice, i) => {
+                        return this.data.data.categories[index].choices[choice.choice[index]];
+                    })
+                };
+            })
+        }
     }
 
     getAnswer() : { choice: number[] }[] {
@@ -59,6 +80,21 @@ export class ArrowComponent extends CompComponent {
             choices.push({ choice: this.userCats.map((cat, i) => { return this.data.data.categories[i].choices.indexOf(cat.choices[index]) }) })
         });
         return choices;
+    }
+
+    getChoice(choice) {
+        return this.data.data.categories[0].choices.indexOf(choice);
+    }
+
+    getState(index: number) : number {
+        let corr = this.attempt.answer[index].choice.every((ch, ind) => {
+            return ch == this.attempt.answer[index].choice[0];
+        })
+        if(corr) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 
     mark(attempt: ComponentAttempt) : ComponentAttempt {

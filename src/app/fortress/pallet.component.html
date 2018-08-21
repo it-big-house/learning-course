@@ -4,14 +4,17 @@
         <h1>{{(pallet | async)?.name}}</h1>
     </div>
     <mat-grid-list cols="6" rowHeight="1:2" gutterSize="5px" class="pallet-list" [ngClass]="'theme-'+(pallet | async)?.subject">
-        <mat-grid-tile *ngFor="let brick of bricks | async" [ngClass]="'pallet-tile-'+brick.type" [colspan]="brick.type*brick.type-2*brick.type+3">
+        <mat-grid-tile fxLayout.gt-xs="column" *ngFor="let brick of bricks | async" [ngClass]="'pallet-tile-'+brick.type" [colspan]="brick.type*brick.type-2*brick.type+3">
             <mat-grid-tile-header>{{brick.title}}</mat-grid-tile-header>
-            <p>{{brick.brief}}</p>
-            <mat-grid-tile-footer>
+            <p fxHide.xs>{{brick.brief}}</p>
+            <mat-grid-tile-footer fxHide.xs>
                 <a routerLink="/bricks/{{brick._ref.id}}" mat-icon-button>
                     <mat-icon>arrow_forward</mat-icon>
                 </a>
             </mat-grid-tile-footer>
+            <a fxHide.gt-xs routerLink="/bricks/{{brick._ref.id}}" mat-icon-button>
+                <mat-icon>arrow_forward</mat-icon>
+            </a>
         </mat-grid-tile>
     </mat-grid-list>
 </div>

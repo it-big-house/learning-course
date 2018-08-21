@@ -9,6 +9,7 @@ export class CompComponent {
     }
 
     @Input() data: Comp;
+    @Input() attempt: ComponentAttempt;
 
     getAnswer() {};
 
