@@ -7,9 +7,9 @@ import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
 
 export class CompSort extends Comp {
     name = "Sort";
-    data: { choices:{ [choice: string]: number }, categories: string[] }
+    data: { choices:{ [choice: string]: number }, reveals: { [choice: string]: string }, categories: string[] }
 
-    constructor(data: { choices:{ [choice: string]: number }, categories: string[] }) {
+    constructor(data: { choices:{ [choice: string]: number }, reveals: { [choice: string]: string }, categories: string[] }) {
         super();
         this.data = data;
     }
@@ -27,6 +27,7 @@ export class CompSort extends Comp {
                     <div>
                         <mat-checkbox *ngIf="attempt" [indeterminate]="getState(item) == -1" [checked]="getState(item) == 1" disabled></mat-checkbox>
                         {{item}}
+                        <div *ngIf="attempt" style="font-size: 12px">{{ data.data.reveals[item] }}</div>
                     </div>
                 </mat-list-item>
             </mat-list>
@@ -55,6 +56,9 @@ export class SortComponent extends CompComponent {
             this.data.data.categories.forEach(cat => { this.userCats.push({ choices: [], name: cat }) });
             Object.keys(this.attempt.answer).forEach((val) => {
                 this.userCats[this.attempt.answer[val]+1].choices.push(val);
+            });
+            this.userCats[0].choices = Object.keys(this.data.data.choices).filter(val => {
+                return this.attempt.answer[val] == undefined;
             });
         }
     }

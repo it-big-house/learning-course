@@ -14,9 +14,9 @@ function shuffle(a) {
 
 export class CompOrder extends Comp {
     name = "Order";
-    data: { choices:string[] }
+    data: { choices:string[], reveals:string[] }
 
-    constructor(data: { choices:string[] }) {
+    constructor(data: { choices:string[], reveals:string[] }) {
         super();
         this.data = data;
     }
@@ -30,13 +30,19 @@ export class CompOrder extends Comp {
         <mat-list [dragula]="'DRAG'" [(dragulaModel)]="userChoices">
             <mat-list-item *ngFor="let choice of userChoices; let i = index">
                 <span class="order-number">{{i+1}}</span>
-                {{choice}}
+                <div>{{choice}}</div>
+            </mat-list-item>
+        </mat-list>
+        <mat-list *ngIf="attempt">
+            <mat-list-item *ngFor="let choice of userChoices; let i = index">
+                <div *ngIf="data.data.reveals">{{data.data.reveals[getChoice(choice)]}}</div>
             </mat-list-item>
         </mat-list>
         <mat-list *ngIf="attempt" fxLayout="column" fxLayoutAlign="center center">
             <div *ngFor="let choice of userChoices; let i = index">
                 <mat-list-item *ngIf="i != 0">
                     <mat-icon style="font-size: 32px" [inline]="true" class="rotate-90">redo</mat-icon>
+                    <div fxFlex="0 0 20px"></div>
                     <mat-checkbox [indeterminate]="getState(i) == -1" [checked]="getState(i) == 1" disabled></mat-checkbox>
                 </mat-list-item>
             </div>
@@ -59,6 +65,10 @@ export class OrderComponent extends CompComponent {
         if(this.attempt) {
             this.userChoices = this.attempt.answer.map(val => this.data.data.choices[val]);
         }
+    }
+
+    getChoice(choice) {
+        return this.data.data.choices.indexOf(choice);
     }
 
     getState(index: number) : number {

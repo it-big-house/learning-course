@@ -7,9 +7,9 @@ import { MAT_CHECKBOX_CLICK_ACTION } from "@angular/material/checkbox";
 
 export class CompSingleChoice extends Comp {
     name = "Single Choice";
-    data: { choices:string[] }
+    data: { choices:string[], reveals:string[] }
 
-    constructor(data: { choices:string[] }) {
+    constructor(data: { choices:string[], reveals:string[] }) {
         super();
         this.data = data;
     }
@@ -24,7 +24,10 @@ export class CompSingleChoice extends Comp {
             <div fxLayout="row" fxLayoutAlign="space-around center">
                 <mat-checkbox *ngIf="attempt"  [checked]="getState(choice) == 1" [indeterminate]="getState(choice) == -1" disabled></mat-checkbox>
                 <div fxFlex="1 0 0"></div>
-                <div fxLayout="column">{{ choice }}</div>
+                <div fxLayout="column">
+                    <div>{{ choice }}</div>
+                    <div *ngIf="attempt" style="font-size: 20px">{{ data.data.reveals[getChoice(choice)] }}</div>
+                </div>
                 <div fxFlex="1 0 0"></div>
             </div>
         </mat-button-toggle>

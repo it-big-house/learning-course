@@ -7,9 +7,9 @@ import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
 
 export class CompShortAnswer extends Comp {
     name = "Short Answer";
-    data: { text: string, entries: { name: string, answer: string }[] };
+    data: { text: string, entries: { name: string, answer: string }[], reveal: string };
 
-    constructor(data: { text: string, entries: { name: string, answer: string }[] }) {
+    constructor(data: { text: string, entries: { name: string, answer: string }[], reveal: string }) {
         super();
         this.data = data;
     }
@@ -20,8 +20,8 @@ export class CompShortAnswer extends Comp {
     selector: 'short-answer',
     template: `
     <p>{{data.data.text}}</p>
-    <div class="short-answer-container" fxLayout.gt-xs="row wrap" fxLayoutAlign.gt-xs="space-evenly center" fxLayout.xs="column">
-        <div *ngFor="let entry of data.data.entries; let i = index" fxFlex="0 0 33%">
+    <p *ngIf="attempt">{{data.data.reveal}}</p>
+    <div class="short-answer-container" fxLayout.gt-xs="row wrap" fxLayoutAlign.gt-xs="space-evenly center" fxLayout.xs="column">        <div *ngFor="let entry of data.data.entries; let i = index" fxFlex="0 0 33%">
             <mat-checkbox *ngIf="attempt" [indeterminate]="getState(i) == -1" [checked]="getState(i) == 1" disabled></mat-checkbox>
             <mat-form-field>
                 <input matInput placeholder="{{entry.name}}" [(ngModel)]="userAnswers[i]" />
@@ -42,7 +42,7 @@ export class ShortAnswerComponent extends CompComponent {
     ngOnInit() {
         this.userAnswers = [];
         if(this.attempt) {
-            this.userAnswers = this.attempt.answer;
+            this.userAnswers = this.attempt.answer.slice();
         }
     }
 

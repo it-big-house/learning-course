@@ -14,9 +14,9 @@ function shuffle(a) {
 
 export class CompHorizontalShuffle extends Comp {
     name = "Horizontal Shuffle";
-    data: { items: string[] }
+    data: { items: string[], reveal: string }
 
-    constructor(data: {items: string[]}) {
+    constructor(data: {items: string[], reveal:string}) {
         super();
         this.data = data;
     }
@@ -31,6 +31,7 @@ export class CompHorizontalShuffle extends Comp {
             {{choice}}
         </mat-card>
     </div>
+    <p *ngIf="attempt">{{data.data.reveal}}</p>
     `,
     styleUrls: ['../live.component.scss']
 })

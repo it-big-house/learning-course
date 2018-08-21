@@ -15,9 +15,9 @@ function shuffle(a) {
 
 export class CompArrow extends Comp {
     name = "Arrow";
-    data: { categories: { choices: string[] }[] }
+    data: { categories: { choices: string[] }[], reveal: string }
 
-    constructor(data: { categories: { choices: string[] }[] }) {
+    constructor(data: { categories: { choices: string[] }[], reveal:string }) {
         super();
         this.data = data;
     }
@@ -32,6 +32,7 @@ export class CompArrow extends Comp {
             <mat-list [dragula]="'DRAG'+i" [(dragulaModel)]="userCats[i].choices" class="arrow-list" fxFlex="1 0 0">
                 <mat-list-item class="arrow-list-item sort-list-item" *ngFor="let item of cat.choices; let ind = index" fxLayout="row" fxLayoutAlign="space-around center">
                     <mat-checkbox *ngIf="i == 0 && attempt" [checked]="getState(ind) == 1" [indeterminate]="getState(ind) == -1" disabled></mat-checkbox>
+                    <div *ngIf="i == 0 && attempt">{{ data.data.reveals[getChoice(item)] }}</div>
                     <div fxFlex="1 0 0"></div>
                     <div class="arrow-item-text">{{item}}</div>
                     <div fxFlex="1 0 0"></div>
@@ -79,6 +80,10 @@ export class ArrowComponent extends CompComponent {
             choices.push({ choice: this.userCats.map((cat, i) => { return this.data.data.categories[i].choices.indexOf(cat.choices[index]) }) })
         });
         return choices;
+    }
+
+    getChoice(choice) {
+        return this.data.data.categories[0].choices.indexOf(choice);
     }
 
     getState(index: number) : number {

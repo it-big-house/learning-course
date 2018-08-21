@@ -112,8 +112,10 @@ $choice-color-8: #CE3D59;
 }
 
 .sort-list-item {
+    min-height: 48px;
+    height: auto;
     padding: 0;
-    height: 48;
+    margin-bottom: 5px;
     touch-action: none;
 }
 
