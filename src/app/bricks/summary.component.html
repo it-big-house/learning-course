@@ -1,3 +1,8 @@
+<div class="timer-container">
+    <mat-card class="timer">
+        Time Remaining: {{ timer.timeLeft / 1000 }} seconds
+    </mat-card>
+</div>
 <div class="container" [ngStyle.xs]="{ 'text-align': 'center' }"
     fxLayout="column" *ngIf="(aBrick | async) as brick">
     <h3>{{ brick.subject }}/PLACEHOLDER/{{ brick.type | brickTime | date: 'm:ss' }} minutes</h3>

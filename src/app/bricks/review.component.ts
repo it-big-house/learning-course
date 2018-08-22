@@ -21,7 +21,7 @@ export class ReviewComponent {
             this.router.navigate(['../live'], {relativeTo: route});
         }
         this.timer = timer.new();
-        this.timer.timeResolution = 21;
+        this.timer.timeResolution = 1000;
         this.brickTime = brickTime;
         bricks.currentBrick.subscribe((data) => {
             if(data != null) {
@@ -41,7 +41,7 @@ export class ReviewComponent {
     @ViewChildren(QuestionComponent) questions : QueryList<QuestionComponent>;
 
     showBrick(brick: Brick) {
-        let time = this.brickTime.transform(brick.type);
+        let time = this.brickTime.transform(brick.type, "review");
         this.timer.countDown(time);
         this.timer.timeRanOut.subscribe((t) => {
             this.finishBrick();

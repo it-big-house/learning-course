@@ -1,6 +1,6 @@
 <div class="timer-container">
     <mat-card class="timer">
-        Time Remaining: {{ timer.timeLeft | date: 'm:ss:SSS' }} seconds
+        Time Remaining: {{ timer.timeLeft / 1000 }} seconds
     </mat-card>
 </div>
 <mat-vertical-stepper linear>

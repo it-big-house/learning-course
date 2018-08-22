@@ -22,7 +22,7 @@ export class LiveComponent {
     constructor(public bricks: BricksService, timer: TimerService, brickTime: BrickTimePipe, public router: Router, public route: ActivatedRoute, public auth: AuthService) {
         this.brick = bricks.currentBrick.asObservable();
         this.timer = timer.new();
-        this.timer.timeResolution = 21;
+        this.timer.timeResolution = 1000;
         this.brickTime = brickTime;
         bricks.currentBrick.subscribe((data) => {
             if(data != null) {
@@ -41,7 +41,7 @@ export class LiveComponent {
     @ViewChildren(QuestionComponent) questions : QueryList<QuestionComponent>;
 
     showBrick(brick: Brick) {
-        let time = this.brickTime.transform(brick.type);
+        let time = this.brickTime.transform(brick.type, "live");
         this.timer.countDown(time);
         this.timer.timeRanOut.subscribe((t) => {
             this.finishBrick();

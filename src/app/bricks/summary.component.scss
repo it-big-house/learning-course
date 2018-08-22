@@ -1,3 +1,16 @@
+.timer-container {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    display: flex;
+    z-index: 100;
+}
+
+.timer {
+    font-size: 20px;
+    background-color: #fff;
+}
+
 .container {
     padding: 1vw;
     height: 100%;
