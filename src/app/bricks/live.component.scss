@@ -111,19 +111,7 @@ $choice-color-8: #CE3D59;
     flex-direction: row;
 }
 
-.sort-list-item {
-    min-height: 48px;
-    height: auto;
-    padding: 0;
-    margin-bottom: 5px;
-    touch-action: none;
-}
-
-.arrow-list-item {
-    display:flex;
-    flex-direction: row;
-    align-items: flex-start;
-    text-align: center;
+.touch-list-item {
     touch-action: none;
 }
 

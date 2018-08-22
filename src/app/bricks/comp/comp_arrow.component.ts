@@ -30,7 +30,7 @@ export class CompArrow extends Comp {
     <div class="arrow-big-container" fxLayout="row">
         <div *ngFor="let cat of userCats; let i = index" class="arrow-container" fxFlex="1 0 25%" fxLayout="row">
             <mat-list [dragula]="'DRAG'+i" [(dragulaModel)]="userCats[i].choices" class="arrow-list" fxFlex="1 0 0">
-                <mat-list-item class="arrow-list-item sort-list-item" *ngFor="let item of cat.choices; let ind = index" fxLayout="row" fxLayoutAlign="space-around center">
+                <mat-list-item class="touch-list-item" *ngFor="let item of cat.choices; let ind = index" fxLayout="row" fxLayoutAlign="space-around center">
                     <mat-checkbox *ngIf="i == 0 && attempt" [checked]="getState(ind) == 1" [indeterminate]="getState(ind) == -1" disabled></mat-checkbox>
                     <div *ngIf="i == 0 && attempt">{{ data.data.reveals[getChoice(item)] }}</div>
                     <div fxFlex="1 0 0"></div>

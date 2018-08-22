@@ -23,7 +23,7 @@ export class CompSort extends Comp {
         <div class="cat-container" *ngFor="let cat of userCats; let i = index" fxFlex="1 0 0">
             <div class="cat-header">{{cat.name}}</div>
             <mat-list [dragula]="'DRAG'" [(dragulaModel)]="userCats[i].choices" class="sort-list">
-                <mat-list-item class="sort-list-item" *ngFor="let item of cat.choices">
+                <mat-list-item  class="touch-list-item sort-list-item" *ngFor="let item of cat.choices">
                     <div>
                         <mat-checkbox *ngIf="attempt" [indeterminate]="getState(item) == -1" [checked]="getState(item) == 1" disabled></mat-checkbox>
                         {{item}}

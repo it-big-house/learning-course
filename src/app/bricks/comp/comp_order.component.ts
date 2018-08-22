@@ -28,7 +28,7 @@ export class CompOrder extends Comp {
     template: `
     <div class="order-container" fxLayout="row">
         <mat-list [dragula]="'DRAG'" [(dragulaModel)]="userChoices">
-            <mat-list-item *ngFor="let choice of userChoices; let i = index">
+            <mat-list-item *ngFor="let choice of userChoices; let i = index" class="touch-list-item">
                 <span class="order-number">{{i+1}}</span>
                 <div>{{choice}}</div>
             </mat-list-item>
