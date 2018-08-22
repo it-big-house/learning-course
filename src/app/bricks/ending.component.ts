@@ -14,11 +14,17 @@ export class EndingComponent {
     brickAttempt: BrickAttempt;
     aBrick: BehaviorSubject<Brick>;
 
-    constructor(private bricks: BricksService, router: Router, route: ActivatedRoute) {
+    constructor(private bricks: BricksService, private router: Router, private route: ActivatedRoute) {
         if(bricks.currentBrickAttempt == null) {
             router.navigate(["../live"], { relativeTo: route });
         }
         this.aBrick = bricks.currentBrick;
         this.brickAttempt = bricks.currentBrickAttempt;
+    }
+
+    finish() {
+        this.bricks.currentBrick = null;
+        this.bricks.currentBrickAttempt = null;
+        this.router.navigate(['/fortress/dashboard'])
     }
 }

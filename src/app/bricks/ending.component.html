@@ -22,7 +22,7 @@
         fxLayout="row" fxLayoutAlign="start center">
         <p>Your brick has been submitted. Click the button to go back home.</p>
         <div fxFlex="1 0 0"></div>
-        <p class="begin-label">Home</p><a mat-fab class="fab-bottom" routerLink="/fortress/dashboard"><mat-icon>play_arrow</mat-icon></a>
+        <p class="begin-label">Home</p><a mat-fab class="fab-bottom" (click)="finish()"><mat-icon>play_arrow</mat-icon></a>
     </div>
 
     <div class="bottom-container"
