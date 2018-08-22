@@ -33,9 +33,6 @@ export class SummaryComponent {
     showBrick(brick: Brick) {
         let time = this.brickTime.transform(brick.type, "summary");
         this.timer.countDown(time);
-        this.timer.timeRanOut.subscribe((t) => {
-            this.startBrick();
-        })
     }
 
     startBrick() {
