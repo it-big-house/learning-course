@@ -1,6 +1,6 @@
 <div class="pallets-container">
     <div class="pallet-header" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
-        <img src="{{'assets/lflogo-'+(pallet | async)?.subject+'.png'}}" width="50" height="50">
+        <img fxHide.xs src="{{'assets/lflogo-'+(pallet | async)?.subject+'.png'}}" width="50" height="50">
         <h1>{{(pallet | async)?.name}}</h1>
     </div>
     <mat-grid-list cols="6" rowHeight="1:2" gutterSize="5px" class="pallet-list" [ngClass]="'theme-'+(pallet | async)?.subject">

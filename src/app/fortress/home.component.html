@@ -23,7 +23,9 @@
                     <mat-icon>menu</mat-icon>
                 </button>
             </div>
-            <a routerLink="/fortress/dashboard" style="height: 100%;" fxLayout="row" fxLayoutAlign="center center"><img src="assets/lflogo-White.png" ngStyle.xs="height: 10vw;" ngStyle.gt-xs="height: 80%;"></a>
+            <a routerLink="/fortress/dashboard" style="height: 100%;" fxLayout="row" fxLayoutAlign="center center">
+                <img src.xs="assets/lflogo.png" src.gt-xs="assets/lflogo-White.png" ngStyle.xs="height: 10vw;" ngStyle.gt-xs="height: 80%;">
+            </a>
             <div fxFlex="1 0 0" fxLayout="row" fxLayoutAlign="end">
                 <button mat-button disableRipple [matMenuTriggerFor]="userMenu">
                     <img src="{{(auth.user | async)?.photoURL}}" class="profile-picture" />
