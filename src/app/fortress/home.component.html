@@ -18,7 +18,7 @@
                     <mat-icon>menu</mat-icon>
                 </button>
             </div>
-            <img src="assets/lflogo-White.png" style="height: 80%">
+            <img src="assets/lflogo-White.png" ngStyle.xs="height: 10vw;" ngStyle.gt-xs="height: 80%;">
             <div fxFlex="1 0 0" fxLayout="row" fxLayoutAlign="end">
                 <button mat-button disableRipple [matMenuTriggerFor]="userMenu">
                     <img src="{{(auth.user | async)?.photoURL}}" class="profile-picture" />
