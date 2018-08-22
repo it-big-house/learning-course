@@ -15,3 +15,12 @@ $color-maths-3: #0C660C;
     .pallet-tile-2 { background-color: $color-maths-2; }
     .pallet-tile-3 { background-color: $color-maths-3; color: white; }
 }
+
+$color-mixed-1: #F44336;
+$color-mixed-2: #00BCD4;
+$color-mixed-3: #4CAF50;
+.theme-Mixed{
+    .pallet-tile-1 { background-color: $color-mixed-1; color: white; }
+    .pallet-tile-2 { background-color: $color-mixed-2; color: white; }
+    .pallet-tile-3 { background-color: $color-mixed-3; color: white; }
+}
