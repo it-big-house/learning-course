@@ -65,6 +65,9 @@ $choice-color-8: #CE3D59;
 .flex-choice {
     box-sizing: border-box;
     font-size: 4vw;
+    line-height: 4vw;
+    white-space: normal;
+    overflow-wrap: normal;
     height: 15vw;
     color: #fff;
 }
