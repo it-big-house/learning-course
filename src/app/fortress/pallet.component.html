@@ -7,7 +7,7 @@
         <mat-grid-tile routerLink="/bricks/{{brick._ref.id}}" fxLayout.gt-xs="column" *ngFor="let brick of bricks | async" [ngClass]="'pallet-tile-'+brick.type" [colspan]="brick.type*brick.type-2*brick.type+3">
             <mat-grid-tile-header>{{brick.title}}</mat-grid-tile-header>
             <a routerLink="/bricks/{{brick._ref.id}}" mat-icon-button>
-                <mat-icon style="font-size: 6vw; margin: auto; line-height: 6vw; width: 6vw; height: 6vw;">arrow_forward</mat-icon>
+                <mat-icon>arrow_forward</mat-icon>
             </a>
         </mat-grid-tile>
     </mat-grid-list>
