@@ -20,6 +20,7 @@ export class EndingComponent {
         }
         this.aBrick = bricks.currentBrick;
         this.brickAttempt = bricks.currentBrickAttempt;
+        bricks.publishBrickAttempt(this.brickAttempt);
     }
 
     finish() {
