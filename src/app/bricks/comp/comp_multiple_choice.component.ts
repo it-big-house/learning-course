@@ -21,7 +21,7 @@ export class CompMultipleChoice extends Comp {
 @Component({
     selector: "multiple-choice",
     template: `
-    <mat-button-toggle-group name="choice" class="choice" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center" multiple>
+    <mat-button-toggle-group name="choice" class="choice" fxLayout="column" fxLayoutGap="0px" fxLayoutAlign="center center" multiple>
         <mat-button-toggle ngDefaultControl [checked]="answers[getChoice(choice)]" (change)="changeAnswer($event, i)" name="choice-{{i}}" class="flex-choice" fxLayout="column" fxLayoutAlign="stretch stretch" *ngFor="let choice of data.data.choices | shuffle; let i = index" [value]="choice">
             <div fxLayout="row" fxLayoutAlign="space-around center">
                 <mat-checkbox *ngIf="attempt" [checked]="getState(choice) == 1" [indeterminate]="getState(choice) == -1" disabled></mat-checkbox>

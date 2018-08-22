@@ -19,7 +19,7 @@ export class CompSingleChoice extends Comp {
 @Component({
     selector: "single-choice",
     template: `
-    <mat-button-toggle-group [(ngModel)]="answer" name="choice" class="choice" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+    <mat-button-toggle-group [(ngModel)]="answer" name="choice" class="choice" fxLayout="column" fxLayoutGap="0px" fxLayoutAlign="center center">
         <mat-button-toggle class="flex-choice" *ngFor="let choice of data.data.choices | shuffle; let i = index" value="{{ choice }}" fxLayout="column" fxLayoutAlign="stretch stretch">
             <div fxLayout="row" fxLayoutAlign="space-around center">
                 <mat-checkbox *ngIf="attempt"  [checked]="getState(choice) == 1" [indeterminate]="getState(choice) == -1" disabled></mat-checkbox>
