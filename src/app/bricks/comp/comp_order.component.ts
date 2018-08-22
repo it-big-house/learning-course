@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { Comp, ComponentAttempt } from '../../bricks';
 import { register } from './comp_index';
 import { CompComponent } from "./comp.component";
+import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
 
 function shuffle(a) {
     for (let i = a.length - 1; i > 0; i--) {
@@ -28,14 +29,16 @@ export class CompOrder extends Comp {
     template: `
     <div class="order-container" fxLayout="row">
         <mat-list [dragula]="'DRAG'" [(dragulaModel)]="userChoices">
-            <mat-list-item *ngFor="let choice of userChoices; let i = index">
-                <span class="order-number">{{i+1}}</span>
-                <div>{{choice}}</div>
-            </mat-list-item>
-        </mat-list>
-        <mat-list *ngIf="attempt">
-            <mat-list-item *ngFor="let choice of userChoices; let i = index">
-                <div *ngIf="data.data.reveals">{{data.data.reveals[getChoice(choice)]}}</div>
+            <mat-list-item *ngFor="let choice of userChoices; let i = index" class="touch-list-item">
+                <div fxLayout="column">
+                    <div fxLayout="row">
+                        <span class="order-number">{{i+1}}</span>
+                        <div>{{choice}}</div>
+                    </div>
+                    <div *ngIf="attempt">
+                        <div *ngIf="data.data.reveals" ngStyle.xs="font-size: 2vw;">{{data.data.reveals[getChoice(choice)]}}</div>
+                    </div>
+                </div>
             </mat-list-item>
         </mat-list>
         <mat-list *ngIf="attempt" fxLayout="column" fxLayoutAlign="center center">
@@ -49,7 +52,10 @@ export class CompOrder extends Comp {
         </mat-list>
     </div>
     `,
-    styleUrls: ['../live.component.scss']
+    styleUrls: ['../live.component.scss'],
+    providers: [
+        {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'noop'}
+    ]
 })
 export class OrderComponent extends CompComponent {
     userChoices: string[];
@@ -80,24 +86,38 @@ export class OrderComponent extends CompComponent {
     }
 
     mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
+        // If the question is answered in review phase, add 2 to the mark and not 5.
         let markIncrement = prev ? 2 : 5;
         attempt.correct = true;
         attempt.marks = 0;
         attempt.maxMarks = 0;
+        // For every item in the answer...
         attempt.answer.forEach((answer, index, array) => {
+            // except the first one...
             if (index != 0) {
+                // increase the max marks by 5,
                 attempt.maxMarks += 5;
+                // and if this item and the one before it are in the right order and are adjacent...
                 if(answer - array[index-1] == 1) {
+                    // and the program is in live phase...
                     if(!prev) {
-                        attempt.marks += markIncrement;
-                    } else if (prev.answer[index] - prev.answer[index-1] != 1) {
+                        // increase the marks by 5.
                         attempt.marks += markIncrement;
                     }
-                } else {
+                    // or the item wasn't correct in the live phase...
+                    else if (prev.answer[index] - prev.answer[index-1] != 1) {
+                        // increase the marks by 2.
+                        attempt.marks += markIncrement;
+                    }
+                }
+                // if not...
+                else {
+                    // the answer is not correct.
                     attempt.correct = false;
                 }
             }
         })
+        // Then, if the attempt scored no marks and the program is in live phase, then give the student a mark.
         if(attempt.marks == 0 && !prev) attempt.marks = 1;
         return attempt;
     }

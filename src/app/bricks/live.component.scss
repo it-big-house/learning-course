@@ -65,8 +65,13 @@ $choice-color-8: #CE3D59;
 .flex-choice {
     box-sizing: border-box;
     font-size: 4vw;
-    height: 15vw;
+    line-height: 4vw;
+    white-space: normal;
+    overflow-wrap: normal;
+    min-height: 5vw;
     color: #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .comp-image-container {
@@ -111,19 +116,7 @@ $choice-color-8: #CE3D59;
     flex-direction: row;
 }
 
-.sort-list-item {
-    min-height: 48px;
-    height: auto;
-    padding: 0;
-    margin-bottom: 5px;
-    touch-action: none;
-}
-
-.arrow-list-item {
-    display:flex;
-    flex-direction: row;
-    align-items: flex-start;
-    text-align: center;
+.touch-list-item {
     touch-action: none;
 }
 
@@ -174,4 +167,8 @@ $choice-color-8: #CE3D59;
 
 .order-number {
     margin-right: 20px;
+}
+
+h1, h3, p {
+    margin: 5px;
 }

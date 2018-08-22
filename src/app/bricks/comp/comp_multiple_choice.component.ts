@@ -21,14 +21,14 @@ export class CompMultipleChoice extends Comp {
 @Component({
     selector: "multiple-choice",
     template: `
-    <mat-button-toggle-group name="choice" class="choice" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center" multiple>
+    <mat-button-toggle-group name="choice" class="choice" fxLayout="column" fxLayoutGap="0px" fxLayoutAlign="center center" multiple>
         <mat-button-toggle ngDefaultControl [checked]="answers[getChoice(choice)]" (change)="changeAnswer($event, i)" name="choice-{{i}}" class="flex-choice" fxLayout="column" fxLayoutAlign="stretch stretch" *ngFor="let choice of data.data.choices | shuffle; let i = index" [value]="choice">
             <div fxLayout="row" fxLayoutAlign="space-around center">
                 <mat-checkbox *ngIf="attempt" [checked]="getState(choice) == 1" [indeterminate]="getState(choice) == -1" disabled></mat-checkbox>
                 <div fxFlex="1 0 0"></div>
                 <div fxLayout="column">
-                    <div>{{ choice }}</div>
-                    <div *ngIf="attempt" style="font-size: 20px">{{ data.data.reveals[getChoice(choice)] }}</div>
+                    <div style="line-height: 4vw;">{{ choice }}</div>
+                    <div *ngIf="attempt" style="font-size: 2.5vw; line-height: 2.5vw;">{{ data.data.reveals[getChoice(choice)] }}</div>
                 </div>
                 <div fxFlex="1 0 0"></div>
             </div>
@@ -84,27 +84,43 @@ export class MultipleChoiceComponent extends CompComponent {
     }
 
     mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
+        // If the question is answered in review phase, add 2 to the mark and not 5.
         let markIncrement = prev ? 2 : 5;
         attempt.correct = true;
         attempt.marks = 0;
+        // The maximum number of marks is the number of answers * 5.
         attempt.maxMarks = this.data.data.correctAnswers * 5;
+        // For every option...
         this.data.data.choices.forEach((ans, i) => {
+            // if the option is within the set of correct answers...
             if(i <= this.data.data.correctAnswers) {
+                // and the option doesn't correspond to one answer given...
                 if(attempt.answer.indexOf(i) == -1) {
+                    // the answer is not correct.
                     attempt.correct = false;
                 } else {
+                    // if not, and the program is in the live phase...
                     if(!prev) {
+                        // increase the marks by 5.
                         attempt.marks += markIncrement;
-                    } else if(prev.answer.indexOf(ans) == -1) {
+                    }
+                    // or the answer has changed between live and review...
+                    else if(prev.answer.indexOf(ans) == -1) {
+                        // increase the marks by 2.
                         attempt.marks += markIncrement;
                     }
                 }
-            } else {
-                if(attempt.answer.indexOf(i) == -1) {
+            }
+            // if not...
+            else {
+                // and the option corresponds to one answer given...
+                if(attempt.answer.indexOf(i) != -1) {
+                    // the answer is not correct.
                     attempt.correct = false;
                 }
             }
         })
+        // Then, if the attempt scored no marks and the program is in live phase, then give the student a mark.
         if(attempt.marks == 0 && attempt.answer != [] && !prev) attempt.marks = 1;
         return attempt;
     }

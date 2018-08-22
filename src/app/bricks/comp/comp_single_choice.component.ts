@@ -19,14 +19,14 @@ export class CompSingleChoice extends Comp {
 @Component({
     selector: "single-choice",
     template: `
-    <mat-button-toggle-group [(ngModel)]="answer" name="choice" class="choice" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+    <mat-button-toggle-group [(ngModel)]="answer" name="choice" class="choice" fxLayout="column" fxLayoutGap="0px" fxLayoutAlign="center center">
         <mat-button-toggle class="flex-choice" *ngFor="let choice of data.data.choices | shuffle; let i = index" value="{{ choice }}" fxLayout="column" fxLayoutAlign="stretch stretch">
             <div fxLayout="row" fxLayoutAlign="space-around center">
                 <mat-checkbox *ngIf="attempt"  [checked]="getState(choice) == 1" [indeterminate]="getState(choice) == -1" disabled></mat-checkbox>
                 <div fxFlex="1 0 0"></div>
                 <div fxLayout="column">
-                    <div>{{ choice }}</div>
-                    <div *ngIf="attempt" style="font-size: 20px">{{ data.data.reveals[getChoice(choice)] }}</div>
+                    <div style="line-height: 4vw;">{{ choice }}</div>
+                    <div *ngIf="attempt" style="line-height: 2.5vw; font-size: 2.5vw">{{ data.data.reveals[getChoice(choice)] }}</div>
                 </div>
                 <div fxFlex="1 0 0"></div>
             </div>
@@ -71,10 +71,14 @@ export class SingleChoiceComponent extends CompComponent {
     }
 
     mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
+        // If the question is answered in review phase, add 2 to the mark and not 5.
         let markIncrement = prev ? 2 : 5;
-        attempt.correct = attempt.answer == 0;
+        // set attempt.correct to true if the answer is 0.
+        attempt.correct = (attempt.answer == 0);
         attempt.maxMarks = 5;
+        // if the attempt is correct, add the mark increment.
         if(attempt.correct) attempt.marks = markIncrement;
+        // if there is an answer given and the program is in the live phase, give the student an extra mark.
         else if (attempt.answer != null && !prev) attempt.marks = 1;
         else attempt.marks = 0;
         return attempt;

@@ -1,6 +1,6 @@
 <div class="container" [ngStyle.xs]="{ 'text-align': 'center' }"
     fxLayout="column" *ngIf="(aBrick | async) as brick">
-    <h3>{{ brick.subject }}/PLACEHOLDER/{{ brick.type | brickTime | date: 'm:ss' }} minutes</h3>
+    <h3>{{ brick.subject }}/{{ (aPallet | async)?.name }}/{{ brick.type | brickTime | date: 'm:ss' }} minutes</h3>
     <h1>{{ brick.title }}</h1>
     <p>average score {{ brick.avgScore }} (all)</p>
     <p>high score {{ brick.highScore }} (all)</p>
@@ -22,7 +22,7 @@
         fxLayout="row" fxLayoutAlign="start center">
         <p>Your brick has been submitted. Click the button to go back home.</p>
         <div fxFlex="1 0 0"></div>
-        <p class="begin-label">Home</p><a mat-fab class="fab-bottom" routerLink="/fortress/dashboard"><mat-icon>play_arrow</mat-icon></a>
+        <p class="begin-label">Home</p><a mat-fab class="fab-bottom" (click)="finish()"><mat-icon>play_arrow</mat-icon></a>
     </div>
 
     <div class="bottom-container"

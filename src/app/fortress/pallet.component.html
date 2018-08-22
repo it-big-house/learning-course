@@ -1,18 +1,12 @@
 <div class="pallets-container">
     <div class="pallet-header" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
-        <img src="{{'assets/lflogo-'+(pallet | async)?.subject+'.png'}}" width="50" height="50">
+        <img fxHide.xs src="{{'assets/lflogo-'+(pallet | async)?.subject+'.png'}}" width="50" height="50">
         <h1>{{(pallet | async)?.name}}</h1>
     </div>
     <mat-grid-list cols="6" rowHeight="1:2" gutterSize="5px" class="pallet-list" [ngClass]="'theme-'+(pallet | async)?.subject">
-        <mat-grid-tile fxLayout.gt-xs="column" *ngFor="let brick of bricks | async" [ngClass]="'pallet-tile-'+brick.type" [colspan]="brick.type*brick.type-2*brick.type+3">
+        <mat-grid-tile routerLink="/bricks/{{brick._ref.id}}" fxLayout.gt-xs="column" *ngFor="let brick of bricks | async" [ngClass]="'pallet-tile-'+brick.type" [colspan]="brick.type*brick.type-2*brick.type+3">
             <mat-grid-tile-header>{{brick.title}}</mat-grid-tile-header>
-            <p fxHide.xs>{{brick.brief}}</p>
-            <mat-grid-tile-footer fxHide.xs>
-                <a routerLink="/bricks/{{brick._ref.id}}" mat-icon-button>
-                    <mat-icon>arrow_forward</mat-icon>
-                </a>
-            </mat-grid-tile-footer>
-            <a fxHide.gt-xs routerLink="/bricks/{{brick._ref.id}}" mat-icon-button>
+            <a routerLink="/bricks/{{brick._ref.id}}" mat-icon-button>
                 <mat-icon>arrow_forward</mat-icon>
             </a>
         </mat-grid-tile>

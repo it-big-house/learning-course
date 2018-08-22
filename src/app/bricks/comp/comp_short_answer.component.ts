@@ -59,23 +59,42 @@ export class ShortAnswerComponent extends CompComponent {
     }
 
     mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
+        // If the question is answered in review phase, add 2 to the mark and not 5.
         let markIncrement = prev ? 2 : 5;
         attempt.correct = true;
         attempt.marks = 0;
+        // The maximum number of marks is the number of entries * 5.
         attempt.maxMarks = this.data.data.entries.length * 5;
+        // For every entry...
         this.data.data.entries.forEach((entry: {name: string, answer: string}, index) => {
+            // if there is an answer given...
             if(this.userAnswers[index]) {
+                // and the answer is equal to the answer in the database (lowercase and whitespace stripped)
                 if(this.userAnswers[index].toLowerCase().replace(/ /g,'') == entry.answer.toLowerCase().replace(/ /g,'')) {
+                    // and the program is in the live phase...
                     if(!prev) {
-                        attempt.marks += markIncrement;
-                    } else if (prev.answer[index].toLowerCase().replace(/ /g,'') != entry.answer.toLowerCase().replace(/ /g,'')) {
+                        // increase the marks by 5.
                         attempt.marks += markIncrement;
                     }
-                } else {
+                    // or the answer was already correct before the review...
+                    else if (prev.answer[index].toLowerCase().replace(/ /g,'') != entry.answer.toLowerCase().replace(/ /g,'')) {
+                        // increase the marks by 2.
+                        attempt.marks += markIncrement;
+                    }
+                }
+                // if not...
+                else {
+                    // the answer is not correct.
                     attempt.correct = false;
                 }
-            } else { attempt.correct = false; }
+            }
+            // if not...
+            else {
+                // the answer is not correct.
+                attempt.correct = false;
+            }
         })
+        // Then, if there are no marks, and there are no empty entries, and the program is in live phase, give the student a mark.
         if(attempt.marks == 0 && this.userAnswers.indexOf("") == -1 && !prev) attempt.marks = 1;
         return attempt;
     }

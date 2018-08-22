@@ -30,7 +30,7 @@ export class CompArrow extends Comp {
     <div class="arrow-big-container" fxLayout="row">
         <div *ngFor="let cat of userCats; let i = index" class="arrow-container" fxFlex="1 0 25%" fxLayout="row">
             <mat-list [dragula]="'DRAG'+i" [(dragulaModel)]="userCats[i].choices" class="arrow-list" fxFlex="1 0 0">
-                <mat-list-item class="arrow-list-item sort-list-item" *ngFor="let item of cat.choices; let ind = index" fxLayout="row" fxLayoutAlign="space-around center">
+                <mat-list-item class="touch-list-item" *ngFor="let item of cat.choices; let ind = index" fxLayout="row" fxLayoutAlign="space-around center">
                     <mat-checkbox *ngIf="i == 0 && attempt" [checked]="getState(ind) == 1" [indeterminate]="getState(ind) == -1" disabled></mat-checkbox>
                     <div *ngIf="i == 0 && attempt">{{ data.data.reveals[getChoice(item)] }}</div>
                     <div fxFlex="1 0 0"></div>
@@ -98,23 +98,40 @@ export class ArrowComponent extends CompComponent {
     }
 
     mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
+        // If the question is answered in review phase, add 2 to the mark and not 5.
         let markIncrement = prev ? 2 : 5;
         attempt.correct = true;
         attempt.marks = 0;
         attempt.maxMarks = 0;
-        attempt.answer.map(c => c.choice).forEach((c, i) => {
-            attempt.maxMarks += 5;
-            let corr = c.every(opt => opt == c[0]);
-            if(corr) {
-                if(!prev) {
-                    attempt.marks += markIncrement;
-                } else if(!prev.answer[i].choice.every(opt => opt == c[0])) {
-                    attempt.marks += markIncrement;
+        attempt.answer
+            // Map every answer to its choice,
+            .map(c => c.choice)
+            // and for every answer...
+            .forEach((c, i) => {
+                // increase the maximum marks by 5,
+                attempt.maxMarks += 5;
+                // set 'corr' to true if every option is equal,
+                let corr = c.every(opt => opt == c[0]);
+                // and if the answer is correct...
+                if(corr) {
+                    // and the program is the live phase...
+                    if(!prev) {
+                        // increase the marks by 5.
+                        attempt.marks += markIncrement;
+                    }
+                    // or if the answer given in the live phase is also correct...
+                    else if(!prev.answer[i].choice.every(opt => opt == prev.answer[i].choice[0])) {
+                        // increase the marks by 2.
+                        attempt.marks += markIncrement;
+                    }
                 }
-            } else {
-                attempt.correct = false;
-            }
-        });
+                // if not...
+                else {
+                    // the answer is not correct.
+                    attempt.correct = false;
+                }
+            });
+        // Then, if the attempt scored no marks and the program is in live phase, then give the student a mark.
         if(attempt.marks == 0 && !prev) attempt.marks = 1;
         return attempt;
     }
