@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { Comp, ComponentAttempt } from '../../bricks';
 import { register } from './comp_index';
 import { CompComponent } from "./comp.component";
+import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
 
 function shuffle(a) {
     for (let i = a.length - 1; i > 0; i--) {
@@ -29,13 +30,15 @@ export class CompOrder extends Comp {
     <div class="order-container" fxLayout="row">
         <mat-list [dragula]="'DRAG'" [(dragulaModel)]="userChoices">
             <mat-list-item *ngFor="let choice of userChoices; let i = index" class="touch-list-item">
-                <span class="order-number">{{i+1}}</span>
-                <div>{{choice}}</div>
-            </mat-list-item>
-        </mat-list>
-        <mat-list *ngIf="attempt">
-            <mat-list-item *ngFor="let choice of userChoices; let i = index">
-                <div *ngIf="data.data.reveals">{{data.data.reveals[getChoice(choice)]}}</div>
+                <div fxLayout="column">
+                    <div fxLayout="row">
+                        <span class="order-number">{{i+1}}</span>
+                        <div>{{choice}}</div>
+                    </div>
+                    <div *ngIf="attempt">
+                        <div *ngIf="data.data.reveals" style="font-size: 2vw;">{{data.data.reveals[getChoice(choice)]}}</div>
+                    </div>
+                </div>
             </mat-list-item>
         </mat-list>
         <mat-list *ngIf="attempt" fxLayout="column" fxLayoutAlign="center center">
@@ -49,7 +52,10 @@ export class CompOrder extends Comp {
         </mat-list>
     </div>
     `,
-    styleUrls: ['../live.component.scss']
+    styleUrls: ['../live.component.scss'],
+    providers: [
+        {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'noop'}
+    ]
 })
 export class OrderComponent extends CompComponent {
     userChoices: string[];
