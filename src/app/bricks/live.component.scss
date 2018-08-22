@@ -68,8 +68,10 @@ $choice-color-8: #CE3D59;
     line-height: 4vw;
     white-space: normal;
     overflow-wrap: normal;
-    height: 15vw;
+    min-height: 5vw;
     color: #fff;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
 }
 
 .comp-image-container {
