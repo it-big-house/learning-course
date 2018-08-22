@@ -13,12 +13,14 @@ import { ActivatedRoute, Router } from "@angular/router";
 export class EndingComponent {
     brickAttempt: BrickAttempt;
     aBrick: BehaviorSubject<Brick>;
+    _brick: Brick
 
     constructor(private bricks: BricksService, private router: Router, private route: ActivatedRoute) {
         if(bricks.currentBrickAttempt == null) {
             router.navigate(["../live"], { relativeTo: route });
         }
         this.aBrick = bricks.currentBrick;
+        this.aBrick.subscribe(val => { this._brick = val });
         this.brickAttempt = bricks.currentBrickAttempt;
         bricks.publishBrickAttempt(this.brickAttempt);
     }
@@ -26,6 +28,6 @@ export class EndingComponent {
     finish() {
         this.bricks.currentBrick = null;
         this.bricks.currentBrickAttempt = null;
-        this.router.navigate(['/fortress/dashboard'])
+        this.router.navigate(['fortress', 'pallet', this._brick.pallet.id])
     }
 }
