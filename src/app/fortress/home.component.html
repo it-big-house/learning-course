@@ -2,9 +2,14 @@
   <mat-sidenav-container class="example-container">
     <mat-sidenav #sidenav [ngStyle.xs]="{ width: '80%' }" class="sidenav" mode="push">
       <mat-nav-list>
+        <a routerLink="/fortress/dashboard" (click)="sidenav.toggle()" mat-list-item>
+            Homepage
+            <span fxFlex="1 0 0"></span>
+            <mat-icon>home</mat-icon>
+        </a>
         <a [routerLink]="'pallet/'+pallet._ref.id" (click)="sidenav.toggle()" mat-list-item *ngFor="let pallet of pallets | async">
           {{pallet.name}}
-          <span style="flex:1 1 auto"></span>
+          <span fxFlex="1 0 0"></span>
           <mat-chip-list selectable="false">
             <mat-chip disabled selected color="accent">{{pallet.subject}}</mat-chip>
           </mat-chip-list>
@@ -18,7 +23,7 @@
                     <mat-icon>menu</mat-icon>
                 </button>
             </div>
-            <img src="assets/lflogo-White.png" ngStyle.xs="height: 10vw;" ngStyle.gt-xs="height: 80%;">
+            <a routerLink="/fortress/dashboard" fxLayout="row" fxLayoutAlign="center center"><img src="assets/lflogo-White.png" ngStyle.xs="height: 10vw;" ngStyle.gt-xs="height: 80%;"></a>
             <div fxFlex="1 0 0" fxLayout="row" fxLayoutAlign="end">
                 <button mat-button disableRipple [matMenuTriggerFor]="userMenu">
                     <img src="{{(auth.user | async)?.photoURL}}" class="profile-picture" />
