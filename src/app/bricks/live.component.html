@@ -1,9 +1,5 @@
-<div class="timer-container">
-    <mat-card class="timer">
-        Time Remaining: {{ timer.timeLeft.valueOf() / 1000 }} seconds
-    </mat-card>
-</div>
-<mat-vertical-stepper linear>
+<timer [timer]="timer"></timer>
+<mat-vertical-stepper linear style="padding-bottom: 75px">
     <mat-step [editable]="true" *ngFor="let question of (brick | async)?.questions; let index = index">
         <ng-template matStepLabel>Question {{index+1}}</ng-template>
         <question [question]="question" ></question>
