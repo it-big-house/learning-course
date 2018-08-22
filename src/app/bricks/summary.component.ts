@@ -1,8 +1,8 @@
 import { Component, Input } from "@angular/core";
-import { BrickAttempt, Brick } from "../bricks";
+import { BrickAttempt, Brick, Pallet } from "../bricks";
 import { BricksService } from "./bricks.service";
 
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
 import { BrickTimePipe } from "./brickTime.pipe";
 import { TimerService, Timer } from "./timer.service";
@@ -15,6 +15,7 @@ import { TimerService, Timer } from "./timer.service";
 export class SummaryComponent {
     brickAttempt: BrickAttempt;
     aBrick: BehaviorSubject<Brick>;
+    aPallet: Observable<Pallet>;
 
     timer: Timer;
 
@@ -27,7 +28,12 @@ export class SummaryComponent {
         this.timer = timer.new();
         this.timer.timeResolution = 1000;
 
-        this.aBrick.subscribe(val => { this.showBrick(val) });
+        this.aBrick.subscribe(val => {
+            if(val) {
+                this.aPallet = bricks.currentPallet;
+                this.showBrick(val);
+            }
+        });
     }
 
     showBrick(brick: Brick) {

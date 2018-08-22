@@ -4,9 +4,9 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
 import { switchMap } from 'rxjs/operators';
 
-import { Brick } from '../bricks';
+import { Brick, Pallet } from '../bricks';
 import { BricksService } from './bricks.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { TimerService, Timer } from './timer.service';
 import { BrickTimePipe } from './brickTime.pipe';
 
@@ -22,12 +22,14 @@ export class IntroductionComponent {
         this.aBrick = bricks.currentBrick;
         this.aBrick.subscribe(val => {
             if(val != null) {
+                this.aPallet = bricks.currentPallet;
                 this.showBrick(val);
             }
         });
     }
 
     aBrick: BehaviorSubject<Brick>;
+    aPallet: Observable<Pallet>;
     timer: Timer;
 
     showBrick(brick: Brick) {
