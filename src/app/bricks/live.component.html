@@ -1,5 +1,5 @@
 <timer [timer]="timer"></timer>
-<mat-vertical-stepper linear>
+<mat-vertical-stepper>
     <mat-step [editable]="true" *ngFor="let question of (brick | async)?.questions; let index = index">
         <ng-template matStepLabel>Question {{index+1}}</ng-template>
         <question [question]="question" ></question>
