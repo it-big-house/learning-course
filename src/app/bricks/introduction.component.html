@@ -6,7 +6,7 @@
     <p>average score {{ brick.avgScore }} (all)</p>
     <p>high score {{ brick.highScore }} (all)</p>
     <mat-accordion multi="true">
-        <mat-expansion-panel expanded="true" >
+        <mat-expansion-panel expanded="true">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     Brief
@@ -20,7 +20,7 @@
                     Prep
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <div>{{ brick.prep }}</div>
+            <div [innerHTML]="brick.prep | linky:{stripPrefix:false, newWindow: true}"></div>
         </mat-expansion-panel>
     </mat-accordion>
     <div class="begin-row"
