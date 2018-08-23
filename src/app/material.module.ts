@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
     imports: [
@@ -24,12 +25,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         MatListModule, MatChipsModule, MatProgressSpinnerModule, MatExpansionModule,
         MatStepperModule, MatButtonToggleModule, MatCardModule, MatMenuModule,
         MatFormFieldModule, MatInputModule, MatTreeModule, MatGridListModule,
-        MatCheckboxModule],
+        MatCheckboxModule, MatSnackBarModule],
     exports: [
         MatToolbarModule, MatIconModule, MatButtonModule, MatSidenavModule,
         MatListModule, MatChipsModule, MatProgressSpinnerModule, MatExpansionModule,
         MatStepperModule, MatButtonToggleModule, MatCardModule, MatMenuModule,
         MatFormFieldModule, MatInputModule, MatTreeModule, MatGridListModule,
-        MatCheckboxModule],
+        MatCheckboxModule, MatSnackBarModule],
 })
 export class MaterialModule {  }

@@ -20,6 +20,7 @@ import { BricksModule } from './bricks/bricks.module';
 import { AuthModule } from './auth/auth.module';
 import { AngularFireModule } from 'angularfire2';
 import { DatabaseModule } from './database/database.module';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { DatabaseModule } from './database/database.module';
     AppRoutingModule,
     BrowserModule,
     FormsModule,
+    LoginModule,
     BricksModule,
     FortressModule,
     HttpClientModule,
