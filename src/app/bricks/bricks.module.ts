@@ -17,9 +17,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReviewComponent } from './review.component';
 import { EndingComponent } from './ending.component';
 import { TimerComponent } from './timer.component';
+import { LinkyModule } from 'angular-linky';
 
 @NgModule({
-    imports: [ BricksRoutingModule, CommonModule, MaterialModule, DragulaModule, CompModule, NgArrayPipesModule, FlexLayoutModule ],
+    imports: [ BricksRoutingModule, CommonModule, MaterialModule, DragulaModule, CompModule, NgArrayPipesModule, FlexLayoutModule, LinkyModule ],
     declarations: [
         BricksComponent, TimerComponent, IntroductionComponent, LiveComponent, QuestionComponent, SummaryComponent, ReviewComponent, EndingComponent, BrickTimePipe
     ],

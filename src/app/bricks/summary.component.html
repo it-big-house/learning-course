@@ -12,7 +12,7 @@
                 <mat-card-title>
                     Summary
                 </mat-card-title>
-                <mat-card-content>{{ brick.summary }}</mat-card-content>
+                <mat-card-content [innerHTML]="brick.summary | linky:{stripPrefix:false, newWindow: true}"></mat-card-content>
             </mat-card>
             <div class="score-container" fxLayout="column" fxLayoutAlign="center center">
                 <mat-progress-spinner diameter="350" mode="determinate" [value]="brickAttempt?.score * 100 / brickAttempt?.maxScore"></mat-progress-spinner>
