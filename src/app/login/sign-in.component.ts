@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { AuthService } from "../auth/auth.service";
 
 @Component({
@@ -9,5 +9,7 @@ import { AuthService } from "../auth/auth.service";
     styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent {
+    @Input() userType: number;
+
     constructor(public authService: AuthService) { }
 }

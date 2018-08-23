@@ -11,7 +11,7 @@ const fortressRoutes = [
         {path: '', component: HomeComponent, children: [
             { path: 'dashboard', component: DashboardComponent },
             { path: 'pallet/:id', component: PalletComponent },
-            { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+            { path: '', redirectTo: '/fortress/dashboard', pathMatch: 'full' }
         ]}
     ]}
 ]

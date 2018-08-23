@@ -1,5 +1,4 @@
 import { NgModule } from "@angular/core";
-import { LoginRoutingModule } from "./login.routing";
 import { CommonModule } from "@angular/common";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { LoginComponent } from "./login.component";
@@ -9,7 +8,7 @@ import { AuthModule } from "../auth/auth.module";
 import { MaterialModule } from "../material.module";
 
 @NgModule({
-    imports: [ CommonModule, FlexLayoutModule, MaterialModule, LoginRoutingModule, AuthModule ],
+    imports: [ CommonModule, FlexLayoutModule, MaterialModule, AuthModule ],
     declarations: [ LoginComponent, UserTypeComponent, SignInComponent ],
     exports: [ LoginComponent ]
 })

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
@@ -23,11 +23,13 @@ import { MatSnackBar } from "@angular/material/snack-bar";
     styles: []
 })
 export class UserTypeComponent {
+    @Output() select = new EventEmitter<number>();
+
     constructor(private router: Router, private snackbar: MatSnackBar) { }
 
     signIn(userType: number) {
         switch(userType) {
-            case 1: this.router.navigate(['signin', userType]); return;
+            case 1: this.select.emit(userType); return;
             case 2: this.snackbar.open("Sorry, you can't log in as a teacher yet. Please log in as a student.", "", { duration: 3000 }); return;
             case 3: this.snackbar.open("Sorry, you can't log in as a builder yet. Please log in as a student.", "", { duration: 3000 }); return;
             default: this.snackbar.open("This option is invalid."); return;

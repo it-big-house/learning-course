@@ -10,12 +10,22 @@ import { AuthService } from "../auth/auth.service";
                 <img src="assets/lflogo.png" alt="lol"><br />
                 <h1>Learning Fortress</h1>
             </div>
-            <router-outlet></router-outlet>
+            <user-type *ngIf="!sel" (select)="selected($event)"></user-type>
+            <sign-in *ngIf="sel" [userType]="userType"></sign-in>
         </div>
     </div>
     `,
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+    userType: number;
+
+    sel: boolean = false;
+
     constructor(public authService: AuthService) { }
+
+    selected(userType: number) {
+        this.sel = true;
+        this.userType = userType;
+    }
 }
