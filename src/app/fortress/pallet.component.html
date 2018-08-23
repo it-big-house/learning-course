@@ -5,7 +5,7 @@
     </div>
     <mat-grid-list cols="6" rowHeight="1:2" gutterSize="5px" class="pallet-list" [ngClass]="'theme-'+(pallet | async)?.subject">
         <mat-grid-tile routerLink="/bricks/{{brick._ref.id}}" fxLayout.gt-xs="column" *ngFor="let brick of bricks | async" [ngClass]="'pallet-tile-'+brick.type" [colspan]="brick.type*brick.type-2*brick.type+3">
-            <mat-grid-tile-header>{{brick.title}}</mat-grid-tile-header>
+            <mat-grid-tile-header style="padding-top: 5px; padding-bottom: 5px">{{brick.title}}</mat-grid-tile-header>
             <a routerLink="/bricks/{{brick._ref.id}}" mat-icon-button>
                 <mat-icon>arrow_forward</mat-icon>
             </a>
