@@ -3,8 +3,8 @@
     fxLayout="column" *ngIf="(aBrick | async) as brick">
     <h3>{{ brick.subject }}/{{ (aPallet | async)?.name }}/{{ brick.type | brickTime | date: 'm' }} minutes</h3>
     <h1>{{ brick.title }}</h1>
-    <p>average score {{ brick.avgScore }} (all)</p>
-    <p>high score {{ brick.highScore }} (all)</p>
+    <p>average score {{ brick.avgScore }}</p>
+    <p>high score {{ brick.highScore }}</p>
     <mat-accordion multi="true">
         <mat-expansion-panel expanded="true">
             <mat-expansion-panel-header>

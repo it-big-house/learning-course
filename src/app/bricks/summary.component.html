@@ -3,8 +3,8 @@
     fxLayout="column" *ngIf="(aBrick | async) as brick">
     <h3>{{ brick.subject }}/{{ (aPallet | async)?.name }}/{{ brick.type | brickTime | date: 'm' }} minutes</h3>
     <h1>{{ brick.title }}</h1>
-    <p>average score {{ brick.avgScore }} (all)</p>
-    <p>high score {{ brick.highScore }} (all)</p>
+    <p>average score {{ brick.avgScore }}</p>
+    <p>high score {{ brick.highScore }}</p>
 
     <div class="overflow">
         <div class="data-container" fxFlex="1 0 350px" fxFlexAlign="center" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
