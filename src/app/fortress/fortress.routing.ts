@@ -6,12 +6,15 @@ import { HomeComponent } from './home.component';
 import { DashboardComponent } from './dashboard.component';
 import { PalletComponent } from './pallet.component';
 
+// Redirecting to default pallet
+// TODO: create interfaces for multiple pallets
+
 const fortressRoutes = [
     {path: '', component: FortressComponent, children: [
         {path: '', component: HomeComponent, children: [
             { path: 'dashboard', component: DashboardComponent },
             { path: 'pallet/:id', component: PalletComponent },
-            { path: '', redirectTo: '/fortress/dashboard', pathMatch: 'full' }
+            { path: '', redirectTo: '/pallet/bsjsJllNgYkos0w3Wrtv', pathMatch: 'full' }
         ]}
     ]}
 ]
