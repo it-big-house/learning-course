@@ -7,13 +7,15 @@
             <span fxFlex="1 0 0"></span>
             <mat-icon>home</mat-icon>
         </a>
-        <a [routerLink]="'pallet/'+pallet._ref.id" (click)="sidenav.toggle()" mat-list-item *ngFor="let pallet of pallets | async">
-          {{pallet.name}}
-          <span fxFlex="1 0 0"></span>
-          <mat-chip-list selectable="false">
-            <mat-chip disabled selected color="accent">{{pallet.subject}}</mat-chip>
-          </mat-chip-list>
-        </a>
+        <span *ngFor="let pallet of pallets | async">
+            <a *ngIf="pallet" [routerLink]="'pallet/'+pallet._ref.id" (click)="sidenav.toggle()" mat-list-item>
+            {{pallet.name}}
+            <span fxFlex="1 0 0"></span>
+            <mat-chip-list selectable="false">
+                <mat-chip disabled selected color="accent">{{pallet.subject}}</mat-chip>
+            </mat-chip-list>
+            </a>
+        </span>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
