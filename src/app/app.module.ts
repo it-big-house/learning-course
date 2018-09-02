@@ -14,7 +14,7 @@ import { environment } from '../environments/environment';
 
 // Modules
 import { AppComponent } from './app.component';
-import { FortressModule } from './fortress/fortress.module';
+import { PlayModule } from './play/play.module';
 import { BricksModule } from './bricks/bricks.module';
 
 import { AuthModule } from './auth/auth.module';
@@ -32,7 +32,7 @@ import { LoginModule } from './login/login.module';
     FormsModule,
     LoginModule,
     BricksModule,
-    FortressModule,
+    PlayModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,

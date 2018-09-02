@@ -2,7 +2,7 @@
   <mat-sidenav-container class="example-container">
     <mat-sidenav #sidenav [ngStyle.xs]="{ width: '80%' }" class="sidenav" mode="push">
       <mat-nav-list>
-        <a routerLink="/fortress/dashboard" (click)="sidenav.toggle()" mat-list-item>
+        <a routerLink="/play/dashboard" (click)="sidenav.toggle()" mat-list-item>
             Homepage
             <span fxFlex="1 0 0"></span>
             <mat-icon>home</mat-icon>
@@ -29,7 +29,7 @@
                     <mat-icon>menu</mat-icon>
                 </button>
             </div>
-            <a routerLink="/fortress/dashboard" style="height: 100%;" fxLayout="row" fxLayoutAlign="center center">
+            <a routerLink="/play/dashboard" style="height: 100%;" fxLayout="row" fxLayoutAlign="center center">
                 <img src.xs="assets/lflogo.png" src.gt-xs="assets/lflogo-White.png" ngStyle.xs="height: 10vw;" ngStyle.gt-xs="height: 80%;">
             </a>
             <div fxFlex="1 0 0" fxLayout="row" fxLayoutAlign="end">
