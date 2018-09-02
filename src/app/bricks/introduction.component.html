@@ -1,12 +1,10 @@
 <timer [timer]="timer"></timer>
 <div class="container" [ngStyle.xs]="{ 'text-align': 'center' }"
     fxLayout="column" *ngIf="(aBrick | async) as brick">
-    <h3>{{ brick.subject }}/{{ (aPallet | async)?.name }}/{{ (brick.type | brickTime) / 1000 }} seconds</h3>
+    <h3>{{ brick.subject }}/{{ (aPallet | async)?.name }}/{{ ((brick.type | brickTime)/60000) }} minutes</h3>
     <h1>{{ brick.title }}</h1>
-    <p>average score {{ brick.avgScore }} (all)</p>
-    <p>high score {{ brick.highScore }} (all)</p>
-    <mat-accordion>
-        <mat-expansion-panel>
+    <mat-accordion multi="true">
+        <mat-expansion-panel expanded="true" >
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     Brief
@@ -14,13 +12,28 @@
             </mat-expansion-panel-header>
             <div>{{ brick.brief }}</div>
         </mat-expansion-panel>
-        <mat-expansion-panel>
+        <mat-expansion-panel expanded="true">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     Prep
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <div>{{ brick.prep }}</div>
+        </mat-expansion-panel>
+        <mat-expansion-panel expanded="false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Additional Information
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+                <p>Creator: {{ brick.creator }}</p>
+            </div>
+            <div>
+                <p>Total Users: {{ brick.totalUsers }}</p>
+                <p>average score {{ brick.avgScore }}</p>
+                <p>high score {{ brick.highScore }}</p>
+            </div>
         </mat-expansion-panel>
     </mat-accordion>
     <div class="begin-row"
@@ -29,13 +42,5 @@
         <div fxFlex="1 0 0"></div>
         <p class="begin-label">Begin</p><a mat-fab class="fab-bottom" routerLink="../live"><mat-icon>play_arrow</mat-icon></a>
     </div>
-    <div class="bottom-container"
-        fxLayout="row" fxLayoutAlign="space-around center">
-        <div>
-            <p>Creator: {{ brick.creator }}</p>
-        </div>
-        <div>
-            <p>Total Users: {{ brick.totalUsers }}</p>
-        </div>
-    </div>
+    <div style="margin-top: 60px"></div>
 </div>

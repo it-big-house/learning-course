@@ -1,6 +1,6 @@
 <div class="container" [ngStyle.xs]="{ 'text-align': 'center' }"
     fxLayout="column" *ngIf="(aBrick | async) as brick">
-    <h3>{{ brick.subject }}/{{ (aPallet | async)?.name }}/{{ brick.type | brickTime | date: 'm:ss' }} minutes</h3>
+    <h3>{{ brick.subject }}/{{ (aPallet | async)?.name }}/{{ brick.type | brickTime | date: 'm' }} minutes</h3>
     <h1>{{ brick.title }}</h1>
     <p>average score {{ brick.avgScore }} (all)</p>
     <p>high score {{ brick.highScore }} (all)</p>

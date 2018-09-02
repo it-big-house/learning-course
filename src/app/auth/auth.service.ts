@@ -4,6 +4,7 @@ import { User } from "firebase";
 import { Observable } from "rxjs";
 import { FirebaseUISignInSuccessWithAuthResult, FirebaseUISignInFailure } from "firebaseui-angular";
 import { environment } from "../../environments/environment.prod";
+import { Router } from "@angular/router";
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,7 @@ import { environment } from "../../environments/environment.prod";
 export class AuthService {
     user: Observable<User>;
 
-    constructor(public afAuth: AngularFireAuth) {
+    constructor(public afAuth: AngularFireAuth, private router: Router) {
         this.user = afAuth.user;
     }
 
@@ -21,6 +22,7 @@ export class AuthService {
           return true;
         }
         console.log(`signed in as ${event.authResult.user.displayName} who is${event.authResult.additionalUserInfo.isNewUser?"":" not"} a new user.`);
+        this.router.navigate(['/fortress'])
         return true;
     }
 

@@ -24,13 +24,9 @@ export class Timer {
         })
     }
 
-    countDown(timeLimit: number | Date) {
+    countDown(timeLimit: number) {
         this.timer = timer(0, this.timeResolution);
-        if(typeof timeLimit == "number") {
-            this.timeLimit = new Date(timeLimit * this.timeResolution);
-        } else if(typeof timeLimit == "object") {
-            this.timeLimit = timeLimit;
-        }
+        this.timeLimit = new Date(timeLimit);
         this.timeRanOut = new EventEmitter<number>()
         this.subscription = this.timer.subscribe((t) => {
             this.timeElapsed = new Date(t * this.timeResolution);

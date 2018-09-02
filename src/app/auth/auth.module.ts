@@ -12,7 +12,7 @@ const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
       AuthProvider.Password,
       AuthProvider.Google
     ],
-    method: AuthMethods.Redirect,
+    method: AuthMethods.Popup,
     // tos: '<your-tos-link>',
     credentialHelper: CredentialHelper.AccountChooser,
     autoUpgradeAnonymousUsers: false,
