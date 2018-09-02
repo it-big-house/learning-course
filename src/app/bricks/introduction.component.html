@@ -10,7 +10,7 @@
                     Brief
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <div>{{ brick.brief }}</div>
+            <div [innerHTML]="brick.brief"></div>
         </mat-expansion-panel>
         <mat-expansion-panel expanded="true">
             <mat-expansion-panel-header>
@@ -18,7 +18,7 @@
                     Prep
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <div>{{ brick.prep }}</div>
+            <div [innerHTML]="brick.prep"></div>
         </mat-expansion-panel>
         <mat-expansion-panel expanded="false">
             <mat-expansion-panel-header>
