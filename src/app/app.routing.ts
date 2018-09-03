@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const appRoutes : Routes = [
     { path: "play", loadChildren: "./play/play.module#PlayModule" },
-    { path: "bricks", loadChildren: "./bricks/bricks.module#BricksModule" }
+    { path: "bricks", loadChildren: "./bricks/bricks.module#BricksModule" } 
     //{ path: "", redirectTo: "/play/dashboard", pathMatch: "full"}
 ]
 

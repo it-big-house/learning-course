@@ -2,7 +2,7 @@ import { Component, ViewChildren, QueryList } from '@angular/core';
 
 import { BricksService } from './bricks.service';
 
-import { Brick, Question, BrickAttempt, Student, Pallet } from '../bricks';
+import { Brick, Question, BrickAttempt, Student, Pallet } from '../schema';
 import { Observable } from 'rxjs';
 import { TimerService, Timer } from './timer.service';
 import { BrickTimePipe } from './brickTime.pipe';

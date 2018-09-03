@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { DatabaseService } from '../../database/database.service';
-import { Pallet } from '../../bricks';
+import { Pallet } from '../../schema';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 

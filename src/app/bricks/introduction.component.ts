@@ -4,7 +4,7 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
 import { switchMap } from 'rxjs/operators';
 
-import { Brick, Pallet } from '../bricks';
+import { Brick, Pallet } from '../schema';
 import { BricksService } from './bricks.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TimerService, Timer } from './timer.service';

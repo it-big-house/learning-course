@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { Pallet, Brick } from "../../../bricks";
+import { Pallet, Brick } from "../../../schema";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { DatabaseService } from "../../../database/database.service";
 import { Observable } from "rxjs";

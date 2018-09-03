@@ -9,6 +9,7 @@
     }
 }
 
-mat-grid-tile {
+/* To create the right kind of cursor when hovering over cards */
+mat-grid-tile mat-card {
     cursor: pointer;
 }

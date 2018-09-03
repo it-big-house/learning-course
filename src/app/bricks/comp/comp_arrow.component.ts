@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Comp, ComponentAttempt } from '../../bricks';
+import { Comp, ComponentAttempt } from '../../schema';
 import { register } from './comp_index';
 import { CompComponent } from "./comp.component";
 import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';

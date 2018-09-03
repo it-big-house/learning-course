@@ -16,7 +16,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/observable/fromPromise';
 
-import { Brick, BrickAttempt, Question, Pallet, QuestionAttempt, toRefOnly, StudentPallet } from '../bricks';
+import { Brick, BrickAttempt, Question, Pallet, QuestionAttempt, toRefOnly, StudentPallet } from '../schema';
 
 import { getComponent } from '../bricks/comp/comp_index';
 import { Observer } from 'firebase';

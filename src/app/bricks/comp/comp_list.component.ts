@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { register } from "./comp_index";
-import { Comp, ComponentAttempt } from "../../bricks";
+import { Comp, ComponentAttempt } from "../../schema";
 import { CompComponent } from "./comp.component";
 
 export class CompList extends Comp {
