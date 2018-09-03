@@ -41,7 +41,7 @@
             </div>
         </mat-toolbar>
         <mat-menu #userMenu="matMenu" [overlapTrigger]="false" xPosition="before">
-            <button mat-menu-item (click)="logout()">
+            <button mat-menu-item (click)="auth.logout()">
                 <mat-icon class="material-icons">exit_to_app</mat-icon>
                 <span>Log Out</span>
             </button>

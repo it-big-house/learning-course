@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
-import { DatabaseService } from '../database/database.service';
-import { Pallet } from '../bricks';
+import { AuthService } from '../../auth/auth.service';
+import { DatabaseService } from '../../database/database.service';
+import { Pallet } from '../../bricks';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
 })
+
 export class HomeComponent {
     title = 'home';
     pallets: Observable<Pallet[]>;
@@ -20,10 +21,5 @@ export class HomeComponent {
                 this.pallets = database.getPallets(studentPallets);
             })
         })
-    }
-
-    logout() {
-        this.auth.logout();
-        this.router.navigate(['']);
     }
 }

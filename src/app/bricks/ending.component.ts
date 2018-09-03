@@ -34,6 +34,6 @@ export class EndingComponent {
     finish() {
         this.bricks.currentBrick = null;
         this.bricks.currentBrickAttempt = null;
-        this.router.navigate(['fortress', 'pallet', this._brick.pallet.id])
+        this.router.navigate(['play', 'pallet', this._brick.pallet.id])
     }
 }
