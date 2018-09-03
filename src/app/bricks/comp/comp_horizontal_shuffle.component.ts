@@ -14,9 +14,9 @@ function shuffle(a) {
 
 export class CompHorizontalShuffle extends Comp {
     name = "Horizontal Shuffle";
-    data: { items: string[], reveal: string }
+    data: { choices: string[], reveal: string }
 
-    constructor(data: {items: string[], reveal:string}) {
+    constructor(data: {choices: string[], reveal:string}) {
         super();
         this.data = data;
     }
@@ -41,14 +41,14 @@ export class HorizontalShuffleComponent extends CompComponent {
     userChoices: string[];
 
     ngOnInit() {
-        this.userChoices = shuffle(this.data.data.items.slice());
+        this.userChoices = shuffle(this.data.data.choices.slice());
         if(this.attempt) {
-            this.userChoices = this.attempt.answer.map(val => this.data.data.items[val]);
+            this.userChoices = this.attempt.answer.map(val => this.data.data.choices[val]);
         }
     }
 
     getAnswer() : number[] {
-        return this.userChoices.map(val => this.data.data.items.indexOf(val));
+        return this.userChoices.map(val => this.data.data.choices.indexOf(val));
     }
 
     mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
