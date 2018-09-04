@@ -16,7 +16,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/observable/fromPromise';
 
-import { Brick, BrickAttempt, Question, Pallet, QuestionAttempt, toRefOnly, StudentPallet } from '../bricks';
+import { Brick, BrickAttempt, Question, Pallet, QuestionAttempt, toRefOnly, StudentPallet } from '../schema';
 
 import { getComponent } from '../bricks/comp/comp_index';
 import { Observer } from 'firebase';
@@ -80,7 +80,8 @@ export class DatabaseService {
                 map((pallets) => {
                     return pallets.map((pallet) => {
                         let plt = pallet.data();
-                        plt._ref = pallet.ref;
+                        if (plt)
+                            plt._ref = pallet.ref;
                         return plt;
                     })
                 })
@@ -94,8 +95,9 @@ export class DatabaseService {
         const pallets$ = combineLatest(palletRefs.map(ref => ref.snapshotChanges()))
             .pipe(
                 map((actions: Action<DocumentSnapshot<Pallet>>[]) => actions.map(action => {
-                    let plt = action.payload.data()
-                    plt._ref = action.payload.ref;
+                    let plt = action.payload.data();
+                    if (plt)
+                        plt._ref = action.payload.ref;
                     return plt;
                 }))
             )
@@ -108,7 +110,8 @@ export class DatabaseService {
             .pipe(
                 map((action: Action<DocumentSnapshot<Pallet>>) => {
                     let plt = action.payload.data();
-                    plt._ref = action.payload.ref;
+                    if (plt)
+                        plt._ref = action.payload.ref;
                     return plt;
                 })
             )

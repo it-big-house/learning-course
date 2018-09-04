@@ -22,7 +22,6 @@ export class AuthService {
           return true;
         }
         console.log(`signed in as ${event.authResult.user.displayName} who is${event.authResult.additionalUserInfo.isNewUser?"":" not"} a new user.`);
-        this.router.navigate(['/fortress'])
         return true;
     }
 

@@ -8,3 +8,8 @@
         margin: 10px;
     }
 }
+
+/* To create the right kind of cursor when hovering over cards */
+mat-grid-tile {
+    cursor: pointer;
+}

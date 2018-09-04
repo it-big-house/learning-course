@@ -2,18 +2,20 @@
   <mat-sidenav-container class="example-container">
     <mat-sidenav #sidenav [ngStyle.xs]="{ width: '80%' }" class="sidenav" mode="push">
       <mat-nav-list>
-        <a routerLink="/fortress/dashboard" (click)="sidenav.toggle()" mat-list-item>
+        <a routerLink="/play/dashboard" (click)="sidenav.toggle()" mat-list-item>
             Homepage
             <span fxFlex="1 0 0"></span>
             <mat-icon>home</mat-icon>
         </a>
-        <a [routerLink]="'pallet/'+pallet._ref.id" (click)="sidenav.toggle()" mat-list-item *ngFor="let pallet of pallets | async">
-          {{pallet.name}}
-          <span fxFlex="1 0 0"></span>
-          <mat-chip-list selectable="false">
-            <mat-chip disabled selected color="accent">{{pallet.subject}}</mat-chip>
-          </mat-chip-list>
-        </a>
+        <span *ngFor="let pallet of pallets | async">
+            <a *ngIf="pallet" [routerLink]="'pallet/'+pallet._ref.id" (click)="sidenav.toggle()" mat-list-item>
+            {{pallet.name}}
+            <span fxFlex="1 0 0"></span>
+            <mat-chip-list selectable="false">
+                <mat-chip disabled selected color="accent">{{pallet.subject}}</mat-chip>
+            </mat-chip-list>
+            </a>
+        </span>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -27,7 +29,7 @@
                     <mat-icon>menu</mat-icon>
                 </button>
             </div>
-            <a routerLink="/fortress/dashboard" style="height: 100%;" fxLayout="row" fxLayoutAlign="center center">
+            <a routerLink="/play/dashboard" style="height: 100%;" fxLayout="row" fxLayoutAlign="center center">
                 <img src.xs="assets/lflogo.png" src.gt-xs="assets/lflogo-White.png" ngStyle.xs="height: 10vw;" ngStyle.gt-xs="height: 80%;">
             </a>
             <div fxFlex="1 0 0" fxLayout="row" fxLayoutAlign="end">
@@ -39,7 +41,7 @@
             </div>
         </mat-toolbar>
         <mat-menu #userMenu="matMenu" [overlapTrigger]="false" xPosition="before">
-            <button mat-menu-item (click)="logout()">
+            <button mat-menu-item (click)="auth.logout()">
                 <mat-icon class="material-icons">exit_to_app</mat-icon>
                 <span>Log Out</span>
             </button>

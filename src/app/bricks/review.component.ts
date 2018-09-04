@@ -1,6 +1,6 @@
 import { Component, ViewChildren, QueryList } from "@angular/core";
 import { Observable } from "rxjs";
-import { Brick, BrickAttempt, QuestionAttempt } from "../bricks";
+import { Brick, BrickAttempt, QuestionAttempt } from "../schema";
 import { Timer, TimerService } from "./timer.service";
 import { BrickTimePipe } from "./brickTime.pipe";
 import { BricksService } from "./bricks.service";

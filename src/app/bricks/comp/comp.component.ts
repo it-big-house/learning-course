@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { Comp, ComponentAttempt } from "../../bricks";
+import { Comp, ComponentAttempt } from "../../schema";
 
 @Component({
     template: ``

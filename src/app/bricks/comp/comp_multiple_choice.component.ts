@@ -1,4 +1,4 @@
-import { Comp, ComponentAttempt } from "../../bricks";
+import { Comp, ComponentAttempt } from "../../schema";
 import { Component, Input } from "@angular/core";
 
 import {MatButtonToggleChange} from "@angular/material/button-toggle";

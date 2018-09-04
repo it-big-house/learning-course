@@ -1,6 +1,6 @@
 import { Component, Input, Directive } from '@angular/core';
 
-import { Comp, ComponentAttempt } from '../../bricks';
+import { Comp, ComponentAttempt } from '../../schema';
 import { register } from './comp_index';
 import { CompComponent } from "./comp.component";
 

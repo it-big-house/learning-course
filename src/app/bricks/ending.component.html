@@ -2,9 +2,6 @@
     fxLayout="column" *ngIf="(aBrick | async) as brick">
     <h3>{{ brick.subject }}/{{ (aPallet | async)?.name }}/{{ brick.type | brickTime | date: 'm' }} minutes</h3>
     <h1>{{ brick.title }}</h1>
-    <p>average score {{ brick.avgScore }} (all)</p>
-    <p>high score {{ brick.highScore }} (all)</p>
-
     <div class="overflow">
         <div class="data-container" fxFlex="1 0 350px" fxFlexAlign="center" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
             <div class="score-container" fxLayout="column" fxLayoutAlign="center center">
@@ -24,8 +21,24 @@
         <div fxFlex="1 0 0"></div>
         <p class="begin-label">Home</p><a mat-fab class="fab-bottom" (click)="finish()"><mat-icon>play_arrow</mat-icon></a>
     </div>
-
-    <div class="bottom-container"
+        <mat-accordion multi="true">
+        <mat-expansion-panel expanded="false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Additional Information
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+                <p>Creator: {{ brick.creator }}</p>
+            </div>
+            <div>
+                <p>Total Users: {{ brick.totalUsers }}</p>
+                <p>average score {{ brick.avgScore }}</p>
+                <p>high score {{ brick.highScore }}</p>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <!-- <div class="bottom-container"
         fxLayout="row" fxLayoutAlign="space-around center">
         <div>
             <p>Creator: {{ brick.creator }}</p>
@@ -33,5 +46,5 @@
         <div>
             <p>Total Users: {{ brick.totalUsers }}</p>
         </div>
-    </div>
+    </div> -->
 </div>

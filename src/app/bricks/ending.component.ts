@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { BrickAttempt, Brick, Pallet } from "../bricks";
+import { BrickAttempt, Brick, Pallet } from "../schema";
 import { BricksService } from "./bricks.service";
 
 import { BehaviorSubject, Observable } from "rxjs";
@@ -34,6 +34,6 @@ export class EndingComponent {
     finish() {
         this.bricks.currentBrick = null;
         this.bricks.currentBrickAttempt = null;
-        this.router.navigate(['fortress', 'pallet', this._brick.pallet.id])
+        this.router.navigate(['play', 'pallet', this._brick.pallet.id])
     }
 }

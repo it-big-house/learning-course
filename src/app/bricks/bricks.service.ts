@@ -3,7 +3,7 @@ import { DatabaseService } from '../database/database.service';
 
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { Brick, BrickAttempt, Pallet } from '../bricks';
+import { Brick, BrickAttempt, Pallet } from '../schema';
 
 @Injectable({
     providedIn: 'root'

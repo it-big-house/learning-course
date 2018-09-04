@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { BrickAttempt, Brick, Pallet } from "../bricks";
+import { BrickAttempt, Brick, Pallet } from "../schema";
 import { BricksService } from "./bricks.service";
 
 import { BehaviorSubject, Observable } from "rxjs";
