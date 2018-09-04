@@ -90,6 +90,15 @@ app-root {
     transform: rotate(180deg);
 }
 
+.user-type-btn {
+    font-size: 30px;
+}
+ .user-type-img {
+    width: 75px;
+    height: 75px;
+    margin: 10px;
+}
+
 /// ng2-dragula css!
 /* in-flight clone */
 .gu-mirror {
