@@ -18,9 +18,9 @@ import 'rxjs/add/observable/fromPromise';
 
 import { Brick, BrickAttempt, Question, Pallet, QuestionAttempt, toRefOnly, StudentPallet } from '../schema';
 
-import { getComponent } from '../bricks/comp/comp_index';
+import { getComponent } from '../play/brick/comp/comp_index';
 import { Observer } from 'firebase';
-import { BricksComponent } from '../bricks/bricks.component';
+import { BrickComponent } from '../play/brick/brick.component';
 
 @Injectable({
     providedIn: 'root'
@@ -31,7 +31,6 @@ export class DatabaseService {
     getBrick(id: string) : BehaviorSubject<Brick> {
         let brickRef : AngularFirestoreDocument<Brick> = this.afs.collection('bricks').doc<Brick>(id);
         let bs : BehaviorSubject<Brick> = new BehaviorSubject<Brick>(null);
-
         const brick$ = brickRef.valueChanges();
         const questions$ = brickRef.collection<Question>('questions', ref => ref.orderBy('number')).snapshotChanges()
             .pipe(
@@ -51,6 +50,7 @@ export class DatabaseService {
         combineLatest(brick$, questions$)
             .pipe(
                 map((data: [Brick, Question[]]) => {
+                    console.log('brick = '+data[0]);
                     let brick = data[0];
                     brick._ref = brickRef.ref;
                     brick.questions = data[1];

@@ -15,23 +15,25 @@ import { environment } from '../environments/environment';
 // Modules
 import { AppComponent } from './app.component';
 import { PlayModule } from './play/play.module';
-import { BricksModule } from './bricks/bricks.module';
+import { BrickModule } from './play/brick/brick.module';
 
 import { AuthModule } from './auth/auth.module';
 import { AngularFireModule } from 'angularfire2';
 import { DatabaseModule } from './database/database.module';
 import { LoginModule } from './login/login.module';
+import { ManageComponent } from './manage/manage.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ManageComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     FormsModule,
     LoginModule,
-    BricksModule,
+    BrickModule,
     PlayModule,
     HttpClientModule,
     BrowserAnimationsModule,
