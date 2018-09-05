@@ -8,6 +8,7 @@ export function toRefOnly(doc: DatabaseDoc, fieldsToKeep?: any) : any {
         var prop = Object.getOwnPropertyDescriptor(dataDoc, name).value;
         if(prop != null) {
             if(Object.keys(prop).includes('_ref')) {
+                console.log(prop['_ref']);
                 if(fieldsToKeep[name] != null) { dataDoc[name] = prop.toRefOnly(fieldsToKeep[name]); }
                 else { dataDoc[name] = prop._ref; }
             } else if (prop.constructor === Array) {
@@ -17,6 +18,8 @@ export function toRefOnly(doc: DatabaseDoc, fieldsToKeep?: any) : any {
                         else { dataDoc[name][index] = obj._ref; }
                     }
                 });
+            } else {
+                console.log('There was no _ref or Array on the object returned from the database');
             }
         }
     });

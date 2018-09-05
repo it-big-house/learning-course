@@ -1,0 +1,48 @@
+<timer [timer]="timer"></timer>
+<div class="container" [ngStyle.xs]="{ 'text-align': 'center' }"
+    fxLayout="column" *ngIf="(aBrick | async) as brick">
+    <h3>{{ brick.subject }}/{{ (aPallet | async)?.name }}/{{ ((brick.type | brickTime)/60000) }} minutes</h3>
+    <h1>{{ brick.title }}</h1>
+    <mat-accordion multi="true">
+        <mat-expansion-panel expanded="true" >
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Brief
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div [innerHTML]="brick.brief"></div>
+        </mat-expansion-panel>
+        <mat-expansion-panel expanded="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Prep
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div [innerHTML]="brick.prep"></div>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <div class="begin-row"
+        fxLayout="row" fxLayoutAlign="start center">
+        <p>When you have completed the Prep, click the button.</p>
+        <div fxFlex="1 0 0"></div>
+        <p class="begin-label">Begin</p><a mat-fab class="fab-bottom" routerLink="../live"><mat-icon>play_arrow</mat-icon></a>
+    </div>
+    <mat-accordion multi="true">
+        <mat-expansion-panel expanded="false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Other Information
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+                <p>Creator: {{ brick.creator }}</p>
+            </div>
+            <div>
+                <p>Total Users: {{ brick.totalUsers }}</p>
+                <p>average score {{ brick.avgScore }}</p>
+                <p>high score {{ brick.highScore }}</p>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <div style="margin-top: 60px"></div>
+</div>
