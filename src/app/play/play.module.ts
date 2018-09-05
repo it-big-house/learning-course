@@ -2,16 +2,20 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../material.module';
-import { DashboardComponent } from './home/dashboard/dashboard.component';
+
+// Components
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { PlayComponent } from './play.component';
+import { PalletComponent } from './pallet/pallet.component';
+import { BrickModule } from './brick/brick.module';
+import { NavigationModule } from '../navigation/navigation.module';
+
+// Routing
 import { PlayRoutingModule } from './play.routing';
-import { HomeComponent } from './home/home.component';
-import { PalletComponent } from './home/pallet/pallet.component';
-
-
 
 @NgModule({
-    imports: [PlayRoutingModule, CommonModule, FlexLayoutModule, MaterialModule],
-    declarations: [PlayComponent, HomeComponent, DashboardComponent, PalletComponent],
+    imports: [ PlayRoutingModule, CommonModule, FlexLayoutModule, MaterialModule, BrickModule, NavigationModule ],
+    declarations: [ PlayComponent, DashboardComponent, PalletComponent ],
+    exports: [ NavigationModule ]
 })
 export class PlayModule { }
