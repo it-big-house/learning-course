@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const appRoutes : Routes = [
+const routes : Routes = [
     { path: "play", loadChildren: "./play/play.module#PlayModule" },
+    { path: "manage", loadChildren: "./manage/manage.module#ManageModule"},
     { path: "", redirectTo: "play/dashboard", pathMatch: "full"}
 ]
 
 @NgModule({
     imports: [
-        RouterModule.forRoot(
-            appRoutes
-        ),
+        RouterModule.forRoot(routes),
     ],
     exports: [
         RouterModule

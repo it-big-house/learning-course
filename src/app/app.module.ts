@@ -12,29 +12,29 @@ import { AppRoutingModule } from './app.routing';
 import { MaterialModule } from './material.module';
 import { environment } from '../environments/environment';
 
-// Modules
+// Component Modules
 import { AppComponent } from './app.component';
 import { PlayModule } from './play/play.module';
-import { BrickModule } from './play/brick/brick.module';
+import { LoginModule } from './login/login.module';
+import { ManageModule } from './manage/manage.module';
 
+// Authentication
 import { AuthModule } from './auth/auth.module';
 import { AngularFireModule } from 'angularfire2';
 import { DatabaseModule } from './database/database.module';
-import { LoginModule } from './login/login.module';
-import { ManageComponent } from './manage/manage.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ManageComponent
+    AppComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     FormsModule,
     LoginModule,
-    BrickModule,
     PlayModule,
+    ManageModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
