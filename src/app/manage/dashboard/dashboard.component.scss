@@ -1,0 +1,26 @@
+.bricks-container {
+    max-width: 150vh;
+    margin: 0 auto;
+    .bricks-list {
+        mat-grid-tile {
+            p { margin: 10px; }
+            background: #111F33;
+            color: #ffffff;
+        }
+        margin: 10px;
+    }
+}
+
+/* To create the right kind of cursor when hovering over cards */
+mat-grid-tile {
+    cursor: pointer;
+}
+
+/* Set the alignment and padding of the text inside the brick */
+.text-inside-grid {
+    text-align: center;
+}
+
+.mat-figure {
+    padding: 5px;
+}

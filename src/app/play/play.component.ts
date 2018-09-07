@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  template:  `
-    <router-outlet></router-outlet>
-  `
+  template:  '<router-outlet></router-outlet>'
 })
-export class PlayComponent { 
-}
+
+export class PlayComponent { }

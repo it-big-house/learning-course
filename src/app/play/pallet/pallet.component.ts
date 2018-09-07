@@ -20,7 +20,7 @@ export class PalletComponent {
                 this.palletId = data.get('id');
                 this.pallet = database.getPallet(this.palletId)
                 this.pallet.subscribe((pallet) => {
-                    this.bricks = database.getBricks(pallet);
+                    this.bricks = database.getBricksInPallet(pallet);
                 })
             })
     }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 // Components
 import { PlayComponent } from './play.component';
@@ -13,7 +13,7 @@ const routes = [
             // Redirecting to default pallet
             // { path: 'dashboard', component: DashboardComponent },
             { path: 'dashboard', redirectTo: 'pallet/bsjsJllNgYkos0w3Wrtv', pathMatch: 'full' },
-            { path: 'pallet/:id', component: PalletComponent },
+            { path: 'pallet/:id', component: PalletComponent }
         ]},
         { path: 'brick', loadChildren: "./brick/brick.module#BrickModule" }
     ]} 

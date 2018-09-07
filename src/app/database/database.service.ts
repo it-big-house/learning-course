@@ -50,7 +50,6 @@ export class DatabaseService {
         combineLatest(brick$, questions$)
             .pipe(
                 map((data: [Brick, Question[]]) => {
-                    console.log('brick = '+data[0]);
                     let brick = data[0];
                     brick._ref = brickRef.ref;
                     brick.questions = data[1];
@@ -118,7 +117,7 @@ export class DatabaseService {
         return pallet$;
     }
 
-    getBricks(pallet: Pallet) : Observable<Brick[]> {
+    getBricksInPallet(pallet: Pallet) : Observable<Brick[]> {
         let brickRefs: AngularFirestoreCollection<{brick: DocumentReference}> = this.afs.doc(pallet._ref).collection('bricks');
         const bricks$ = brickRefs.snapshotChanges()
             .pipe(
@@ -137,5 +136,13 @@ export class DatabaseService {
                 map((bricks: Brick[]) => bricks.sort((a: Brick, b: Brick) => a.type - b.type))
             );
         return bricks$
+    }
+
+    getBricks() : Observable<any> {
+        // Get a collection of bricks in an AnguarFirestoreCollection
+        let brickRefs = this.afs.collection('bricks').valueChanges();
+        console.log(brickRefs);
+        // Turn that collection of bricks into an Observable
+        return brickRefs;
     }
 }
