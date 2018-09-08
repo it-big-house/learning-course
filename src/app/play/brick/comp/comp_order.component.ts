@@ -15,9 +15,9 @@ function shuffle(a) {
 
 export class CompOrder extends Comp {
     name = "Order";
-    data: { choices:string[], reveals:string[] }
+    data: { choices:string[], reveals?:string[], reveal?:string }
 
-    constructor(data: { choices:string[], reveals:string[] }) {
+    constructor(data: { choices:string[], reveals?:string[], reveal:string }) {
         super();
         this.data = data;
     }
@@ -51,6 +51,7 @@ export class CompOrder extends Comp {
             </div>
         </mat-list>
     </div>
+    <div *ngIf="attempt && data.data.reveal">{{data.data.reveal}}</div>
     `,
     styleUrls: ['../live.component.scss'],
     providers: [
