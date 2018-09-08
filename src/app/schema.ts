@@ -3,14 +3,17 @@
 import { DocumentReference, DocumentSnapshot, CollectionReference, AngularFirestoreDocument } from 'angularfire2/firestore';
 
 export function toRefOnly(doc: DatabaseDoc, fieldsToKeep?: any) : any {
+    // A firebase document
     var dataDoc : DatabaseDoc = doc;
+    // Map each of the property names and look for _ref
     var proto = Object.getOwnPropertyNames(dataDoc).map((name) => {
         var prop = Object.getOwnPropertyDescriptor(dataDoc, name).value;
         if(prop != null) {
+            // If there is a reference to another document then recurse and get that reference
             if(Object.keys(prop).includes('_ref')) {
-                console.log(prop['_ref']);
                 if(fieldsToKeep[name] != null) { dataDoc[name] = prop.toRefOnly(fieldsToKeep[name]); }
                 else { dataDoc[name] = prop._ref; }
+            // Else map the _ref to the database
             } else if (prop.constructor === Array) {
                 prop.forEach((obj, index) => {
                     if(Object.keys(obj).includes('_ref')) {
