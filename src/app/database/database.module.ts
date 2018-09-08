@@ -5,7 +5,7 @@ import { DatabaseService } from './database.service';
 
 @NgModule({
     imports: [
-        AngularFirestoreModule.enablePersistence()
+        AngularFirestoreModule
     ],
     exports: [
         AngularFirestoreModule
