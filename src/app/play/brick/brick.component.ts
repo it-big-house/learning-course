@@ -7,7 +7,11 @@ import { Brick } from '../../schema';
 
 @Component({
   templateUrl: './brick.component.html',
-  styleUrls: ['./brick.component.scss']
+  styleUrls: ['./brick.component.scss'],
+  styles: [
+    ':host >>> .background-green { background: green; }',
+    ':host >>> .color-red { color: red; }'
+    ]
 })
 export class BrickComponent {
     constructor(

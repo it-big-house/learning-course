@@ -8,7 +8,7 @@ import { SummaryComponent } from './summary.component';
 import { ReviewComponent } from './review.component';
 import { EndingComponent } from './ending.component';
 
-const brickRoutes = [
+const routes = [
     {path: ':id', component: BrickComponent, children: [
         { path: 'intro', component: IntroductionComponent },
         { path: 'live', component: LiveComponent },
@@ -20,7 +20,7 @@ const brickRoutes = [
 ]
 
 @NgModule({
-    imports: [ RouterModule.forChild(brickRoutes) ],
+    imports: [ RouterModule.forChild(routes) ],
     exports: [ RouterModule ]
 })
 export class BrickRoutingModule { }

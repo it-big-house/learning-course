@@ -1,0 +1,42 @@
+.timer-container {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    display: flex;
+    z-index: 100;
+}
+
+.timer {
+    font-size: 20px;
+    background-color: #fff;
+}
+
+.container {
+    height: 100%;
+    padding: 1vw 1vw 1vw 1vw;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.bottom-container {
+    margin-top: auto;
+    margin-bottom: 1vh;
+}
+
+.spacer {
+    margin: auto;
+}
+
+.begin-label {
+    font-size: 25px;
+    margin-right: 10px;
+}
+
+.begin-row {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+h1, h3, p {
+    margin: 5px;
+}

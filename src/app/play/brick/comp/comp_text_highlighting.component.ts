@@ -20,7 +20,7 @@ export class CompTextHighlighting extends Comp {
     template: `
     <p *ngIf="attempt">{{ data.data.reveal }}</p>
     <p class="text-highlighting">
-        <span *ngFor="let word of words; let i = index" [highlight]="word.highlight" [state]="getState(i)" (click)="toggleHighlight(i)">{{ word.word }} </span>
+        <span *ngFor="let word of words; let i = index" [highlight]="word.highlight" [state]="getState(i)" (click)="toggleHighlight(i)"> {{ word.word }} </span>
     </p>
     `,
     styleUrls: ['../live.component.scss']

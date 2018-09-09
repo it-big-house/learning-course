@@ -8,7 +8,7 @@
             <mat-icon>home</mat-icon>
         </a>
         <span *ngFor="let pallet of pallets | async">
-            <a *ngIf="pallet" [routerLink]="'pallet/'+pallet._ref.id" (click)="sidenav.toggle()" mat-list-item>
+            <a *ngIf="pallet" [routerLink]="'/pallet/'+pallet._ref.id" (click)="sidenav.toggle()" mat-list-item>
             {{pallet.name}}
             <span fxFlex="1 0 0"></span>
             <mat-chip-list selectable="false">
@@ -16,6 +16,13 @@
             </mat-chip-list>
             </a>
         </span>
+      </mat-nav-list>
+      <mat-nav-list>
+        <a routerLink="/manage/dashboard" (click)="sidenav.toggle()" mat-list-item>
+            Manage
+            <span fxFlex="1 0 0"></span>
+            <mat-icon>assignmant</mat-icon>
+        </a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

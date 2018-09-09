@@ -10,7 +10,7 @@ const headers = new HttpHeaders({
 
 import { environment } from '../../environments/environment';
 
-import { Observable, BehaviorSubject, combineLatest, zip } from 'rxjs';
+import { Observable, BehaviorSubject, combineLatest, zip, observable } from 'rxjs';
 import { map, tap, concatMap } from 'rxjs/operators';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/combineLatest';
@@ -50,7 +50,6 @@ export class DatabaseService {
         combineLatest(brick$, questions$)
             .pipe(
                 map((data: [Brick, Question[]]) => {
-                    console.log('brick = '+data[0]);
                     let brick = data[0];
                     brick._ref = brickRef.ref;
                     brick.questions = data[1];
@@ -118,24 +117,50 @@ export class DatabaseService {
         return pallet$;
     }
 
-    getBricks(pallet: Pallet) : Observable<Brick[]> {
-        let brickRefs: AngularFirestoreCollection<{brick: DocumentReference}> = this.afs.doc(pallet._ref).collection('bricks');
-        const bricks$ = brickRefs.snapshotChanges()
+    getBricksInPallet(pallet: Pallet) : Observable<Brick[]> {
+        // Get all the brick references in the pallet
+        let brickRefs: AngularFirestoreCollection<{brick: DocumentReference}> = this.afs.doc<{brick: DocumentReference}>(pallet._ref).collection('bricks');
+        // Track when things chane
+        const bricks = brickRefs.snapshotChanges()
             .pipe(
                 map((actions: DocumentChangeAction<{brick: DocumentReference}>[]) => actions.map((action) => {
+                    // Every time the pallet changes get the new brick and get the bricks collection
                     let brick = action.payload.doc.data();
                     return brick;
                 })),
                 concatMap((brRefs) => combineLatest(brRefs.map((brRef) => {
+                    //  rxmarbles.com combine the latest version of all the different bricks
                     return this.afs.doc<Brick>(brRef.brick).snapshotChanges();
                 }))),
                 map((actions: Action<DocumentSnapshot<Brick>>[]) => actions.map((action) => {
+                    // Map each reference to the Brick type
                     let brck = action.payload.data();
                     brck._ref = action.payload.ref;
                     return brck;
                 })),
+                // Order the bricks by 'type'
                 map((bricks: Brick[]) => bricks.sort((a: Brick, b: Brick) => a.type - b.type))
             );
-        return bricks$
+        return bricks
+    }
+
+    getBricks() : Observable<Brick[]> {
+        // Get the bricks collection from firebase as a collection of DocumentReference
+        let brickCollection: AngularFirestoreCollection<Brick> = this.afs.collection('bricks');
+        // https://github.com/angular/angularfire2/blob/master/docs/firestore/documents.md#snapshotchanges
+        // Get snapshotChanges as opposed to valueChanges
+        const bricks$ = brickCollection.snapshotChanges()
+            .pipe(
+                // Map the document references 
+                map((actions: DocumentChangeAction<Brick>[]) => actions.map((action) => {
+                    // https://github.com/angular/angularfire2/blob/master/docs/firestore/collections.md
+                    // payload.doc is a DocumentSnapshot
+                    const brick = action.payload.doc.data();
+                    brick._ref = action.payload.doc.ref;
+                    return brick;
+                })),
+                map((bricks: Brick[]) => bricks.sort((a: Brick, b: Brick) => a.type - b.type))
+            );
+        return bricks$;
     }
 }
