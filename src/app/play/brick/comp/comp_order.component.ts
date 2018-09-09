@@ -36,7 +36,7 @@ export class CompOrder extends Comp {
                         <div>{{choice}}</div>
                     </div>
                     <div *ngIf="attempt">
-                        <div *ngIf="data.data.reveals" ngStyle.xs="font-size: 2vw;">{{data.data.reveals[getChoice(choice)]}}</div>
+                        <!-- <div *ngIf="data.data.reveals" ngStyle.xs="font-size: 2vw;">{{data.data.reveals[getChoice(choice)]}}</div> -->
                     </div>
                 </div>
             </mat-list-item>
@@ -51,7 +51,7 @@ export class CompOrder extends Comp {
             </div>
         </mat-list>
     </div>
-    <div *ngIf="attempt && data.data.reveal">{{data.data.reveal}}</div>
+    <div class="reveal-container" *ngIf="attempt && data.data.reveal">{{data.data.reveal}}</div>
     `,
     styleUrls: ['../live.component.scss'],
     providers: [
