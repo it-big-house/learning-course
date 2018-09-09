@@ -15,10 +15,6 @@ export class CompText extends Comp {
 @register("Text")
 @Component({
     selector: "text",
-    styles: [
-        ':host >>> .background-green { background: green; }',
-        ':host >>> .color-red { color: red; }'
-        ],
     template: `
     <div class="comp-text-container">
         <p [innerHTML]="data.data.text"></p>

@@ -31,16 +31,17 @@ export class CompArrow extends Comp {
         <div *ngFor="let cat of userCats; let i = index" class="arrow-container" fxFlex="1 0 25%" fxLayout="row">
             <mat-list [dragula]="'DRAG'+i" [(dragulaModel)]="userCats[i].choices" class="arrow-list" fxFlex="1 0 0">
                 <mat-list-item class="touch-list-item" *ngFor="let item of cat.choices; let ind = index" fxLayout="row" fxLayoutAlign="space-around center">
+                    <!-- This is both the left and the right containers of the arrow -->
                     <mat-checkbox *ngIf="i == 0 && attempt" [checked]="getState(ind) == 1" [indeterminate]="getState(ind) == -1" disabled></mat-checkbox>
                     <div *ngIf="i == 0 && attempt">{{ data.data.reveals[getChoice(item)] }}</div>
                     <div fxFlex="1 0 0"></div>
-                    <div class="arrow-item-text">{{item}}</div>
+                    <div class="arrow-item-text-{{i}}">{{item}}</div>
                     <div fxFlex="1 0 0"></div>
                 </mat-list-item>
             </mat-list>
             <!-- Arrow Graphics -->
             <mat-list *ngIf="i + 1 != userCats.length">
-                <mat-list-item *ngFor="let item of cat.choices">
+                <mat-list-item *ngFor="let item of cat.choices" class="arrow-mat-list">
                     <mat-icon class="material-icons arrow-icon">arrow_right_alt</mat-icon>
                 </mat-list-item>
             </mat-list>
