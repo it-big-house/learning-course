@@ -12,7 +12,7 @@ const routes = [
         { path: '', component: NavigationComponent, children: [
             // Redirecting to default pallet
             // { path: 'dashboard', component: DashboardComponent },
-            { path: 'dashboard', redirectTo: 'pallet/bsjsJllNgYkos0w3Wrtv', pathMatch: 'full' },
+            { path: 'dashboard', redirectTo: 'pallet/demopallet', pathMatch: 'full' },
             { path: 'pallet/:id', component: PalletComponent }
         ]},
         { path: 'brick', loadChildren: "./brick/brick.module#BrickModule" }
