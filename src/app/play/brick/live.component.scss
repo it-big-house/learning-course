@@ -120,9 +120,15 @@ $choice-color-8: #CE3D59;
     touch-action: none;
 }
 
-.arrow-item-text {
+/* align text based on the index number of the container */
+.arrow-item-text-0 {
     width: 100%;
-    text-align: center;
+    text-align: right;
+}
+
+.arrow-item-text-1 {
+    width: 100%;
+    text-align: left;
 }
 
 .arrow-icon {
@@ -173,6 +179,6 @@ h1, h3, p {
     margin: 5px;
 }
 
-mat-card {
+mat-card, mat-list-item {
     cursor: pointer;
 }
