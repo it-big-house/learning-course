@@ -33,7 +33,7 @@ export class CompArrow extends Comp {
                 <mat-list-item class="touch-list-item" *ngFor="let item of cat.choices; let ind = index" fxLayout="row" fxLayoutAlign="space-around center">
                     <!-- This is both the left and the right containers of the arrow -->
                     <mat-checkbox *ngIf="i == 0 && attempt" [checked]="getState(ind) == 1" [indeterminate]="getState(ind) == -1" disabled></mat-checkbox>
-                    <div *ngIf="i == 0 && attempt">{{ data.data.reveals[getChoice(item)] }}</div>
+                    <!-- <div *ngIf="i == 0 && attempt">{{ data.data.reveals[getChoice(item)] }}</div> -->
                     <div fxFlex="1 0 0"></div>
                     <div class="arrow-item-text-{{i}}">{{item}}</div>
                     <div fxFlex="1 0 0"></div>

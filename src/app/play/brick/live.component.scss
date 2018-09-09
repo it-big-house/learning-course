@@ -1,12 +1,3 @@
-$choice-color-1: #45a3e5;
-$choice-color-2: #66bf39;
-$choice-color-3: #eb670f;
-$choice-color-4: #ff3355;
-$choice-color-5: #E03BE6;
-$choice-color-6: #DDBB42;
-$choice-color-7: #DFFD40;
-$choice-color-8: #CE3D59;
-
 .timer-container {
     position: fixed;
     bottom: 5px;
@@ -24,36 +15,12 @@ $choice-color-8: #CE3D59;
     width: 100%;
 }
 
-.flex-choice:nth-child(1) {
-    background-color: $choice-color-1
+.flex-choice:nth-child(odd) {
+    background-color: #0076b4;
 }
 
-.flex-choice:nth-child(2) {
-    background-color: $choice-color-2
-}
-
-.flex-choice:nth-child(3) {
-    background-color: $choice-color-3;
-}
-
-.flex-choice:nth-child(4) {
-    background-color: $choice-color-4
-}
-
-.flex-choice:nth-child(5) {
-    background-color: $choice-color-5
-}
-
-.flex-choice:nth-child(6) {
-    background-color: $choice-color-6
-}
-
-.flex-choice:nth-child(7) {
-    background-color: $choice-color-7
-}
-
-.flex-choice:nth-child(8) {
-    background-color: $choice-color-8
+.flex-choice:nth-child(even) {
+    background-color: #0a3b7e;
 }
 
 .mat-button-toggle-checked {
