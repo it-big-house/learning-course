@@ -35,9 +35,9 @@ export class CompOrder extends Comp {
                         <span class="order-number">{{i+1}}</span>
                         <div>{{choice}}</div>
                     </div>
-                    <div *ngIf="attempt">
+                    <!-- <div *ngIf="attempt">
                         <div *ngIf="data.data.reveals" ngStyle.xs="font-size: 2vw;">{{data.data.reveals[getChoice(choice)]}}</div>
-                    </div>
+                    </div> -->
                 </div>
             </mat-list-item>
         </mat-list>

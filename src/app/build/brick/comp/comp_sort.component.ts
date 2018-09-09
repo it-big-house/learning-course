@@ -27,7 +27,7 @@ export class CompSort extends Comp {
                     <div>
                         <mat-checkbox *ngIf="attempt" [indeterminate]="getState(item) == -1" [checked]="getState(item) == 1" disabled></mat-checkbox>
                         {{item}}
-                        <div *ngIf="attempt" style="font-size: 12px">{{ data.data.reveals[item] }}</div>
+                        <!-- <div *ngIf="attempt" style="font-size: 12px">{{ data.data.reveals[item] }}</div> -->
                     </div>
                 </mat-list-item>
             </mat-list>

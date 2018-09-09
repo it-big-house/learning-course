@@ -19,7 +19,7 @@ export class CompSort extends Comp {
 @Component({
     selector: 'sort',
     template: `
-    <div class="sort-container" fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="10px">
+    <div class="sort-container" style="margin-bottom:50px;" fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="10px">
         <div class="cat-container" *ngFor="let cat of userCats; let i = index" fxFlex="1 0 0">
             <div class="cat-header">{{cat.name}}</div>
             <mat-list [dragula]="'DRAG'" [(dragulaModel)]="userCats[i].choices" class="sort-list">
@@ -27,7 +27,7 @@ export class CompSort extends Comp {
                     <div>
                         <mat-checkbox *ngIf="attempt" [indeterminate]="getState(item) == -1" [checked]="getState(item) == 1" disabled></mat-checkbox>
                         {{item}}
-                        <div *ngIf="attempt" style="font-size: 12px">{{ data.data.reveals[item] }}</div>
+                        <!-- <div *ngIf="attempt" style="font-size: 12px">{{ data.data.reveals[item] }}</div> -->
                     </div>
                 </mat-list-item>
             </mat-list>
