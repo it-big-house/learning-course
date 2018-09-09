@@ -156,13 +156,11 @@ export class DatabaseService {
                     // https://github.com/angular/angularfire2/blob/master/docs/firestore/collections.md
                     // payload.doc is a DocumentSnapshot
                     const brick = action.payload.doc.data();
-                    brick._ref = action.payload.doc.ref
-                    console.log(brick);
+                    brick._ref = action.payload.doc.ref;
                     return brick;
                 })),
                 map((bricks: Brick[]) => bricks.sort((a: Brick, b: Brick) => a.type - b.type))
             );
-        //console.log(bricks);
         return bricks$;
     }
 }

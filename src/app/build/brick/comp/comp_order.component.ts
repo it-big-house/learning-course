@@ -1,0 +1,125 @@
+import { Component, Input } from '@angular/core';
+
+import { Comp, ComponentAttempt } from '../../../schema';
+import { register } from './comp_index';
+import { CompComponent } from "./comp.component";
+import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
+
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+export class CompOrder extends Comp {
+    name = "Order";
+    data: { choices:string[], reveals?:string[], reveal?:string }
+
+    constructor(data: { choices:string[], reveals?:string[], reveal:string }) {
+        super();
+        this.data = data;
+    }
+}
+
+@register("Order")
+@Component({
+    selector: 'order',
+    template: `
+    <div class="order-container" fxLayout="row">
+        <mat-list [dragula]="'DRAG'" [(dragulaModel)]="userChoices">
+            <mat-list-item *ngFor="let choice of userChoices; let i = index" class="touch-list-item">
+                <div fxLayout="column">
+                    <div fxLayout="row">
+                        <span class="order-number">{{i+1}}</span>
+                        <div>{{choice}}</div>
+                    </div>
+                    <div *ngIf="attempt">
+                        <div *ngIf="data.data.reveals" ngStyle.xs="font-size: 2vw;">{{data.data.reveals[getChoice(choice)]}}</div>
+                    </div>
+                </div>
+            </mat-list-item>
+        </mat-list>
+        <mat-list *ngIf="attempt" fxLayout="column" fxLayoutAlign="center center">
+            <div *ngFor="let choice of userChoices; let i = index">
+                <mat-list-item *ngIf="i != 0">
+                    <mat-icon style="font-size: 32px" [inline]="true" class="rotate-90">redo</mat-icon>
+                    <div fxFlex="0 0 20px"></div>
+                    <mat-checkbox [indeterminate]="getState(i) == -1" [checked]="getState(i) == 1" disabled></mat-checkbox>
+                </mat-list-item>
+            </div>
+        </mat-list>
+    </div>
+    <div *ngIf="attempt && data.data.reveal">{{data.data.reveal}}</div>
+    `,
+    styleUrls: ['../live.component.scss'],
+    providers: [
+        {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'noop'}
+    ]
+})
+export class OrderComponent extends CompComponent {
+    userChoices: string[];
+
+    @Input() data: CompOrder;
+
+    getAnswer() : number[] {
+        return this.userChoices.map(val => this.data.data.choices.indexOf(val));
+    }
+
+    ngOnInit() {
+        this.userChoices = shuffle(this.data.data.choices.slice());
+        if(this.attempt) {
+            this.userChoices = this.attempt.answer.map(val => this.data.data.choices[val]);
+        }
+    }
+
+    getChoice(choice) {
+        return this.data.data.choices.indexOf(choice);
+    }
+
+    getState(index: number) : number {
+        if(this.attempt.answer[index] - this.attempt.answer[index - 1] == 1) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
+    mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
+        // If the question is answered in review phase, add 2 to the mark and not 5.
+        let markIncrement = prev ? 2 : 5;
+        attempt.correct = true;
+        attempt.marks = 0;
+        attempt.maxMarks = 0;
+        // For every item in the answer...
+        attempt.answer.forEach((answer, index, array) => {
+            // except the first one...
+            if (index != 0) {
+                // increase the max marks by 5,
+                attempt.maxMarks += 5;
+                // and if this item and the one before it are in the right order and are adjacent...
+                if(answer - array[index-1] == 1) {
+                    // and the program is in live phase...
+                    if(!prev) {
+                        // increase the marks by 5.
+                        attempt.marks += markIncrement;
+                    }
+                    // or the item wasn't correct in the live phase...
+                    else if (prev.answer[index] - prev.answer[index-1] != 1) {
+                        // increase the marks by 2.
+                        attempt.marks += markIncrement;
+                    }
+                }
+                // if not...
+                else {
+                    // the answer is not correct.
+                    attempt.correct = false;
+                }
+            }
+        })
+        // Then, if the attempt scored no marks and the program is in live phase, then give the student a mark.
+        if(attempt.marks == 0 && !prev) attempt.marks = 1;
+        return attempt;
+    }
+}

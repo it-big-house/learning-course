@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 import { PlayModule } from './play/play.module';
 import { LoginModule } from './login/login.module';
 import { ManageModule } from './manage/manage.module';
+import { BuildModule } from './build/build.module';
 
 // Authentication
 import { AuthModule } from './auth/auth.module';
@@ -35,6 +36,7 @@ import { DatabaseModule } from './database/database.module';
     LoginModule,
     PlayModule,
     ManageModule,
+    BuildModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,

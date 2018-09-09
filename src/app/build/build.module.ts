@@ -10,4 +10,4 @@ import { NavigationModule } from '../navigation/navigation.module';
     imports: [ BuildRoutingModule, CommonModule, FlexLayoutModule, MaterialModule, NavigationModule ],
     declarations: [ BuildComponent ],
 })
-export class ManageModule { }
+export class BuildModule { }
