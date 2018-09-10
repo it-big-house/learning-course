@@ -7,7 +7,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { DragulaModule } from 'ng2-dragula';
 import { MaterialModule } from '../../../material.module';
 import { CompComponent } from './comp.component';
-import { ImageComponent } from './comp_image.component';
 import { MultipleChoiceComponent } from './comp_multiple_choice.component';
 import { OrderComponent } from './comp_order.component';
 import { SingleChoiceComponent } from './comp_single_choice.component';
@@ -20,17 +19,17 @@ import { HighlightDirective } from './highlight.directive';
 import { ArrowComponent } from './comp_arrow.component';
 import { RevealComponent } from './comp_reveal.component';
 
-let dModule = DynamicModule.withComponents([SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, 
+let dModule = DynamicModule.withComponents([SingleChoiceComponent, MultipleChoiceComponent, 
     TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent, 
     TextHighlightingComponent, ArrowComponent, RevealComponent])
 
 @NgModule({
     imports: [ CommonModule, FormsModule, DragulaModule, MaterialModule, NgArrayPipesModule, FlexLayoutModule, dModule ],
-    declarations: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, 
+    declarations: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, 
         TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent, 
         TextHighlightingComponent, ArrowComponent, RevealComponent,
         HighlightDirective ],
-    exports: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent,
+    exports: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent,
         TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent,
         TextHighlightingComponent, ArrowComponent, RevealComponent,
         HighlightDirective,
