@@ -1,3 +1,35 @@
+/**** Handles css for both live and review phases ****/
+
+/*
+Appears to be unused - flagged for removal 10/9/2018
+
+.mat-button-toggle-checked {
+    -webkit-box-shadow: inset 0 0 0 5px #fff;
+    -moz-box-shadow: inset 0 0 0 5px #fff;
+    box-shadow: inset 0 0 0 5px #fff;
+}
+
+.grow {
+    flex-grow: 1;
+}
+*/
+
+/* Multiple components */
+
+h1, h3, p {
+    margin: 5px;
+}
+
+mat-card, mat-list-item {
+    cursor: pointer;
+}
+
+/* Arrow (mat-list-item), HorizontalShuffle (mat-card), Order (mat-list-item), Sort (mat-list-item) */
+.touch-list-item {
+    touch-action: none;
+}
+
+/**** Timer ****/
 .timer-container {
     position: fixed;
     bottom: 5px;
@@ -11,6 +43,7 @@
     background-color: #fff;
 }
 
+/**** Multiple/Single Choice Components ****/
 .flex-choice {
     width: 100%;
 }
@@ -21,12 +54,6 @@
 
 .flex-choice:nth-child(even) {
     background-color: #0a3b7e;
-}
-
-.mat-button-toggle-checked {
-    -webkit-box-shadow: inset 0 0 0 5px #fff;
-    -moz-box-shadow: inset 0 0 0 5px #fff;
-    box-shadow: inset 0 0 0 5px #fff;
 }
 
 .flex-choice {
@@ -41,6 +68,7 @@
     padding-bottom: 20px;
 }
 
+/**** Image component ****/
 .comp-image-container {
     width: 100%;
 }
@@ -49,26 +77,15 @@
     width: 300px;
 }
 
+/**** Sort Component ****/
 .sort-container {
     overflow: scroll hidden;
-}
-
-.arrow-big-container {
-    overflow: auto hidden;
-}
-
-.arrow-container {
-    min-width: 200px;
 }
 
 .sort-list {
     background-color: #eee;
     height: 100%;
     min-width: 200px;
-}
-
-.arrow-list {
-    margin: 0 5px;
 }
 
 .cat-header {
@@ -83,8 +100,19 @@
     flex-direction: row;
 }
 
-.touch-list-item {
-    touch-action: none;
+/**** Arrow component ****/
+.arrow-big-container {
+    overflow: auto hidden;
+}
+
+.arrow-container {
+    min-width: 200px;
+}
+
+/* mat-list element */
+.arrow-list {
+    margin: 5px 5px;
+    height:100%;
 }
 
 /* align text based on the index number of the container */
@@ -102,10 +130,6 @@
     font-size: 48px;
     height: 48px;
     width: 48px;
-}
-
-.grow {
-    flex-grow: 1;
 }
 
 .horizontal-shuffle-container {
@@ -138,14 +162,7 @@
     text-align: center;
 }
 
+/**** Order component ****/
 .order-number {
     margin-right: 20px;
-}
-
-h1, h3, p {
-    margin: 5px;
-}
-
-mat-card, mat-list-item {
-    cursor: pointer;
 }

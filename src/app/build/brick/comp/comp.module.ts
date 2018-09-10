@@ -18,21 +18,20 @@ import { HorizontalShuffleComponent } from './comp_horizontal_shuffle.component'
 import { TextHighlightingComponent } from './comp_text_highlighting.component';
 import { HighlightDirective } from './highlight.directive';
 import { ArrowComponent } from './comp_arrow.component';
-import { ListComponent } from './comp_list.component';
 
 let dModule = DynamicModule.withComponents([SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, 
     TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent, 
-    TextHighlightingComponent, ArrowComponent, ListComponent])
+    TextHighlightingComponent, ArrowComponent])
 
 @NgModule({
     imports: [ CommonModule, FormsModule, DragulaModule, MaterialModule, NgArrayPipesModule, FlexLayoutModule, dModule ],
     declarations: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent, 
         TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent, 
-        TextHighlightingComponent, ArrowComponent, ListComponent,
+        TextHighlightingComponent, ArrowComponent,
         HighlightDirective ],
     exports: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, ImageComponent,
         TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent,
-        TextHighlightingComponent, ArrowComponent, ListComponent,
+        TextHighlightingComponent, ArrowComponent,
         HighlightDirective,
         dModule.ngModule, FormsModule
     ],
