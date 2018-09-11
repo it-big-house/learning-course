@@ -16,7 +16,7 @@ export class CompText extends Comp {
 @Component({
     selector: "poem",
     template: `
-    <div class="comp-text-container">
+    <div class="comp-poem-container">
         <div [innerHTML]="data.data.text" fittext [maxFontSize]="15"></div>
     </div>
     `,

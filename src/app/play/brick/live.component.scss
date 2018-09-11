@@ -27,11 +27,23 @@ mat-card, .sort-list > mat-list-item {
 }
 
 /**** Text Component ****/
+.comp-text-container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/**** Poem Component ****/
+.comp-poem-container {
+    display: flex;
+    justify-content: center;
+}
 
 /**** Reveal Component ****/
 .reveal {
     background:#FFFC7F; 
     color: #000;
+    margin-top: 5px;
+    padding: 5px;
 }
 
 /**** Timer ****/
@@ -132,10 +144,22 @@ mat-card, .sort-list > mat-list-item {
 
 /**** Arrow Component ****/
 
+.arrow-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* drag and drop box around right hand boxes */
+.arrow-text-right {
+    outline: 1px dashed rgb(83, 83, 83);
+    outline-offset: -2px;
+}
+
 /* align left column to the right */
 .arrow-item-text-left {
     width: 100%;
     text-align: right;
+
 }
 
 /* align right column to the left */

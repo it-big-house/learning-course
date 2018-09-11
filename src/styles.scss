@@ -151,11 +151,6 @@ app-root {
     padding: 0 24px 24px 10px !important;
 }
 
-/* remove padding around arrows on arrow component */
-mat-list-item.arrow-icon-list-item > .mat-list-item-content {
-    padding: 0px 0px !important;
-}
-
 /* set the arrow icon container to expand to size of icon */
 mat-icon.arrow-icon {
     height: auto !important;

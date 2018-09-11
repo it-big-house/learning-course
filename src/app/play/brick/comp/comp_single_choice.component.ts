@@ -25,8 +25,8 @@ export class CompSingleChoice extends Comp {
                 <mat-checkbox *ngIf="attempt"  [checked]="getState(choice) == 1" [indeterminate]="getState(choice) == -1" disabled></mat-checkbox>
                 <div fxFlex="1 0 0"></div>
                 <div fxLayout="column">
-                    <div fittext>{{ choice }}</div>
-                    <div *ngIf="attempt" class="reveal" fittext>{{ data.data.reveals[getChoice(choice)] }}</div>
+                    <div fittext [minFontSize]="15">{{ choice }}</div>
+                    <div *ngIf="attempt" class="reveal" fittext [minFontSize]="15">{{ data.data.reveals[getChoice(choice)] }}</div>
                 </div>
                 <div fxFlex="1 0 0"></div>
             </div>

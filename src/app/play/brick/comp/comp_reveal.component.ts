@@ -17,7 +17,7 @@ export class CompText extends Comp {
     selector: "reveal",
     template: `
     <div *ngIf="attempt">
-        <div class="reveal" fittext>
+        <div class="reveal">
             {{data.data.text}}
         </div>
     </div>
