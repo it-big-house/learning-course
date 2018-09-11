@@ -27,25 +27,26 @@ export class CompArrow extends Comp {
 @Component({
     selector: 'sort',
     template: `
-    <div class="arrow-big-container" fxLayout="row">
-        <!-- Loop through both lists and creates a separate column for each -->
-        <div *ngFor="let cat of userCats; let i = index" class="arrow-container" fxFlex="1 0 25%" fxLayout="row">
-            <mat-list [dragula]="'DRAG'+i" [(dragulaModel)]="userCats[i].choices" class="arrow-list" fxFlex="1 0 0">
-                <mat-list-item class="touch-list-item" *ngFor="let item of cat.choices; let ind = index" fxLayout="row" fxLayoutAlign="space-around center">
-                    <mat-checkbox *ngIf="i == 0 && attempt" [checked]="getState(ind) == 1" [indeterminate]="getState(ind) == -1" disabled></mat-checkbox>
-                    <div *ngIf="i == 0 && attempt">{{ data.data.reveals[getChoice(item)] }}</div>
-                    <div fxFlex="1 0 0"></div>
-                    <div class="arrow-item-text-{{i}}">{{item}}</div>
-                    <div fxFlex="1 0 0"></div>
-                </mat-list-item>
-            </mat-list>
-            <!-- The first column has Arrow Graphics -->
-            <mat-list *ngIf="i + 1 != userCats.length">
-                <mat-list-item *ngFor="let item of cat.choices" class="arrow-mat-list">
-                    <mat-icon class="material-icons arrow-icon">arrow_right_alt</mat-icon>
-                </mat-list-item>
-            </mat-list>
-        <div>
+    <div class="arrow-container" fxFlex="1 1 100%" fxLayout="row">
+        <mat-list>
+            <mat-list-item class="arrow-item-left touch-list-item" *ngFor="let item of userCats[0].choices; let ind = index" fxLayout="row" fxLayoutAlign="space-around center">
+                <mat-checkbox *ngIf="attempt" [checked]="getState(ind) == 1" [indeterminate]="getState(ind) == -1" disabled></mat-checkbox>
+                <div *ngIf="attempt">{{ data.data.reveals[getChoice(item)] }}</div>
+                <div class="arrow-item-text-left">{{item}}</div>
+            </mat-list-item>
+        </mat-list>
+        <!-- The first column has Arrow Graphics -->
+        <!-- <mat-list>
+            <mat-list-item *ngFor="let item of userCats[0].choices" class="arrow-icon-list-item">
+                <mat-icon class="material-icons arrow-icon">arrow_right_alt</mat-icon>
+            </mat-list-item>
+        </mat-list> -->
+        <mat-list [dragula]="'DRAG1'" [(dragulaModel)]="userCats[1].choices" class="arrow-list">
+            <mat-list-item style="cursor: pointer;" class="arrow-text-right touch-list-item" *ngFor="let item of userCats[1].choices; let ind = index" fxLayout="row" fxLayoutAlign="space-around center">
+                <mat-icon class="material-icons" style="vertical-align:middle;">drag_indicator</mat-icon>
+                <div class="arrow-item-text-right">{{item}}</div>
+            </mat-list-item>
+        </mat-list>
     </div>
     `,
     styleUrls: ['../live.component.scss'],
@@ -104,6 +105,7 @@ export class ArrowComponent extends CompComponent {
         attempt.correct = true;
         attempt.marks = 0;
         attempt.maxMarks = 0;
+        console.log(attempt.answer);
         attempt.answer
             // Map every answer to its choice,
             .map(c => c.choice)

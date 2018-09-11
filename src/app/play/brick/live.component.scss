@@ -14,19 +14,27 @@ Appears to be unused - flagged for removal 10/9/2018
 }
 */
 
-/* Multiple components */
+/**** Layout ****/
+/* See Global stylesheet for brick overrides */
+
+/**** Multiple components ****/
 
 h1, h3, p {
     margin: 5px;
 }
 
-mat-card, mat-list-item {
+mat-card, .sort-list > mat-list-item {
     cursor: pointer;
 }
 
 /* Arrow (mat-list-item), HorizontalShuffle (mat-card), Order (mat-list-item), Sort (mat-list-item) */
 .touch-list-item {
     touch-action: none;
+}
+
+/**** Text Component ****/
+.comp-text-container {
+    overflow-x: scroll;
 }
 
 /**** Timer ****/
@@ -68,15 +76,6 @@ mat-card, mat-list-item {
     padding-bottom: 20px;
 }
 
-/**** Image component ****/
-.comp-image-container {
-    width: 100%;
-}
-
-.comp-image {
-    width: 300px;
-}
-
 /**** Sort Component ****/
 .sort-container {
     overflow: scroll hidden;
@@ -100,38 +99,7 @@ mat-card, mat-list-item {
     flex-direction: row;
 }
 
-/**** Arrow component ****/
-.arrow-big-container {
-    overflow: auto hidden;
-}
-
-.arrow-container {
-    min-width: 200px;
-}
-
-/* mat-list element */
-.arrow-list {
-    margin: 5px 5px;
-    height:100%;
-}
-
-/* align text based on the index number of the container */
-.arrow-item-text-0 {
-    width: 100%;
-    text-align: right;
-}
-
-.arrow-item-text-1 {
-    width: 100%;
-    text-align: left;
-}
-
-.arrow-icon {
-    font-size: 48px;
-    height: 48px;
-    width: 48px;
-}
-
+/**** HorizontalShuffle Component ****/
 .horizontal-shuffle-container {
     padding: 20px;
 }
@@ -144,6 +112,7 @@ mat-card, mat-list-item {
     touch-action: none;
 }
 
+/**** TextHighlighting Component ****/
 .text-highlighting {
     font-family: Georgia, serif;
     margin-left: 25px;
@@ -152,17 +121,35 @@ mat-card, mat-list-item {
     user-select: none;
 }
 
-.comp-list-container {
-    margin: 10px 0;
-}
-
-.comp-list-item {
-    font-size: 4vw;
-    white-space: nowrap;
-    text-align: center;
-}
-
 /**** Order component ****/
 .order-number {
     margin-right: 20px;
+}
+
+
+/**** Arrow Component ****/
+
+/* align left column to the right */
+.arrow-item-text-left {
+    width: 100%;
+    text-align: right;
+}
+
+/* align right column to the left */
+.arrow-item-text-right {
+    width: 100%;
+    text-align: left;
+    font-size: 2.75vw;
+}
+
+/* Alternating colors on drag and drop */
+
+.arrow-item-left:nth-child(odd) {
+    background: #0076b4;
+    color: #fff;
+}
+
+.arrow-item-left:nth-child(even) {
+    background: #111F33;
+    color: #fff;
 }

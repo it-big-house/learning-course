@@ -133,3 +133,36 @@ app-root {
 .clearfix {
     display: inline-block;
 }
+
+/**** Brick Screen Layout ****/
+
+/* decrease size of margin (left of screen and margin line) */
+.mat-vertical-content-container {
+    margin-left: 12px !important;
+}
+
+/* remove margin between left of screen and icons on questions */
+.mat-vertical-stepper-header {
+    padding: 24px 24px 24px 2px !important;
+}
+
+/* remove padding between margin line and question */
+.mat-vertical-content {
+    padding: 0 24px 24px 10px !important;
+}
+
+/* remove padding around arrows on arrow component */
+mat-list-item.arrow-icon-list-item > .mat-list-item-content {
+    padding: 0px 0px !important;
+}
+
+/* set the arrow icon container to expand to size of icon */
+mat-icon.arrow-icon {
+    height: auto !important;
+    width: auto !important
+}
+
+/* set arrow icon to be big icon */
+mat-icon.arrow-icon {
+    font-size: 50px !important;
+}
