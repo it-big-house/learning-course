@@ -10,7 +10,8 @@ import { Brick } from '../../schema';
   styleUrls: ['./brick.component.scss'],
   styles: [
     ':host >>> .background-green { background: green; }',
-    ':host >>> .color-red { color: red; }'
+    ':host >>> .color-red { color: red; }',
+    ':host >>> .nowrap { white-space: nowrap; }'
     ]
 })
 export class BrickComponent {

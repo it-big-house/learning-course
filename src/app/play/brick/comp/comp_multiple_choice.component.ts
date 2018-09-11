@@ -25,12 +25,10 @@ export class CompMultipleChoice extends Comp {
         <mat-button-toggle ngDefaultControl [checked]="answers[getChoice(choice)]" (change)="changeAnswer($event, i)" name="choice-{{i}}" class="flex-choice" fxLayout="column" fxLayoutAlign="stretch stretch" *ngFor="let choice of data.data.choices | shuffle; let i = index" [value]="choice">
             <div fxLayout="row" fxLayoutAlign="space-around center">
                 <mat-checkbox *ngIf="attempt" [checked]="getState(choice) == 1" [indeterminate]="getState(choice) == -1" disabled></mat-checkbox>
-                <div fxFlex="1 0 0"></div>
                 <div fxLayout="column">
-                    <div style="font-size: 1.75vw; line-height: 3vw;">{{ choice }}</div>
-                    <div *ngIf="attempt" style="font-size: 1.75vw; line-height: 2vw; background: #FFFC7F; color: #000;">{{ data.data.reveals[getChoice(choice)] }}</div>
+                    <div fittext [minFontSize]="15">{{ choice }}</div>
+                    <div *ngIf="attempt" class="reveal" fittext [minFontSize]="15">{{ data.data.reveals[getChoice(choice)] }}</div>
                 </div>
-                <div fxFlex="1 0 0"></div>
             </div>
         </mat-button-toggle>
     </mat-button-toggle-group>

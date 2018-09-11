@@ -3,29 +3,29 @@ import { register } from "./comp_index";
 import { Comp, ComponentAttempt } from "../../../schema";
 import { CompComponent } from "./comp.component";
 
-export class CompImage extends Comp {
-    data: { src: string }
+export class CompText extends Comp {
+    data: { text: string }
 
-    constructor(data: { src: string }) {
+    constructor(data: { text: string }) {
         super();
         this.data = data;
     }
 }
 
-@register("Image")
+@register("Poem")
 @Component({
-    selector: "image",
+    selector: "poem",
     template: `
-    <div class="comp-image-container">
-        <img class="comp-image" [src]="data.data.src" />
+    <div class="comp-poem-container">
+        <div [innerHTML]="data.data.text" fittext [maxFontSize]="15"></div>
     </div>
     `,
     styleUrls: ["../live.component.scss"]
 })
-export class ImageComponent extends CompComponent {
+export class PoemComponent extends CompComponent {
     constructor() { super() }
 
-    @Input() data: CompImage;
-    
+    @Input() data: CompText;
+
     getAnswer() : null { return null; }
 }

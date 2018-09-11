@@ -11,6 +11,7 @@ import { CompComponent } from './comp/comp.component';
 import { QuestionComponent } from './question.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
+import * as $ from 'jquery';
 
 @Component({
     selector: 'live',
@@ -29,7 +30,7 @@ export class LiveComponent {
                 this._brick = data;
                 this.showBrick(this._brick);
             }
-        })
+        });
     }
 
     brick: Observable<Brick>;

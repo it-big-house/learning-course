@@ -16,8 +16,10 @@ export class CompText extends Comp {
 @Component({
     selector: "reveal",
     template: `
-    <div *ngIf="attempt" class="comp-text-container">
-        <p style="background:#FFFC7F; color: #000;">{{data.data.text}}</p>
+    <div *ngIf="attempt">
+        <div class="reveal">
+            {{data.data.text}}
+        </div>
     </div>
     `,
     styleUrls: ["../live.component.scss"]

@@ -31,6 +31,8 @@
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
+    "@types/jquery": "^3.3.6",
+    "angular-fittext": "^2.1.1",
     "angularfire2": "^5.0.0-rc.11",
     "body-parser": "^1.18.3",
     "core-js": "^2.5.4",

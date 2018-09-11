@@ -20,7 +20,7 @@ export class CompText extends Comp {
         ':host >>> .color-red { color: red; }'
         ],
     template: `
-    <div class="comp-text-container">
+    <div fittext>
         <p [innerHTML]="data.data.text"></p>
     </div>
     `,

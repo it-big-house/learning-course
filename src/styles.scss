@@ -39,11 +39,11 @@ body {
     margin: 0;
     display: flex;
     min-height:100%;
-    background-color: #111F33;
 }
 
 app-root {
     width: 100%;
+    background: #111F33;
 }
 
 .basic-container {
@@ -132,4 +132,42 @@ app-root {
 /* Useful for creating a block so that elements underneath do not overlap */
 .clearfix {
     display: inline-block;
+}
+
+/**** Brick Screen Layout ****/
+
+/* decrease size of margin (left of screen and margin line) */
+.mat-vertical-content-container {
+    margin-left: 12px !important;
+}
+
+/* remove margin between left of screen and icons on questions */
+.mat-vertical-stepper-header {
+    padding: 24px 24px 24px 2px !important;
+}
+
+/* remove padding between margin line and question */
+.mat-vertical-content {
+    padding: 0 24px 24px 10px !important;
+}
+
+/* set the arrow icon container to expand to size of icon */
+mat-icon.arrow-icon {
+    height: auto !important;
+    width: auto !important
+}
+
+/* set arrow icon to be big icon */
+mat-icon.arrow-icon {
+    font-size: 50px !important;
+}
+
+/* lower padding that is adding whitespace on right of summary phase on iphone 5 width */
+mat-card {
+    padding: 12px !important;
+}
+
+/* remove default padding on material cards */
+.mat-button-toggle-label-content {
+    line-height: normal !important;
 }
