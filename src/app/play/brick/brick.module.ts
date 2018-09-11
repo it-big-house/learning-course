@@ -18,14 +18,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReviewComponent } from './review.component';
 import { EndingComponent } from './ending.component';
 import { TimerComponent } from './timer.component';
+import { ReversePipe } from '../../build/brick/comp/comp_reverse.pipe';
 
 @NgModule({
     imports: [ BrickRoutingModule, CommonModule, MaterialModule, MatIconModule, DragulaModule, CompModule, NgArrayPipesModule, FlexLayoutModule ],
     declarations: [
-        BrickComponent, TimerComponent, IntroductionComponent, LiveComponent, QuestionComponent, SummaryComponent, ReviewComponent, EndingComponent, BrickTimePipe
+        BrickComponent, TimerComponent, IntroductionComponent, LiveComponent, QuestionComponent, SummaryComponent, ReviewComponent, EndingComponent, BrickTimePipe, ReversePipe,
     ],
     providers: [
-        BrickTimePipe
+        BrickTimePipe, ReversePipe
     ]
 })
 export class BrickModule { }

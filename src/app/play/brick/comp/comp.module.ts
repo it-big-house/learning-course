@@ -19,20 +19,21 @@ import { HighlightDirective } from './highlight.directive';
 import { ArrowComponent } from './comp_arrow.component';
 import { RevealComponent } from './comp_reveal.component';
 import {AngularFittextModule} from 'angular-fittext';
+import { PoemComponent } from './comp_poem.component';
 
 let dModule = DynamicModule.withComponents([SingleChoiceComponent, MultipleChoiceComponent, 
     TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent, 
-    TextHighlightingComponent, ArrowComponent, RevealComponent])
+    TextHighlightingComponent, ArrowComponent, RevealComponent, PoemComponent])
 
 @NgModule({
     imports: [ AngularFittextModule, CommonModule, FormsModule, DragulaModule, MaterialModule, NgArrayPipesModule, FlexLayoutModule, dModule ],
     declarations: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, 
         TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent, 
-        TextHighlightingComponent, ArrowComponent, RevealComponent,
+        TextHighlightingComponent, ArrowComponent, RevealComponent, PoemComponent,
         HighlightDirective ],
     exports: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent,
         TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent,
-        TextHighlightingComponent, ArrowComponent, RevealComponent,
+        TextHighlightingComponent, ArrowComponent, RevealComponent, PoemComponent,
         HighlightDirective,
         dModule.ngModule, FormsModule
     ],

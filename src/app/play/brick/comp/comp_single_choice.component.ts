@@ -26,7 +26,7 @@ export class CompSingleChoice extends Comp {
                 <div fxFlex="1 0 0"></div>
                 <div fxLayout="column">
                     <div fittext>{{ choice }}</div>
-                    <div *ngIf="attempt" style="background: #FFFC7F; color: #000;" fittext>{{ data.data.reveals[getChoice(choice)] }}</div>
+                    <div *ngIf="attempt" class="reveal" fittext>{{ data.data.reveals[getChoice(choice)] }}</div>
                 </div>
                 <div fxFlex="1 0 0"></div>
             </div>

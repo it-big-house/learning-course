@@ -31,12 +31,13 @@ export class CompArrow extends Comp {
         <mat-list>
             <mat-list-item class="arrow-item-left touch-list-item" *ngFor="let item of userCats[0].choices; let ind = index" fxLayout="row" fxLayoutAlign="space-around center" >
                 <mat-checkbox *ngIf="attempt" [checked]="getState(ind) == 1" [indeterminate]="getState(ind) == -1" disabled></mat-checkbox>
-                <div *ngIf="attempt" fittext>{{ data.data.reveals[getChoice(item)] }}</div>
+                <div *ngIf="attempt" class="reveal" fittext>{{ data.data.reveals[getChoice(item)] }}</div>
                 <div class="arrow-item-text-left" fittext>{{item}}</div>
             </mat-list-item>
         </mat-list>
         <!-- The first column has Arrow Graphics -->
-        <!-- <mat-list>
+        <!-- Trying it without Arrows
+        <mat-list>
             <mat-list-item *ngFor="let item of userCats[0].choices" class="arrow-icon-list-item">
                 <mat-icon class="material-icons arrow-icon">arrow_right_alt</mat-icon>
             </mat-list-item>

@@ -27,8 +27,11 @@ mat-card, .sort-list > mat-list-item {
 }
 
 /**** Text Component ****/
-.comp-text-container {
-    overflow-x: scroll;
+
+/**** Reveal Component ****/
+.reveal {
+    background:#FFFC7F; 
+    color: #000;
 }
 
 /**** Timer ****/
@@ -62,10 +65,9 @@ mat-card, .sort-list > mat-list-item {
     box-sizing: border-box;
     white-space: normal;
     overflow-wrap: normal;
-    min-height: 5vw;
     color: #fff;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 /* White box around multiple choices */
@@ -77,13 +79,15 @@ mat-card, .sort-list > mat-list-item {
 
 /**** Sort Component ****/
 .sort-container {
-    overflow: scroll hidden;
+    // overflow: scroll hidden;
 }
 
 .sort-list {
     background-color: #eee;
-    height: 100%;
+    min-height: 30px;
     min-width: 200px;
+    outline: 2px dashed rgb(83, 83, 83);
+    outline-offset: -5px;
 }
 
 .cat-header {
@@ -91,6 +95,7 @@ mat-card, .sort-list > mat-list-item {
     padding: 10px 0;
     text-align: center;
     background-color: #ccc;
+    font-weight: bold;
 }
 
 .sort-header-container {
