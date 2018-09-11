@@ -43,6 +43,7 @@ body {
 
 app-root {
     width: 100%;
+    background: #111F33;
 }
 
 .basic-container {
@@ -164,4 +165,14 @@ mat-icon.arrow-icon {
 /* set arrow icon to be big icon */
 mat-icon.arrow-icon {
     font-size: 50px !important;
+}
+
+/* lower padding that is adding whitespace on right of summary phase on iphone 5 width */
+mat-card {
+    padding: 12px !important;
+}
+
+/* remove default padding on material cards */
+.mat-button-toggle-label-content {
+    line-height: normal !important;
 }

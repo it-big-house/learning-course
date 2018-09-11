@@ -17,7 +17,7 @@ export class CompText extends Comp {
     selector: "text",
     template: `
     <div class="comp-text-container">
-        <p [innerHTML]="data.data.text"></p>
+        <p [innerHTML]="data.data.text" fittext></p>
     </div>
     `,
     styleUrls: ["../live.component.scss"]

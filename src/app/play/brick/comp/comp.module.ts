@@ -18,13 +18,14 @@ import { TextHighlightingComponent } from './comp_text_highlighting.component';
 import { HighlightDirective } from './highlight.directive';
 import { ArrowComponent } from './comp_arrow.component';
 import { RevealComponent } from './comp_reveal.component';
+import {AngularFittextModule} from 'angular-fittext';
 
 let dModule = DynamicModule.withComponents([SingleChoiceComponent, MultipleChoiceComponent, 
     TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent, 
     TextHighlightingComponent, ArrowComponent, RevealComponent])
 
 @NgModule({
-    imports: [ CommonModule, FormsModule, DragulaModule, MaterialModule, NgArrayPipesModule, FlexLayoutModule, dModule ],
+    imports: [ AngularFittextModule, CommonModule, FormsModule, DragulaModule, MaterialModule, NgArrayPipesModule, FlexLayoutModule, dModule ],
     declarations: [ CompComponent, SingleChoiceComponent, MultipleChoiceComponent, 
         TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent, 
         TextHighlightingComponent, ArrowComponent, RevealComponent,

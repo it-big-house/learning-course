@@ -19,16 +19,15 @@ export class CompSort extends Comp {
 @Component({
     selector: 'sort',
     template: `
+    <!-- 50px margin at bottom to push reveals out from under the category columns -->
     <div class="sort-container" style="margin-bottom:50px;" fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="10px">
-        <div class="cat-container" *ngFor="let cat of userCats; let i = index" fxFlex="1 0 0">
+        <div class="cat-container" *ngFor="let cat of userCats; let i = index" fittext>
             <div class="cat-header">{{cat.name}}</div>
             <mat-list [dragula]="'DRAG'" [(dragulaModel)]="userCats[i].choices" class="sort-list">
                 <mat-list-item  class="touch-list-item sort-list-item" *ngFor="let item of cat.choices">
-                    <div>
-                        <mat-checkbox *ngIf="attempt" [indeterminate]="getState(item) == -1" [checked]="getState(item) == 1" disabled></mat-checkbox>
-                        {{item}}
-                        <!-- <div *ngIf="attempt" style="font-size: 12px">{{ data.data.reveals[item] }}</div> -->
-                    </div>
+                    <mat-checkbox *ngIf="attempt" [indeterminate]="getState(item) == -1" [checked]="getState(item) == 1" disabled></mat-checkbox>
+                    <div>{{item}}</div>
+                    <!-- <div *ngIf="attempt">{{ data.data.reveals[item] }}</div> -->
                 </mat-list-item>
             </mat-list>
         </div>
