@@ -5,6 +5,11 @@
     background-color: white;
 }
 
+/* hide overflow to stop whitespace on right of summary phase on iphone5 width */
+.score-container {
+    overflow: hidden;
+}
+
 .overflow {
     overflow: hidden auto;
 }
