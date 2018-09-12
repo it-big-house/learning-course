@@ -2,6 +2,10 @@
 
 .env
 firebase/*.json
+firebase/backup/brickattempts
+firebase/backup/teachers
+firebase/classes
+firebase/students
 
 # compiled output
 /dist
