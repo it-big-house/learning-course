@@ -11,6 +11,16 @@ $ git clone git@github.com:Scholar-6/learning-fortress-frontend.git
 $ npm install && npm run debug
 ```
 
+We use Firebase Firestore DB as our backend. If you just need a dummy backend for dev then get a free account at https://firebase.google.com/   
+Create a new Cloud Firebase project, and click on 'Database' on left menu then 'Create database' under Cloud Firestore. generate a private key (Database>Project Settings>Service Accounts>Generate new private key). Move this key to /firebase/key.json in this directory.   
+Install the firebase backup-restore npm package globally, and run a restore of this dummy database (replace FILE.json with private key). 
+```bash
+$ npm install -g firestore-backup-restore
+$ firestore-backup-restore --backupPath firebase/backup --restoreAccountCredentials firebase/key.json
+```
+https://www.npmjs.com/package/firestore-backup-restore
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
