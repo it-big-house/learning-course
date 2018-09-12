@@ -4,14 +4,21 @@
 
 export const environment = {
     production: false,
-    apiUrl: "https://learning-fortress-backend-prep.herokuapp.com/",
-    firebase: {
-        apiKey: "AIzaSyDZAppRL0CfjhcMo4-9l0DIIRdDXXexvx4",
-        authDomain: "learning-fortress.firebaseapp.com",
-        databaseURL: "https://learning-fortress.firebaseio.com",
-        projectId: "learning-fortress",
-        storageBucket: "learning-fortress.appspot.com",
-        messagingSenderId: "45503831861"
+    firebase:
+    // From your project page on Firebase click the little cog top left then 'Project settings'
+    {
+        // Project ID
+        projectId: "learning-fortress-dev",
+        // Web API Key
+        apiKey: "AIzaSyDMaRdWEVVJ_m6XZfhqCGP0O8adcZLvxW4",
+        // <project ID>.firebaseapp.com
+        authDomain: "learning-fortress-dev.firebaseapp.com",
+        // <project ID>.appspot.com
+        storageBucket: "learning-fortress-dev.appspot.com",
+        // https://<project ID>.firebaseio.com
+        databaseURL: "https://learning-fortress-dev.firebaseio.com",
+        // Click on the next tab 'Cloud Messaging' and look for the 'Sender ID' section
+        messagingSenderId: "890224168065"
     }
 };
 
