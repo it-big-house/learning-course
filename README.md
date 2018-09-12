@@ -2,31 +2,18 @@
 
 This is a simple VLE project running using a firebase backend. It is designed as a blended learning tool for Scholar6 Schools.
 
-
 ## Basic Installation 
-Make sure you have git, node and npm. We use Visual Studio to edit our code.
+1. Make sure you have git, node and npm. We use Visual Studio to edit our code.
+2. Clone and install
 ```bash
 $ git clone git@github.com:Scholar-6/learning-fortress-frontend.git
-$ npm install && npm run debug
+$ npm install
 ```
-That's it. It is preconfigured to connect to an existing firebase db in the cloud.
+3. Run `ng run debug` for a dev server that reloads on changes to files. Navigate to `http://localhost:4200/`.
 
-## Development server
+4. That's it. It is preconfigured to connect to a dummy firebase db in the google cloud. (This database gets restored every so often)
 
-Run `ng run debug` for a dev server that reloads on changes to files. Navigate to `http://localhost:4200/`.
-
-## Database changes
-You do not have access to the firebase project web console and the dummy dev database might be corrupted or restored at anypoint. We use Firebase Firestore DB as our backend. If you just need a separate dummy backend for dev then get a free account at https://firebase.google.com/   
-Create a new Cloud Firebase project, and click on 'Database' on left menu then 'Create database' under Cloud Firestore. generate a private key (Database>Project Settings>Service Accounts>Generate new private key). Move this key to /firebase/key.json in this directory.   
-Install the firebase backup-restore npm package globally, and run a restore of this dummy database (see below)
-```bash
-$ npm install -g firestore-backup-restore
-$ firestore-backup-restore --backupPath firebase/backup --restoreAccountCredentials firebase/key.json
-```
-https://www.npmjs.com/package/firestore-backup-restore
-Finally folow the instructions in environment/environment.ts to setup the connection details from app.
-
-Further information on Firebase stuff can be found in the firebase/README.md
+Further information on Firebase stuff can be found in the [firebase/README.md](./firebase/README.md)
 
 ## Code scaffolding
 
