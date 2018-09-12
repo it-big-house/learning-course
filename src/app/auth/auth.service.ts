@@ -17,10 +17,6 @@ export class AuthService {
     }
 
     signInSuccess(event: FirebaseUISignInSuccessWithAuthResult) {
-        if (event.authResult.additionalUserInfo.isNewUser) {
-          this.afAuth.auth.signOut();
-          return true;
-        }
         console.log(`signed in as ${event.authResult.user.displayName} who is${event.authResult.additionalUserInfo.isNewUser?"":" not"} a new user.`);
         return true;
     }

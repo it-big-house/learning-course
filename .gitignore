@@ -6,6 +6,7 @@ firebase/backup/brickattempts
 firebase/backup/teachers
 firebase/classes
 firebase/students
+firebase/firebase-functions/functions/node_modules
 
 # compiled output
 /dist
