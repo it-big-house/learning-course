@@ -4,7 +4,6 @@
 
 export const environment = {
     production: false,
-    apiUrl: "https://learning-fortress-backend-prep.herokuapp.com/",
     firebase:
     {
         apiKey: "AIzaSyDZAppRL0CfjhcMo4-9l0DIIRdDXXexvx4",
