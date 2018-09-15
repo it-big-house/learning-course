@@ -29,7 +29,7 @@ export class CompArrow extends Comp {
     template: `
     <div class="arrow-container" fxFlex="1 1 100%" fxLayout="row">
         <mat-list>
-            <mat-list-item class="arrow-item-left touch-list-item" *ngFor="let item of userCats[0].choices; let ind = index" fxLayout="row" fxLayoutAlign="space-around center" >
+            <mat-list-item touch-action="none" class="arrow-item-left touch-list-item" *ngFor="let item of userCats[0].choices; let ind = index" fxLayout="row" fxLayoutAlign="space-around center" >
                 <mat-checkbox *ngIf="attempt" [checked]="getState(ind) == 1" [indeterminate]="getState(ind) == -1" disabled></mat-checkbox>
                 <div *ngIf="attempt && data.data.reveals[getChoice(item)]" class="reveal" fittext [minFontSize]="10">{{ data.data.reveals[getChoice(item)] }}</div>
                 <div class="arrow-item-text-left" fittext [minFontSize]="10">{{item}}</div>
