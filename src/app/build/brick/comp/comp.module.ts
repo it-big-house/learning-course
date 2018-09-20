@@ -21,6 +21,7 @@ import { RevealComponent } from './comp_reveal.component';
 import {AngularFittextModule} from 'angular-fittext';
 import { PoemComponent } from './comp_poem.component';
 
+
 let dModule = DynamicModule.withComponents([SingleChoiceComponent, MultipleChoiceComponent, 
     TextComponent, OrderComponent, SortComponent, ShortAnswerComponent, HorizontalShuffleComponent, 
     TextHighlightingComponent, ArrowComponent, RevealComponent, PoemComponent])
